@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4rbx18kxm8qa"]
+
+[ext_resource type="Script" path="res://PLAYER/SCRIPTS/BarraVida.gd" id="1_jpj70"]
+[ext_resource type="Texture2D" uid="uid://o4g5rg71cd8v" path="res://PLAYER/ASSETS/LIFE.png" id="2_2lf2e"]
+[ext_resource type="Texture2D" uid="uid://dsj8s22aqpi6f" path="res://PLAYER/ASSETS/energy.png" id="4_tssin"]
+[ext_resource type="Script" path="res://PLAYER/SCRIPTS/EXP.gd" id="5_cv1bo"]
+[ext_resource type="Script" path="res://PLAYER/SCRIPTS/energia.gd" id="5_nso7w"]
+[ext_resource type="Texture2D" uid="uid://dmfavi050dwbb" path="res://PLAYER/ASSETS/EXP.png" id="6_ijy5l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mmpo"]
+bg_color = Color(0.164706, 0.0156863, 0.027451, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.172549, 0.0784314, 0.0470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfj1q"]
+bg_color = Color(0.941176, 0.027451, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6qvs"]
+bg_color = Color(0.352941, 0.815686, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvuqc"]
+bg_color = Color(0.0823529, 0.129412, 0.0235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_415ot"]
+bg_color = Color(0.580392, 0.752941, 0.239216, 1)
+
+[node name="Node2D" type="Node2D"]
+modulate = Color(0.713726, 0.701961, 0.6, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(75, 94)
+scale = Vector2(0.78, 0.78)
+
+[node name="vida" type="ProgressBar" parent="Node2D" groups=["BarraVida"]]
+offset_left = -87.0
+offset_top = -14.0
+offset_right = 82.0
+offset_bottom = 17.0
+scale = Vector2(1.36, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0.741176, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_1mmpo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xfj1q")
+max_value = 1000.0
+value = 1000.0
+show_percentage = false
+script = ExtResource("1_jpj70")
+metadata/_edit_use_anchors_ = true
+
+[node name="LIFE" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(-1.28205, 4.16027)
+scale = Vector2(7, 5.57101)
+texture = ExtResource("2_2lf2e")
+
+[node name="Energia" type="Node2D" parent="."]
+position = Vector2(0, 30)
+scale = Vector2(0.615, 0.615)
+
+[node name="energia" type="ProgressBar" parent="Energia" groups=["BarraEnergia"]]
+offset_right = 306.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_1mmpo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j6qvs")
+max_value = 200.0
+value = 200.0
+script = ExtResource("5_nso7w")
+
+[node name="ENERGY" type="Sprite2D" parent="Energia"]
+texture_filter = 1
+position = Vector2(122, 12)
+scale = Vector2(9, 7)
+texture = ExtResource("4_tssin")
+
+[node name="eXPERIENCIA" type="Node2D" parent="."]
+position = Vector2(176, -13)
+scale = Vector2(0.53, 0.53)
+
+[node name="ProgressBar" type="ProgressBar" parent="eXPERIENCIA"]
+offset_left = -338.0
+offset_top = -25.0
+offset_right = 365.0
+offset_bottom = 29.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rvuqc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_415ot")
+show_percentage = false
+script = ExtResource("5_cv1bo")
+
+[node name="Sprite2D" type="Sprite2D" parent="eXPERIENCIA"]
+texture_filter = 1
+position = Vector2(-29, 2.00003)
+scale = Vector2(10.649, 9.16667)
+texture = ExtResource("6_ijy5l")

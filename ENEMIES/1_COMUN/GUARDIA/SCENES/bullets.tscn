@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7bd8sgybcou7"]
+
+[ext_resource type="Script" path="res://ENEMIES/1_COMUN/GUARDIA/SCRIPTS/bullets.gd" id="1_exmnf"]
+[ext_resource type="Texture2D" uid="uid://cjjjwf4d4om2s" path="res://icon.svg" id="2_koxv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53grf"]
+size = Vector2(38.8889, 37.3333)
+
+[node name="bullets" type="Area2D"]
+scale = Vector2(0.07, 0.07)
+script = ExtResource("1_exmnf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_koxv3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(1.94444, 1.88889)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_53grf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkmu5slemhhr5"]
+
+[ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/DOOR/Doors.gd" id="1_fcu55"]
+[ext_resource type="Texture2D" uid="uid://bmv60pimwa84m" path="res://LEVELS/LEVEL_1/SCENES/DOOR/crital-naranja.png" id="2_yw5yg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el7wk"]
+size = Vector2(20, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujahg"]
+size = Vector2(20, 49.5)
+
+[sub_resource type="Gradient" id="Gradient_nd0a1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.213115, 0.418033, 0.704918, 1)
+colors = PackedColorArray(0.856067, 0.856067, 0.856067, 1, 0.391836, 0.391836, 0.391836, 1, 0.180119, 0.180119, 0.180119, 1, 0.0257326, 0.0257326, 0.0257326, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1355"]
+gradient = SubResource("Gradient_nd0a1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.761905, 0.285714)
+metadata/_snap_enabled = true
+metadata/_snap_count = 21
+
+[node name="Doors" type="Node2D"]
+script = ExtResource("1_fcu55")
+
+[node name="Player_Detect" type="Area2D" parent="."]
+
+[node name="Player_Collission" type="CollisionShape2D" parent="Player_Detect"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_el7wk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -29.75)
+shape = SubResource("RectangleShape2D_ujahg")
+
+[node name="Crital-naranja" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+position = Vector2(-4.76837e-07, -15)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("2_yw5yg")
+
+[node name="VFX" type="Node2D" parent="StaticBody2D"]
+z_index = 2
+position = Vector2(4.26326e-14, -14)
+scale = Vector2(1.9802, 1.9802)
+
+[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/VFX"]
+position = Vector2(-3.8147e-06, -0.505)
+scale = Vector2(2, -1.866)
+color = Color(0.964706, 0.67451, 0.196078, 1)
+energy = 1.54
+range_z_max = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 23.5
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_i1355")
+texture_scale = 1.5
+
+[connection signal="body_entered" from="Player_Detect" to="." method="_on_player_detect_body_entered"]

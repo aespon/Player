@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxmx6mp84gr7r"]
+
+[ext_resource type="Script" path="res://UI/Cinematicas/SCRIPTS/tutorial.gd" id="1_h5qms"]
+[ext_resource type="Texture2D" uid="uid://cubmpbwvd5sds" path="res://UI/Cinematicas/ASSETS/tut.jpg" id="2_12r88"]
+
+[node name="tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h5qms")
+
+[node name="Tut" type="Sprite2D" parent="."]
+position = Vector2(639.319, 371)
+scale = Vector2(0.730537, 0.729032)
+texture = ExtResource("2_12r88")

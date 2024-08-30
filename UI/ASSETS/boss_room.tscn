@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://du5e010jhsoj2"]
+
+[ext_resource type="Texture2D" uid="uid://w03u6hkif2r1" path="res://UI/ASSETS/boss_room.png" id="1_31nh4"]
+
+[node name="boss_room" type="Sprite2D"]
+position = Vector2(640, 544)
+texture = ExtResource("1_31nh4")

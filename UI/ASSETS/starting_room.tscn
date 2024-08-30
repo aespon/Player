@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7xtkmu3b5vp1"]
+
+[ext_resource type="Texture2D" uid="uid://b4eqtkwwl3sni" path="res://UI/ASSETS/starting_room.png" id="1_oi2em"]
+
+[node name="starting_room" type="Sprite2D"]
+position = Vector2(640, 544)
+texture = ExtResource("1_oi2em")

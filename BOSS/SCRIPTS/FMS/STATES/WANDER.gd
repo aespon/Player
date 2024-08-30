@@ -1,0 +1,70 @@
+extends State
+
+##############################
+# cuando entra al estado tiene que randomizar un angulo para el cual ir
+# el cual sera multiplicado por la velocidad a la que ira
+# despues de un tiempo random de moverse constantemente eimite una señal de idle
+##############################
+
+@export var timer_wander : Timer
+
+@export var wander_speed = 0.0
+
+@export var Points : Node
+
+@export var next_point : Timer
+
+@export var Navigator : NavigationAgent2D
+
+@export var player_detector_1 : RayCast2D 
+@export var player_detector_2 : RayCast2D
+@export var timer_wait_time = 0.0
+
+@export var previous_state  = ""
+@export var next_state = ""
+
+var point_pos = 0
+var target
+
+func enter():
+	timer_wander.wait_time = timer_wait_time
+	timer_wander.start()
+	next_point.start()
+	next_point.autostart = true
+	if timer_wander.timeout.connect(on_timeout):
+		timer_wander.timeout.connect(on_timeout)
+	if next_point.timeout.connect(on_next_point_timeout):
+		next_point.timeout.connect(on_next_point_timeout)
+
+func on_next_point_timeout():
+	
+	point_pos = point_pos+1
+	target = Points.get_child(point_pos)
+	if point_pos == 5:
+		point_pos = 0
+
+
+
+func on_timeout():
+	transitioned.emit(self , previous_state)
+
+
+func process_state(_delta):
+	if is_instance_valid(target):
+		Navigator.target_position = target.global_position
+	
+	var current_agent_position = global_position
+	var next_path_position = Navigator.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * wander_speed 
+	
+	if player_detector_1.is_colliding() or player_detector_2.is_colliding():
+		transitioned.emit(self, next_state)
+	
+	owner.velocity = new_velocity
+	
+	pass
+
+
+func exit():
+	timer_wander.stop()
+	next_point.stop()
