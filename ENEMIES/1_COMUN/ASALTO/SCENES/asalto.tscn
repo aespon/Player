@@ -1,0 +1,251 @@
+[gd_scene load_steps=21 format=3 uid="uid://dhn571l4guk8w"]
+
+[ext_resource type="Script" path="res://ENEMIES/1_COMUN/ASALTO/SCRIPTS/Asalto.gd" id="1_qtvp8"]
+[ext_resource type="Texture2D" uid="uid://b37lkpmqefkwy" path="res://ENEMIES/1_COMUN/ASALTO/ASSET/Skotadi de asalto-Sheet.png" id="2_fmwud"]
+[ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_6m5ua"]
+[ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_nlwwn"]
+[ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_4a5pv"]
+[ext_resource type="Script" path="res://FMS/STATES/JUMP.gd" id="6_27abh"]
+[ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="7_i0ql6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6cdt"]
+radius = 16.1245
+
+[sub_resource type="Animation" id="Animation_ww5s4"]
+resource_name = "ATTACK"
+
+[sub_resource type="Animation" id="Animation_uqww0"]
+resource_name = "DEATH"
+
+[sub_resource type="Animation" id="Animation_gg0w1"]
+resource_name = "IDLE"
+length = 0.7
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_1sjg7"]
+resource_name = "JUMP_DOWN"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 36]
+}
+
+[sub_resource type="Animation" id="Animation_rt56y"]
+resource_name = "JUMP_LEFT"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 24]
+}
+
+[sub_resource type="Animation" id="Animation_2d71d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_73eoc"]
+resource_name = "WANDER"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwxjb"]
+_data = {
+"ATTACK": SubResource("Animation_ww5s4"),
+"DEATH": SubResource("Animation_uqww0"),
+"IDLE": SubResource("Animation_gg0w1"),
+"JUMP_DOWN": SubResource("Animation_1sjg7"),
+"JUMP_LEFT": SubResource("Animation_rt56y"),
+"RESET": SubResource("Animation_2d71d"),
+"WANDER": SubResource("Animation_73eoc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0i34g"]
+radius = 25.4951
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnngv"]
+radius = 43.1045
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skd3s"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfo6u"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="Asalto" type="CharacterBody2D"]
+script = ExtResource("1_qtvp8")
+
+[node name="Collission" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 7
+position = Vector2(-2, 17)
+shape = SubResource("CircleShape2D_i6cdt")
+
+[node name="Detector1" type="RayCast2D" parent="."]
+
+[node name="Detector2" type="RayCast2D" parent="."]
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+texture = ExtResource("2_fmwud")
+hframes = 12
+vframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_pwxjb")
+}
+
+[node name="HTIBOX" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HTIBOX"]
+shape = SubResource("CircleShape2D_0i34g")
+
+[node name="ATTACK_DETECTION" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ATTACK_DETECTION"]
+shape = SubResource("CircleShape2D_vnngv")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Points"]
+position = Vector2(55, 30)
+
+[node name="Marker2D2" type="Marker2D" parent="Points"]
+position = Vector2(-45, 34)
+
+[node name="Marker2D3" type="Marker2D" parent="Points"]
+position = Vector2(56, -57)
+
+[node name="Marker2D4" type="Marker2D" parent="Points"]
+position = Vector2(-47, -57)
+
+[node name="Finate_State_Machine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_6m5ua")
+initial_state = NodePath("IDLE")
+
+[node name="IDLE" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
+script = ExtResource("4_nlwwn")
+timer_idle = NodePath("../../Timer_comun")
+timer_wait_time = 4.0
+player_detector_1 = NodePath("../../Detector1")
+player_detector_2 = NodePath("../../Detector2")
+next_state_1 = "wander"
+next_state_2 = "jump"
+
+[node name="WANDER" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
+script = ExtResource("5_4a5pv")
+timer_wander = NodePath("../../Timer_comun")
+wander_speed = 50.0
+Points = NodePath("../../Points")
+next_point = NodePath("../../Timer_Wander")
+Navigator = NodePath("../../NavigationAgent2D")
+player_detector_1 = NodePath("../../Detector1")
+player_detector_2 = NodePath("../../Detector2")
+timer_wait_time = 4.0
+previous_state = "idle"
+next_state = "jump"
+
+[node name="JUMP" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("attack_area", "enemy_collission", "sprite", "Navigator")]
+script = ExtResource("6_27abh")
+attack_area = NodePath("../../ATTACK_DETECTION")
+enemy_collission = NodePath("../../Collission")
+speed = 500.0
+sprite = NodePath("../../Sprite/Sprite2D")
+Navigator = NodePath("../../NavigationAgent2D")
+new_state = "attack"
+
+[node name="ATTACK" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_attack_cooldown", "attack_detector", "Navigator")]
+script = ExtResource("7_i0ql6")
+timer_attack_cooldown = NodePath("../../Timer_comun")
+timer_time = 0.8
+attack_detector = NodePath("../../ATTACK_DETECTION")
+damage = 150.0
+Navigator = NodePath("../../NavigationAgent2D")
+previous_state = "idle"
+
+[node name="Timer_comun" type="Timer" parent="."]
+
+[node name="Timer_Wander" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -27.0
+offset_right = 47.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.56, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_skd3s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vfo6u")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[connection signal="area_entered" from="HTIBOX" to="." method="_on_htibox_area_entered"]

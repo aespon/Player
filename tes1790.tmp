@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8qu6pjjyvvha"]
+[gd_scene load_steps=5 format=3 uid="uid://c8qu6pjjyvvha"]
 
 [ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Player TopDown.tscn" id="1_bg2h7"]
-[ext_resource type="PackedScene" uid="uid://bhoygqkmcn4q3" path="res://ENEMIES/1_COMUN/MINERO/SCENES/MINERO.tscn" id="3_bvcpo"]
+[ext_resource type="PackedScene" uid="uid://bs3j2j0dpu1kk" path="res://ENEMIES/1_COMUN/GUARDIA/SCENES/guardia.tscn" id="3_csqa5"]
 [ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_gsvmu"]
-[ext_resource type="PackedScene" uid="uid://dy4k6jkpav2wc" path="res://BOSS/SCENES/Skotadi_Dog_Guards/dog_1.tscn" id="4_c2emf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpgk2"]
 vertices = PackedVector2Array(1103, 720, 544, 994, -285, 880, -700, -429, 1594, -919)
@@ -23,26 +22,7 @@ navigation_polygon = SubResource("NavigationPolygon_cpgk2")
 [node name="Node2D" parent="." instance=ExtResource("3_gsvmu")]
 position = Vector2(88, 568)
 
-[node name="Minero" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(224, 240)
-
-[node name="Minero2" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(904, -136)
-
-[node name="Minero3" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(-408, -216)
-
-[node name="Minero4" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(-160, 80)
-
-[node name="Minero5" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(648, 184)
-
-[node name="Minero6" parent="." instance=ExtResource("3_bvcpo")]
-position = Vector2(-312, 384)
-
-[node name="Dog_1" parent="." instance=ExtResource("4_c2emf")]
-position = Vector2(296, -176)
-life = 1000.0
+[node name="GUARDIA" parent="." instance=ExtResource("3_csqa5")]
+position = Vector2(328, 208)
 
 [editable path="CharacterBody2D"]

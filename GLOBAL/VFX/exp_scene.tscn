@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://ph0745k0y7k7"]
+
+[ext_resource type="Script" path="res://exp_movement.gd" id="1_1p5di"]
+
+[sub_resource type="Gradient" id="Gradient_n1dod"]
+offsets = PackedFloat32Array(0.0194805, 0.993506)
+colors = PackedColorArray(0.359117, 0.642823, 0.287775, 1, 0.359117, 0.642823, 0.287775, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tetnl"]
+gradient = SubResource("Gradient_n1dod")
+
+[sub_resource type="Animation" id="Animation_6to6t"]
+resource_name = "mooving"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 2.54912, 0.378929, 2.07053),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, -3), Vector2(-3, 3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1.86607, 0.535887, 1.56917),
+"update": 0,
+"values": [Vector2(-14.587, 11.1908), Vector2(-22, 6), Vector2(-8, 21), Vector2(-14.587, 11.1908)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1.68179, 0.406126, 1.7411),
+"update": 0,
+"values": [-0.523598, -2.0368, -0.0244346, -0.523598]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 2.46229, 0.34151, 2),
+"update": 0,
+"values": [0.0, 1.80293, -0.951204, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_06051"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14.587, 11.1908)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.523598]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p126g"]
+_data = {
+"RESET": SubResource("Animation_06051"),
+"mooving": SubResource("Animation_6to6t")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlgtq"]
+radius = 15.2971
+
+[node name="EXP_Scene" type="Area2D"]
+script = ExtResource("1_1p5di")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.234375, 0.234375)
+texture = SubResource("GradientTexture2D_tetnl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-14.587, 11.1908)
+rotation = -0.523598
+scale = Vector2(0.184257, 0.184257)
+texture = SubResource("GradientTexture2D_tetnl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p126g")
+}
+autoplay = "mooving"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vlgtq")

@@ -18,14 +18,15 @@ var target
 @export var previous_state  = ""
 
 
+
+
 func enter():
+	timer_attack_cooldown.timeout.connect(on_time_out)
 	attack_detector.body_exited.connect(attack_dtector_exited)
 	timer_attack_cooldown.wait_time = timer_time
 	timer_attack_cooldown.start()
-	if !timer_attack_cooldown.timeout.connect(on_time_out):
-		timer_attack_cooldown.timeout.connect(on_time_out)
 	Global.health = Global.health - damage
-	
+
 
 
 func on_time_out():
@@ -35,13 +36,13 @@ func on_time_out():
 	print(Global.health)
 
 func attack_dtector_exited(body):
-	if body.name == "CharacterBody2D":
+	if body.name == "Jugador":
 		transitioned.emit(self, previous_state)
-	
+
 func process_state(_delta):
 	target = player
 	Navigator.target_position = target.position
-	
+
 	var current_agent_position = global_position
 	var next_path_position = Navigator.get_next_path_position()
 	var new_velocity = current_agent_position.direction_to(next_path_position) * chase_speed
@@ -49,4 +50,5 @@ func process_state(_delta):
 
 
 func exit():
+	timer_attack_cooldown.timeout.disconnect(on_time_out)
 	timer_attack_cooldown.stop()

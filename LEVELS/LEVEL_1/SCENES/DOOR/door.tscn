@@ -7,7 +7,7 @@
 size = Vector2(20, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujahg"]
-size = Vector2(20, 49.5)
+size = Vector2(20, 80)
 
 [sub_resource type="Gradient" id="Gradient_nd0a1"]
 interpolation_mode = 2
@@ -36,7 +36,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -29.75)
+position = Vector2(0, -45)
 shape = SubResource("RectangleShape2D_ujahg")
 
 [node name="Crital-naranja" type="Sprite2D" parent="StaticBody2D"]

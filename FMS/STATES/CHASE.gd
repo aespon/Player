@@ -19,12 +19,14 @@ var target
 @export var previous_state  = ""
 @export var next_state = ""
 
+
+func _ready():
+	timer_chase.timeout.connect(on_time_out)
+	attack_detector.body_entered.connect(attack_dtector_entered)
+	
 func enter():
 	timer_chase.wait_time = timer_time
 	timer_chase.start()
-	if !timer_chase.timeout.connect(on_time_out):
-		timer_chase.timeout.connect(on_time_out)
-	attack_detector.body_entered.connect(attack_dtector_entered)
 	pass
 
 func on_time_out():

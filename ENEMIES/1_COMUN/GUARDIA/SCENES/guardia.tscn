@@ -1,0 +1,333 @@
+[gd_scene load_steps=23 format=3 uid="uid://bs3j2j0dpu1kk"]
+
+[ext_resource type="Script" path="res://ENEMIES/1_COMUN/GUARDIA/SCRIPTS/guardia.gd" id="1_uqyd7"]
+[ext_resource type="Shader" uid="uid://c0oucq73jqjbu" path="res://GLOBAL/VFX/ASSETS/minero.tres" id="2_1oi6y"]
+[ext_resource type="Texture2D" uid="uid://d70mujxghaqv" path="res://ENEMIES/1_COMUN/GUARDIA/ASSET/Skotadi guardia-(Muerte)-Sheet-sheet.png" id="3_iy2uc"]
+[ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_xmmpi"]
+[ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_n4ov8"]
+[ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_brvi8"]
+[ext_resource type="Script" path="res://FMS/STATES/SHOOT.gd" id="6_u1uw8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c358n"]
+shader = ExtResource("2_1oi6y")
+shader_parameter/enable = true
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_evfv2"]
+resource_name = "DEATH"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0), Vector2i(10, 0), Vector2i(11, 0), Vector2i(12, 0), Vector2i(13, 0), Vector2i(14, 0), Vector2i(15, 0), Vector2i(16, 0), Vector2i(17, 0), Vector2i(18, 0), Vector2i(19, 0), Vector2i(20, 0), Vector2i(21, 0), Vector2i(22, 0), Vector2i(23, 0), Vector2i(24, 0), Vector2i(25, 0), Vector2i(26, 0), Vector2i(27, 0), Vector2i(28, 0), Vector2i(29, 0), Vector2i(30, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h1stg"]
+resource_name = "IDLE"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(0, 5), Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_uxaoa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2i(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y18d1"]
+resource_name = "SHOOT_DOWN"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_6dlt2"]
+resource_name = "SHOOT_LEFT"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kjgod"]
+resource_name = "SHOOT_RIGHT"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_njwpw"]
+resource_name = "SHOOT_UP"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_af0kg"]
+resource_name = "WANDER"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(8, 4), Vector2i(9, 4), Vector2i(11, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_88wrb"]
+_data = {
+"DEATH": SubResource("Animation_evfv2"),
+"IDLE": SubResource("Animation_h1stg"),
+"RESET": SubResource("Animation_uxaoa"),
+"SHOOT_DOWN": SubResource("Animation_y18d1"),
+"SHOOT_LEFT": SubResource("Animation_6dlt2"),
+"SHOOT_RIGHT": SubResource("Animation_kjgod"),
+"SHOOT_UP": SubResource("Animation_njwpw"),
+"WANDER": SubResource("Animation_af0kg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsoyr"]
+size = Vector2(29, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lgn1"]
+radius = 36.0555
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4s07"]
+radius = 23.0
+height = 68.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbpch"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhl4h"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="GUARDIA" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_uqyd7")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_c358n")
+position = Vector2(-1, -1)
+texture = ExtResource("3_iy2uc")
+hframes = 32
+vframes = 6
+frame = 160
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_88wrb")
+}
+autoplay = "IDLE"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 5
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_dsoyr")
+
+[node name="FSM" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_xmmpi")
+initial_state = NodePath("IDLE")
+
+[node name="IDLE" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
+script = ExtResource("4_n4ov8")
+timer_idle = NodePath("../../Timer")
+timer_wait_time = 1.0
+player_detector_1 = NodePath("../../DetectorY")
+player_detector_2 = NodePath("../../Detectorx")
+next_state_1 = "wander"
+next_state_2 = "shoot"
+
+[node name="WANDER" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
+script = ExtResource("5_brvi8")
+timer_wander = NodePath("../../Timer")
+wander_speed = 100.0
+Points = NodePath("../../Points")
+next_point = NodePath("../../Timer_Wander_Points")
+Navigator = NodePath("../../Dog_1_nav")
+player_detector_1 = NodePath("../../DetectorY")
+player_detector_2 = NodePath("../../Detectorx")
+timer_wait_time = 7.0
+previous_state = "idle"
+next_state = "shoot"
+
+[node name="SHOOT" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_bullet_cooldown", "ray_cast", "Navigator")]
+script = ExtResource("6_u1uw8")
+timer_bullet_cooldown = NodePath("../../Timer")
+timer_time = 0.7
+ray_cast = NodePath("../../DetectorY")
+damage = 100.0
+chase_speed = 100.0
+Navigator = NodePath("../../Dog_1_nav")
+previous_state = "idle"
+
+[node name="Timer_Wander_Points" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="DetectorY" type="RayCast2D" parent="."]
+light_mask = 4
+target_position = Vector2(0, 250)
+
+[node name="Detectorx" type="RayCast2D" parent="."]
+light_mask = 4
+rotation = 4.71239
+target_position = Vector2(0, 5)
+collision_mask = 32
+
+[node name="Attack_Detector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detector"]
+shape = SubResource("CircleShape2D_6lgn1")
+
+[node name="Hit_Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_Detector"]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_u4s07")
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Points"]
+position = Vector2(64, 64)
+
+[node name="Marker2D2" type="Marker2D" parent="Points"]
+position = Vector2(-64, -64)
+
+[node name="Marker2D3" type="Marker2D" parent="Points"]
+position = Vector2(-64, 64)
+
+[node name="Marker2D4" type="Marker2D" parent="Points"]
+position = Vector2(64, -64)
+
+[node name="Dog_1_nav" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -27.0
+offset_right = 47.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.56, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_bbpch")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vhl4h")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[connection signal="area_entered" from="Hit_Detector" to="." method="_on_hit_detector_area_entered"]

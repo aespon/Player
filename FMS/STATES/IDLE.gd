@@ -15,14 +15,13 @@ extends State
 @export var next_state_1  = ""
 @export var next_state_2 = ""
 
- 
+
+
 func enter():
-	
+	timer_idle.timeout.connect(on_timeout) 
 	enemy.velocity = Vector2.ZERO
 	timer_idle.wait_time = timer_wait_time
 	timer_idle.start()
-	if timer_idle.timeout.connect(on_timeout):
-		timer_idle.timeout.connect(on_timeout)
 
 	
 func on_timeout():
@@ -34,5 +33,5 @@ func process_state(_delta):
 
 func exit():
 	timer_idle.stop()
-
+	timer_idle.timeout.disconnect(on_timeout)
 

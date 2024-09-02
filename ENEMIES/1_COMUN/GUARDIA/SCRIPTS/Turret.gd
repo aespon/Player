@@ -17,7 +17,7 @@ var flee_distance = 200
 var player
 var player_in_attack_zone = false
 
-var health = 225
+var life = 225
  
 func _ready():
 	player =get_tree().get_nodes_in_group("Player")[0]
@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if direction.length() < flee_distance:
 			direction = direction.normalized()
 			position += direction * speed * delta
-	if health <= 0:
+	if life <= 0:
 		animation_player.play("muerto")
 		await get_tree().create_timer(1).timeout
 		Global.experience_player = Global.experience_player + exp
@@ -86,8 +86,10 @@ func _on_detection_area_body_exited(body):
 
 
 
-func _on_death_body_entered(body):
-	if body.name == Global.bulletname:
-		health = health - Global.daño
-		hit_flash_animation.play("hitflash")
-
+func _on_death_area_entered(area):
+	if life > 0:
+		if area.name == "Collission":
+			life = life - Global.damage_shoot
+		elif area.name == "Range":
+			life = life - Global.damage_mele
+	print(life)

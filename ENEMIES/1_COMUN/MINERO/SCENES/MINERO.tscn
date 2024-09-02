@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://ENEMIES/1_COMUN/MINERO/SCRIPTS/MINERO.gd" id="1_8x4o2"]
 [ext_resource type="Texture2D" uid="uid://cv0m32c8a232b" path="res://ENEMIES/1_COMUN/MINERO/ASSET/Skotadi_Minero_Sprite_Sheet.png" id="2_hs187"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/BASE/State Machine.gd" id="3_bp20j"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/IDLE.gd" id="4_30c1c"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/WANDER.gd" id="5_jgbdh"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/CHASE.gd" id="6_wmco0"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/ATTACK.gd" id="7_sdlxj"]
+[ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_qm5qe"]
+[ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_cxd85"]
+[ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_lnevx"]
+[ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="6_fyv6g"]
+[ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="7_11gcl"]
 
 [sub_resource type="Animation" id="Animation_xom3q"]
 resource_name = "ATTACK_DOWN"
@@ -288,11 +288,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[node name="Minero" type="CharacterBody2D" node_paths=PackedStringArray("FSM_MINERO")]
+[node name="Minero" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8x4o2")
-FSM_MINERO = NodePath("FSM")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -315,11 +314,11 @@ position = Vector2(0, 21)
 shape = SubResource("RectangleShape2D_dsoyr")
 
 [node name="FSM" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_bp20j")
+script = ExtResource("3_qm5qe")
 initial_state = NodePath("IDLE")
 
 [node name="IDLE" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
-script = ExtResource("4_30c1c")
+script = ExtResource("4_cxd85")
 timer_idle = NodePath("../../Timer")
 timer_wait_time = 3.0
 player_detector_1 = NodePath("../../DetectorY")
@@ -328,7 +327,7 @@ next_state_1 = "wander"
 next_state_2 = "chase"
 
 [node name="WANDER" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
-script = ExtResource("5_jgbdh")
+script = ExtResource("5_lnevx")
 timer_wander = NodePath("../../Timer")
 wander_speed = 100.0
 Points = NodePath("../../Points")
@@ -341,7 +340,7 @@ previous_state = "idle"
 next_state = "chase"
 
 [node name="CHASE" type="Node2D" parent="FSM" node_paths=PackedStringArray("Navigator", "timer_chase", "player_detector_1", "player_detector_2", "attack_detector")]
-script = ExtResource("6_wmco0")
+script = ExtResource("6_fyv6g")
 Navigator = NodePath("../../Dog_1_nav")
 timer_chase = NodePath("../../Timer")
 player_detector_1 = NodePath("../../DetectorY")
@@ -353,7 +352,7 @@ previous_state = "idle"
 next_state = "attack"
 
 [node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_attack_cooldown", "attack_detector", "Navigator")]
-script = ExtResource("7_sdlxj")
+script = ExtResource("7_11gcl")
 timer_attack_cooldown = NodePath("../../Timer")
 timer_time = 0.75
 attack_detector = NodePath("../../Attack_Detector")

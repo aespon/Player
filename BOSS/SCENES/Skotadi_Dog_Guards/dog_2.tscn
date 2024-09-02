@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://BOSS/SCRIPTS/Skotadi_Dog_Guards/dog_2.gd" id="1_tvfeb"]
 [ext_resource type="Texture2D" uid="uid://dxy08ovsdj3ws" path="res://BOSS/ASSETS/Skotadi_Dog_Guards/dog2_spritesheet.png" id="2_f6di5"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/BASE/State Machine.gd" id="4_68qka"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/CHASE.gd" id="5_dfgv3"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/IDLE.gd" id="7_1cncb"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/WANDER.gd" id="8_sgp13"]
-[ext_resource type="Script" path="res://BOSS/SCRIPTS/FMS/STATES/ATTACK.gd" id="9_ytgkq"]
+[ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="4_68qka"]
+[ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="5_dfgv3"]
+[ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="7_1cncb"]
+[ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="8_sgp13"]
+[ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="9_ytgkq"]
 
 [sub_resource type="Animation" id="Animation_0yks1"]
 resource_name = "ATTACK"

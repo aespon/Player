@@ -26,21 +26,20 @@ extends State
 var point_pos = 0
 var target
 
+
 func enter():
+	timer_wander.timeout.connect(on_timeout)
+	next_point.timeout.connect(on_next_point_timeout)
 	timer_wander.wait_time = timer_wait_time
 	timer_wander.start()
 	next_point.start()
 	next_point.autostart = true
-	if timer_wander.timeout.connect(on_timeout):
-		timer_wander.timeout.connect(on_timeout)
-	if next_point.timeout.connect(on_next_point_timeout):
-		next_point.timeout.connect(on_next_point_timeout)
 
 func on_next_point_timeout():
 	
 	point_pos = point_pos+1
 	target = Points.get_child(point_pos)
-	if point_pos == 5:
+	if point_pos == 3:
 		point_pos = 0
 
 
@@ -66,5 +65,7 @@ func process_state(_delta):
 
 
 func exit():
+	timer_wander.timeout.disconnect(on_timeout)
+	next_point.timeout.disconnect(on_next_point_timeout)
 	timer_wander.stop()
 	next_point.stop()
