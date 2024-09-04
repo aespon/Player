@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbgq5y3u43k4l"]
+[gd_scene load_steps=12 format=3 uid="uid://cbgq5y3u43k4l"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/WALKER/Map.gd" id="1_gtw5h"]
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="3_k3tuh"]
@@ -19,6 +19,8 @@ colors = PackedColorArray(0.259912, 0.73177, 0.893515, 1, 0.280347, 0.56354, 0.8
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q7jjq"]
 gradient = SubResource("Gradient_hlqfn")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uedbt"]
 
 [node name="Level_1" type="Node2D"]
 
@@ -65,6 +67,13 @@ zoom = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D"]
 texture = SubResource("GradientTexture2D_q7jjq")
+
+[node name="Area2D" type="Area2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D/Sprite2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_uedbt")
 
 [node name="StartingRoom" type="Sprite2D" parent="UI/MINIMAP"]
 modulate = Color(0.403922, 0.439216, 0.403922, 1)

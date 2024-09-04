@@ -58,14 +58,11 @@ func player_movement(delta):
 	@warning_ignore("shadowed_variable_base_class")
 	var velocity = get_velocity()
 	
-	if input == Vector2.ZERO:
-		if velocity.length() > (friction * delta):
-			velocity -= velocity.normalized() * (friction * delta)
-		else:
-			velocity = Vector2.ZERO
-	else:
+	if input != Vector2.ZERO:
 		velocity += (input * acceleration * delta)
 		velocity = velocity.limit_length(max_speed)
+	else:
+		velocity = Vector2(0 , 0)
 	set_velocity(velocity)
 		
 	move_and_slide()
