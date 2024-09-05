@@ -50,5 +50,6 @@ func process_state(_delta):
 
 
 func exit():
+	attack_detector.body_exited.disconnect(attack_dtector_exited)
 	timer_attack_cooldown.timeout.disconnect(on_time_out)
 	timer_attack_cooldown.stop()

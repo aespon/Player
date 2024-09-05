@@ -21,6 +21,8 @@ class_name MAP_CREATION
 var mapi := {}
 var map
 
+var a = 0
+
 func _ready():
 	Global.health = 1000
 	Global.next_level = 0
@@ -34,7 +36,7 @@ func _ready():
 
 func generate_level():
 
-	var a = 35
+	
 	var walker = Walker.new(Vector2(10, 1), borders)
 	var mapa = walker.walk(max_rooms)
 	
@@ -46,9 +48,10 @@ func generate_level():
 			mapi[n] = null 
 	map = mapi.keys()
 	
+	var boss_room = randi_range(5, mapi.size())
 	# este for pone las habitaciones (tiene 2 que si o si estan y las otras estan randomizadas)
 	for location in map:
-		if (a== 35):
+		if (a == 0):
 			var player = player_scene.instantiate()
 			player.position = Vector2(location.x * 1280, location.y * 1240)
 			player.z_index = 1
@@ -56,21 +59,21 @@ func generate_level():
 			var rooms1 = player_room_scene.instantiate()
 			rooms1.position = Vector2(location.x * 1280 , location.y * 1088)
 			add_child(rooms1)
-			a = a - 1
+			a = a + 1
 			
 		else:
-			if (a == 20):
+			if (a == boss_room):
 				var boss1 = boss_scene.instantiate()
 				boss1.position = Vector2(location.x * 1280 , location.y * 1088)
 				add_child(boss1)
 				print("boss")
-				a = a - 1
+				a = a + 1
 			else:
 				var r = randi_range(0, 1)
 				var rooms = room_scene[r].instantiate()
 				rooms.position = Vector2(location.x * 1280 , location.y * 1088)
 				add_child(rooms)
-				a = a - 1
+				a = a + 1
 
 func reload_level():
 	get_tree().reload_current_scene()

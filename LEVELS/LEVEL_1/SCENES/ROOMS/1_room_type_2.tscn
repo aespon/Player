@@ -30,20 +30,20 @@ navigation_polygon = SubResource("NavigationPolygon_re4mt")
 [node name="DOORS" type="Node2D" parent="."]
 
 [node name="Door_Top" parent="DOORS" instance=ExtResource("2_dun5t")]
-position = Vector2(0, -495)
+position = Vector2(0, -417)
 scale = Vector2(5, 5)
 
 [node name="Door_Bottom" parent="DOORS" instance=ExtResource("2_dun5t")]
-position = Vector2(0, 500)
+position = Vector2(1.56888e-11, 431)
 rotation = 3.14159
 scale = Vector2(5, 5)
 
 [node name="Door_Right" parent="DOORS" instance=ExtResource("2_dun5t")]
-position = Vector2(562, 0)
+position = Vector2(492, 1.59161e-11)
 rotation = 1.5708
 scale = Vector2(5, 5)
 
 [node name="Door_Left" parent="DOORS" instance=ExtResource("2_dun5t")]
-position = Vector2(-564, 0)
+position = Vector2(-492, 1.63709e-11)
 rotation = -1.5708
 scale = Vector2(5, 5)

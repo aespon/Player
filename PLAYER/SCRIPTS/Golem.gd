@@ -29,10 +29,10 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		pause_menu()
 	if event.is_action_pressed("punch"):
-		range_.collision_mask = 2
-		range_.collision_layer = 2
+		range_.collision_mask = 8
+		range_.collision_layer = 8
 		timer.start()
-		timer.timeout.connect(on_time_out)
+	
 		
 	if Input.is_action_pressed("ui_down"):
 		animation_player.play("Down")

@@ -40,7 +40,7 @@ navigation_polygon = SubResource("NavigationPolygon_re4mt")
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door_Top" parent="Doors" instance=ExtResource("3_shtmq")]
-position = Vector2(0, -495)
+position = Vector2(0, -424)
 scale = Vector2(5, 5)
 
 [node name="Door_Bottom" parent="Doors" instance=ExtResource("3_shtmq")]

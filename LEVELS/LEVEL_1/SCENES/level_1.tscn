@@ -34,12 +34,12 @@ script = ExtResource("1_gtw5h")
 volume_ = 15
 experience_player_ = 1000
 cave_level = 1
-max_rooms = 60
+max_rooms = 35
 
 [node name="VFX" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="VFX"]
-color = Color(0.0117647, 0.0588235, 0.0392157, 0.858824)
+color = Color(0.0313726, 0.117647, 0.0901961, 0.768627)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="VFX"]
 environment = ExtResource("3_k3tuh")
