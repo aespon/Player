@@ -1,6 +1,5 @@
 extends State
 
-@export var timer_attack_cooldown : Timer
 
 @export var timer_time := 0.0
 
@@ -21,19 +20,11 @@ var target
 
 
 func enter():
-	timer_attack_cooldown.timeout.connect(on_time_out)
+	attack_detector.damage = damage
 	attack_detector.body_exited.connect(attack_dtector_exited)
-	timer_attack_cooldown.wait_time = timer_time
-	timer_attack_cooldown.start()
-	Global.health = Global.health - damage
 
 
 
-func on_time_out():
-	if Global.dash_bool == false:
-		Global.health = Global.health - damage
-	timer_attack_cooldown.start()
-	print(Global.health)
 
 func attack_dtector_exited(body):
 	if body.name == "Jugador":
@@ -51,5 +42,4 @@ func process_state(_delta):
 
 func exit():
 	attack_detector.body_exited.disconnect(attack_dtector_exited)
-	timer_attack_cooldown.timeout.disconnect(on_time_out)
-	timer_attack_cooldown.stop()
+

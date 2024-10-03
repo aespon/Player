@@ -1,25 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8qu6pjjyvvha"]
+[gd_scene load_steps=7 format=3 uid="uid://c8qu6pjjyvvha"]
 
 [ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Player TopDown.tscn" id="1_bg2h7"]
 [ext_resource type="PackedScene" uid="uid://bhoygqkmcn4q3" path="res://ENEMIES/1_COMUN/MINERO/SCENES/MINERO.tscn" id="3_bvcpo"]
 [ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_gsvmu"]
 [ext_resource type="PackedScene" uid="uid://dy4k6jkpav2wc" path="res://BOSS/SCENES/Skotadi_Dog_Guards/dog_1.tscn" id="4_c2emf"]
 [ext_resource type="PackedScene" uid="uid://bs3j2j0dpu1kk" path="res://ENEMIES/1_COMUN/GUARDIA/SCENES/guardia.tscn" id="5_3mmti"]
-[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_1/SCENES/DOOR/door.tscn" id="6_wkh2x"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpgk2"]
 vertices = PackedVector2Array(1103, 720, 544, 994, -285, 880, -700, -429, 1594, -919)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-714, -437, -294, 890, 154.658, 951.423, 546, 1005, 1112, 727, 1609, -933)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-714, -437, -294, 890, 546, 1005, 1112, 727, 1609, -933)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="TESTING" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_bg2h7")]
-position = Vector2(-456, 784)
+position = Vector2(124, 463)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-40, -496)
+position = Vector2(-72, -272)
 navigation_polygon = SubResource("NavigationPolygon_cpgk2")
 
 [node name="Node2D" parent="." instance=ExtResource("3_gsvmu")]
@@ -47,12 +46,4 @@ position = Vector2(-120, 256)
 [node name="GUARDIA2" parent="." instance=ExtResource("5_3mmti")]
 position = Vector2(616, 360)
 
-[node name="Doors" parent="." instance=ExtResource("6_wkh2x")]
-position = Vector2(-608, 848)
-
-[node name="Doors2" parent="." instance=ExtResource("6_wkh2x")]
-position = Vector2(-688, 808)
-rotation = 1.0821
-
-[node name="Doors3" parent="." instance=ExtResource("6_wkh2x")]
-position = Vector2(-312, 752)
+[editable path="CharacterBody2D"]

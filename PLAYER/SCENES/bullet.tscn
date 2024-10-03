@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu26u5ve1qte"]
+[gd_scene load_steps=13 format=3 uid="uid://bu26u5ve1qte"]
 
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/bullet.gd" id="1_qtwbl"]
 [ext_resource type="Texture2D" uid="uid://b43tstxyy657r" path="res://PLAYER/ASSETS/SHOOT.png" id="2_8okd1"]
+[ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="3_2fr23"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqh7x"]
 size = Vector2(6, 2)
@@ -72,8 +73,9 @@ sprite_frames = SubResource("SpriteFrames_72sur")
 frame_progress = 0.631515
 
 [node name="Collission" type="Area2D" parent="."]
-collision_layer = 129
-collision_mask = 129
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_2fr23")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collission"]
 shape = SubResource("CircleShape2D_8vg4u")

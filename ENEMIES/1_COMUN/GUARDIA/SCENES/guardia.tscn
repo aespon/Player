@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bs3j2j0dpu1kk"]
+[gd_scene load_steps=24 format=3 uid="uid://bs3j2j0dpu1kk"]
 
 [ext_resource type="Script" path="res://ENEMIES/1_COMUN/GUARDIA/SCRIPTS/guardia.gd" id="1_uqyd7"]
 [ext_resource type="Shader" uid="uid://c0oucq73jqjbu" path="res://GLOBAL/VFX/ASSETS/minero.tres" id="2_1oi6y"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_n4ov8"]
 [ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_brvi8"]
 [ext_resource type="Script" path="res://FMS/STATES/SHOOT.gd" id="6_u1uw8"]
+[ext_resource type="PackedScene" uid="uid://c7bd8sgybcou7" path="res://ENEMIES/1_COMUN/GUARDIA/SCENES/bullets.tscn" id="8_184gh"]
+[ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="8_mul8x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c358n"]
 shader = ExtResource("2_1oi6y")
@@ -182,9 +184,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsoyr"]
 size = Vector2(29, 25)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6lgn1"]
-radius = 36.0555
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4s07"]
 radius = 23.0
 height = 68.0
@@ -234,7 +233,7 @@ initial_state = NodePath("IDLE")
 [node name="IDLE" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
 script = ExtResource("4_n4ov8")
 timer_idle = NodePath("../../Timer")
-timer_wait_time = 1.0
+timer_wait_time = 2.0
 player_detector_1 = NodePath("../../DetectorY")
 player_detector_2 = NodePath("../../Detectorx")
 next_state_1 = "wander"
@@ -256,11 +255,12 @@ next_state = "shoot"
 [node name="SHOOT" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_bullet_cooldown", "ray_cast", "Navigator")]
 script = ExtResource("6_u1uw8")
 timer_bullet_cooldown = NodePath("../../Timer")
-timer_time = 0.7
+timer_time = 1.0
 ray_cast = NodePath("../../DetectorY")
 damage = 100.0
-chase_speed = 100.0
+chase_speed = -100.0
 Navigator = NodePath("../../Dog_1_nav")
+bullets = ExtResource("8_184gh")
 previous_state = "idle"
 
 [node name="Timer_Wander_Points" type="Timer" parent="."]
@@ -281,13 +281,11 @@ rotation = 4.71239
 target_position = Vector2(0, 5)
 collision_mask = 32
 
-[node name="Attack_Detector" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detector"]
-shape = SubResource("CircleShape2D_6lgn1")
-
 [node name="Hit_Detector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_mul8x")
+health = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_Detector"]
 position = Vector2(0, 7)
@@ -328,5 +326,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vhl4h")
 max_value = 300.0
 value = 300.0
 show_percentage = false
-
-[connection signal="area_entered" from="Hit_Detector" to="." method="_on_hit_detector_area_entered"]

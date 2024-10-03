@@ -5,6 +5,6 @@ extends Area2D
 
 
 
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	sprite_2d.visible = true
 	pass # Replace with function body.

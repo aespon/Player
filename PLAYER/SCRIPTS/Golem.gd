@@ -8,13 +8,19 @@ class_name Player
 @onready var range_ = $GUN/Range
 @onready var timer = $GUN/Range/Timer
 @onready var animation_player = $AnimationPlayer
+@onready var hurt_box = $Hurt_Box
 
 var health = Global.health 
 var input = Vector2.ZERO
 
+var punch : bool = false
 
 @onready var paused = $Camera2D/Paused
 var pause = false
+
+func _ready():
+	hurt_box.Dead.connect(dead)
+	hurt_box.DamageTaken.connect(damage_taken)
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -22,15 +28,16 @@ func _physics_process(delta):
 #Esta funcion hace que se mueva el perosaje con los controles
 
 func on_time_out():
-	range_.collision_mask = 5
-	range_.collision_layer = 3
+	range_.monitorable = false
+	punch = false
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		pause_menu()
-	if event.is_action_pressed("punch"):
-		range_.collision_mask = 8
-		range_.collision_layer = 8
+	if event.is_action_pressed("punch") and punch == false:
+		range_.monitorable = true
+		punch = true
+		print("punched")
 		timer.start()
 	
 		
@@ -77,6 +84,10 @@ func pause_menu():
 		Engine.time_scale = 0
 		pause = true
 
+func damage_taken():
+	Global.health = hurt_box.current_health
+	print("bbbbb")
+	pass
 
 func dead():
 		get_tree().reload_current_scene()

@@ -13,29 +13,28 @@ extends State
 
 @export var Navigator : NavigationAgent2D
 
-var bullets = preload("res://ENEMIES/1_COMUN/GUARDIA/SCENES/bullets.tscn")
+@export var bullets : PackedScene
+
 var target
 var direction
 
 @export var previous_state  = ""
 
 # Called when the node enters the scene tree for the first time.
-func on_cooldown_timeout():
+
+func enter():
+	timer_bullet_cooldown.timeout.connect(on_timeout)
+	timer_bullet_cooldown.wait_time = timer_time
+	timer_bullet_cooldown.start()
+	
+
+func on_timeout():
 	var bullet = bullets.instantiate()
-	bullet.damage = damage
 	bullet.position = global_position
 	bullet.direction = (ray_cast.target_position).normalized()
 	get_tree().current_scene.add_child(bullet)
 	direction = (player.position - global_position).normalized()
 	timer_bullet_cooldown.start()
-
-
-
-func enter():
-	timer_bullet_cooldown.timeout.connect(on_cooldown_timeout)
-	timer_bullet_cooldown.wait_time = timer_time
-	timer_bullet_cooldown.start()
-	
 
 func process_state(_delta):
 	target = player
@@ -51,4 +50,4 @@ func process_state(_delta):
 
 func _exit():
 	timer_bullet_cooldown.stop()
-	timer_bullet_cooldown.timeout.disconnect(on_cooldown_timeout)
+	timer_bullet_cooldown.timeout.disconnect(on_timeout)

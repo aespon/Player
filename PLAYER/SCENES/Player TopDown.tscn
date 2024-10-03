@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm5mdyhpudmlq"]
+[gd_scene load_steps=21 format=3 uid="uid://dm5mdyhpudmlq"]
 
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/Golem.gd" id="1_uc5bd"]
 [ext_resource type="Texture2D" uid="uid://bxe2r5poqvrlq" path="res://PLAYER/ASSETS/Golem_Walk.png" id="2_b53uv"]
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/GUN.gd" id="3_4unco"]
 [ext_resource type="PackedScene" uid="uid://bu26u5ve1qte" path="res://PLAYER/SCENES/bullet.tscn" id="4_3dort"]
 [ext_resource type="PackedScene" uid="uid://cjnc78725y025" path="res://UI/PAUSED/paused.tscn" id="5_v8gct"]
+[ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="6_sng37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udsdg"]
 size = Vector2(26, 29)
@@ -214,10 +215,13 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.8)
 metadata/_snap_enabled = true
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g83eo"]
+radius = 33.0
+
 [node name="Jugador" type="CharacterBody2D" groups=["Player"]]
 light_mask = 3
 visibility_layer = 3
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_uc5bd")
 max_speed = 250
 acceleration = 250
@@ -242,15 +246,17 @@ timer = NodePath("Range/Timer")
 
 [node name="Range" type="Area2D" parent="GUN"]
 position = Vector2(10, 0)
-collision_layer = 4
-collision_mask = 16
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GUN/Range"]
+light_mask = 128
+visibility_layer = 128
 position = Vector2(22, 0)
 shape = SubResource("CircleShape2D_nc534")
 
 [node name="Timer" type="Timer" parent="GUN/Range"]
-wait_time = 0.1
+wait_time = 0.5
 
 [node name="SpawnBullet" type="Marker2D" parent="GUN"]
 
@@ -275,6 +281,14 @@ autoplay = "Idle"
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_p34gb")
+
+[node name="Hurt_Box" type="Area2D" parent="."]
+script = ExtResource("6_sng37")
+health = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_g83eo")
 
 [connection signal="area_entered" from="GUN/Range" to="." method="_on_range_area_entered"]
 [connection signal="timeout" from="GUN/Range/Timer" to="." method="on_time_out"]

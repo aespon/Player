@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bhoygqkmcn4q3"]
+[gd_scene load_steps=25 format=3 uid="uid://bhoygqkmcn4q3"]
 
 [ext_resource type="Script" path="res://ENEMIES/1_COMUN/MINERO/SCRIPTS/MINERO.gd" id="1_8x4o2"]
 [ext_resource type="Texture2D" uid="uid://cv0m32c8a232b" path="res://ENEMIES/1_COMUN/MINERO/ASSET/Skotadi_Minero_Sprite_Sheet.png" id="2_hs187"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_lnevx"]
 [ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="6_fyv6g"]
 [ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="7_11gcl"]
+[ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="8_6ek71"]
+[ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="9_01f0p"]
 
 [sub_resource type="Animation" id="Animation_xom3q"]
 resource_name = "ATTACK_DOWN"
@@ -35,6 +37,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack_Box:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.2, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_bd64n"]
@@ -65,6 +79,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack_Box:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2.08),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_kk4lr"]
 resource_name = "ATTACK_RIGHT"
@@ -94,6 +120,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack_Box:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 2.08),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_u073l"]
 resource_name = "ATTACK_UP"
@@ -122,6 +160,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack_Box:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_dv87s"]
@@ -224,6 +274,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Attack_Box:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_n84f4"]
@@ -345,17 +407,16 @@ Navigator = NodePath("../../Dog_1_nav")
 timer_chase = NodePath("../../Timer")
 player_detector_1 = NodePath("../../DetectorY")
 player_detector_2 = NodePath("../../Detectorx")
-attack_detector = NodePath("../../Attack_Detector")
+attack_detector = NodePath("../../Attack_Box")
 chase_speed = 125.0
 timer_time = 2.5
 previous_state = "idle"
 next_state = "attack"
 
-[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_attack_cooldown", "attack_detector", "Navigator")]
+[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("attack_detector", "Navigator")]
 script = ExtResource("7_11gcl")
-timer_attack_cooldown = NodePath("../../Timer")
 timer_time = 0.75
-attack_detector = NodePath("../../Attack_Detector")
+attack_detector = NodePath("../../Attack_Box")
 damage = 20.0
 chase_speed = 150.0
 Navigator = NodePath("../../Dog_1_nav")
@@ -379,17 +440,21 @@ rotation = 4.71239
 target_position = Vector2(0, 400)
 collision_mask = 32
 
-[node name="Attack_Detector" type="Area2D" parent="."]
-collision_layer = 2
+[node name="Attack_Box" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("8_6ek71")
+damage = 20
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
 shape = SubResource("CircleShape2D_6lgn1")
 
-[node name="Hit_Detector" type="Area2D" parent="."]
+[node name="Hurt_Box" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 128
+collision_mask = 0
+script = ExtResource("9_01f0p")
+health = 300
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_Detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box"]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_u4s07")
 
@@ -430,5 +495,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vhl4h")
 max_value = 300.0
 value = 300.0
 show_percentage = false
-
-[connection signal="area_entered" from="Hit_Detector" to="." method="_on_hit_detector_area_entered"]
