@@ -7,55 +7,77 @@ extends CharacterBody2D
 @onready var animation_player = $Sprite/AnimationPlayer
 @onready var sprite_2d = $Sprite/Sprite2D
 @onready var progress_bar = $ProgressBar
-@onready var FSM_MINERO = $Finate_State_Machine
+@onready var FSM_ASALTO = $Finate_State_Machine
 var angle_to_player
-@onready var animation = FSM_MINERO.current_state.name 
-@onready var detector_y = $Detector1
-@onready var detectorx = $Detector2
+@onready var animation = FSM_ASALTO.current_state.name 
+@onready var detectorx = $Detector1
+@onready var hurt_box = $Hurt_Box
 
 
 var direction
 
+func _ready():
+	hurt_box.Dead.connect(dead)
+	hurt_box.DamageTaken.connect(damage_taken)
 
-func _physics_process(delta):
-	if FSM_MINERO != null:
+func _physics_process(_delta):
+	if FSM_ASALTO != null:
 		_animation_handler()
-		
+	move_and_slide()
+	
 func _animation_handler():
 	var player_position = player_.position
-	if life > 0:
-		animation = FSM_MINERO.current_state.name 
-		if animation == "JUMP":
-			var direction_degree = deg_to_rad(detectorx.rotation)
-			var degree = floor(direction_degree)
-			if degree == 1:
-				animation_player.play("JUMP_LEFT")
-			else:
-				animation_player.play("JUMP_DOWN") #LA ANIMACION DE JUMP ES DEFINIDA POR LA DIRCCION DEL SEGUNDO RAYCAST
-		else:
-			animation_player.play(animation)
-		angle_to_player = global_position.direction_to(player_position).angle()
-		points.position = x
-		direction = (player_.position - global_position).normalized()
-		detectorx.target_position = direction * 2 
-		detector_y.target_position = direction * 200 #TAMAÑO DE LOS RAYCAST
-	elif life <= 0:
-		animation_player.play("DEATH")
-		FSM_MINERO.queue_free()
-		await get_tree().create_timer(1).timeout
-		Global.experience_player = Global.experience_player + 10
-		print(Global.experience_player)
-		queue_free()
+	animation = FSM_ASALTO.current_state.name
+	angle_to_player = global_position.direction_to(player_position).angle()
+	points.position = x
+	direction = (player_.position - global_position).normalized()
+	detectorx.target_position = direction * 200
+	if animation == "JUMP":
+			detect_direction_and_animate()
+	else:
+		animation_player.play(animation)
+
+
+func detect_direction_and_animate():
+	var player_pos = player_.global_position
+	var enemy_pos = global_position
 	
-	print(animation)
-	move_and_slide()
+	var diff = player_pos - enemy_pos  # Difference between player and enemy positions
+	
+	# Compare the absolute differences to determine the primary axis of movement
+	if abs(diff.x) > abs(diff.y):
+		# Horizontal movement (left or right)
+		if diff.x > 0:
+			play_animation("right")  # Player is to the right
+		else:
+			play_animation("left")   # Player is to the left
+	else:
+		# Vertical movement (up or down)
+		if diff.y > 0:
+			play_animation("down")   # Player is below
+		else:
+			play_animation("up")     # Player is above
 
+func play_animation(directions):
+	match directions:
+		"right":
+			animation_player.play("JUMP_RIGHT")
+		"left":
+			animation_player.play("JUMP_LEFT")
+		"up":
+			animation_player.play("JUMP_UP")
+		"down":
+			animation_player.play("JUMP_DOWN")
 
-func _on_htibox_area_entered(area):
-	if life > 0:
-		if area.name == "Collission":
-			life = life - Global.damage_shoot
-		elif area.name == "Range":
-			life = life - Global.damage_mele
-	print(life)
-	progress_bar.value = life
+func damage_taken():
+	animation_player.play("IDLE")
+	progress_bar.value = hurt_box.current_health
+
+func dead():
+	animation_player.play("DEATH")
+	if FSM_ASALTO != null : FSM_ASALTO.queue_free()
+	await get_tree().create_timer(1).timeout
+	Global.experience_player = Global.experience_player + 10
+	print(Global.experience_player)
+	emit_signal("enemy_is_dead")
+	queue_free()

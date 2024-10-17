@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://rme8p3ki5ucx"]
+
+[ext_resource type="Script" path="res://GLOBAL/EXPERIENCIA/Experiencia.gd" id="1_qyu4f"]
+[ext_resource type="Texture2D" uid="uid://cordkclhlbqul" path="res://GLOBAL/EXPERIENCIA/exp.png" id="2_3nvce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4y8ei"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5n2d6"]
+radius = 54.2627
+
+[sub_resource type="Gradient" id="Gradient_a8fuy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7m7rj"]
+gradient = SubResource("Gradient_a8fuy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.2)
+metadata/_snap_enabled = true
+
+[node name="Experiencia_Area_Obtener" type="Area2D"]
+light_mask = 512
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qyu4f")
+experience = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4y8ei")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.00392157, 1, 0, 1)
+texture_filter = 1
+position = Vector2(0, 1)
+texture = ExtResource("2_3nvce")
+
+[node name="Area_Deteccion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Deteccion"]
+shape = SubResource("CircleShape2D_5n2d6")
+
+[node name="snd_collected" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.495, 1.495)
+color = Color(0.592157, 1, 0, 1)
+texture = SubResource("GradientTexture2D_7m7rj")
+
+[connection signal="body_entered" from="Area_Deteccion" to="." method="_on_area_deteccion_body_entered"]

@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 @export var speed = 1200
 @onready var collission = $Collission
+@export var damage_shoot : int
 
 func _ready():
-	collission.damage = Global.damage_shoot
+	collission.damage = damage_shoot
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

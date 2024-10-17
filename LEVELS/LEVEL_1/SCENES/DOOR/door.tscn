@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkmu5slemhhr5"]
+[gd_scene load_steps=12 format=3 uid="uid://dkmu5slemhhr5"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/DOOR/Doors.gd" id="1_fcu55"]
 [ext_resource type="Texture2D" uid="uid://bmv60pimwa84m" path="res://LEVELS/LEVEL_1/SCENES/DOOR/crital-naranja.png" id="2_yw5yg"]
@@ -22,24 +22,75 @@ fill_to = Vector2(0.761905, 0.285714)
 metadata/_snap_enabled = true
 metadata/_snap_count = 21
 
-[sub_resource type="Animation" id="Animation_aunu6"]
-resource_name = "Door_Open"
+[sub_resource type="Animation" id="Animation_7p66w"]
+resource_name = "Door_Closed"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
+tracks/0/path = NodePath("StaticBody2D:collision_layer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 21)]
+"update": 1,
+"values": [8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("StaticBody2D/Crital-naranja:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D/VFX:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_aunu6"]
+resource_name = "Door_Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/Crital-naranja:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -51,7 +102,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("StaticBody2D/Crital-naranja:visible")
+tracks/2/path = NodePath("StaticBody2D/VFX:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,34 +114,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("StaticBody2D/VFX:visible")
+tracks/3/path = NodePath("StaticBody2D:collision_layer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [256]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("StaticBody2D:collision_layer")
+tracks/4/path = NodePath("StaticBody2D:collision_mask")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [256]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StaticBody2D:collision_mask")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -171,13 +210,25 @@ tracks/5/keys = {
 "update": 1,
 "values": [256]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player_Detect:collision_mask")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
 
-[sub_resource type="Animation" id="Animation_7p66w"]
-resource_name = "Door_Closed"
+[sub_resource type="Animation" id="Animation_kfxhj"]
+resource_name = "Door_Closed_on_player"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:collision_mask")
+tracks/0/path = NodePath("StaticBody2D:collision_layer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -189,19 +240,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("StaticBody2D:collision_layer")
+tracks/1/path = NodePath("StaticBody2D/Crital-naranja:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("StaticBody2D/Crital-naranja:visible")
+tracks/2/path = NodePath("StaticBody2D/VFX:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -213,31 +264,32 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("StaticBody2D/VFX:visible")
+tracks/3/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(20, 88)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("StaticBody2D/CollisionShape2D:shape:size")
+tracks/4/path = NodePath("Player_Detect:collision_mask")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 88)]
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ewydu"]
 _data = {
 "Door_Closed": SubResource("Animation_7p66w"),
+"Door_Closed_on_player": SubResource("Animation_kfxhj"),
 "Door_Open": SubResource("Animation_aunu6"),
 "RESET": SubResource("Animation_sohjq")
 }
@@ -258,7 +310,7 @@ collision_layer = 8
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -46.5)
+position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_ujahg")
 
 [node name="Crital-naranja" type="Sprite2D" parent="StaticBody2D"]
@@ -290,5 +342,6 @@ texture_scale = 1.5
 libraries = {
 "": SubResource("AnimationLibrary_ewydu")
 }
+autoplay = "Door_Closed"
 
 [connection signal="body_entered" from="Player_Detect" to="." method="_on_player_detect_body_entered"]

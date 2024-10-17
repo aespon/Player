@@ -3,24 +3,55 @@ extends CharacterBody2D
 class_name Player
 
 @export var max_speed = 200
-@export var acceleration = 400
-@export var friction = 900
+var shoot_damage : int 
+var mele_damage : int
+
+#VARIABLES ITEMS 
+var Inventario = []
+
+#VARIABLES MEJORAS
+
+var largo_impacto = false
+var terremoto = false
+var replica = false
+var multidisparo = false
+
+#VARIABLES ESTADISTICAS
+
+var vida_aumento_nivel
+var vida_aumento
+var velocidad_aumento_nivel
+var velocidad_aumento
+var mele_aumento_nivel
+var mele_aumento
+var shoot_aumento_nivel
+var shoot_aumento
+
+#VARIABLES EFECTOS
+var revivir = false
+var vampirismo = false
+
+#OBJETOS PLAYER
 @onready var range_ = $GUN/Range
 @onready var timer = $GUN/Range/Timer
 @onready var animation_player = $AnimationPlayer
 @onready var hurt_box = $Hurt_Box
 
+#VARIABLES PLAYER
 var health = Global.health 
 var input = Vector2.ZERO
 
 var punch : bool = false
 
-@onready var paused = $Camera2D/Paused
+#VARIABLES UI
+@onready var paused = $Paused
+@onready var youve_died = $YouveDied
 var pause = false
 
 func _ready():
 	hurt_box.Dead.connect(dead)
 	hurt_box.DamageTaken.connect(damage_taken)
+	youve_died.visible = false
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -51,27 +82,18 @@ func _input(event):
 		animation_player.play("Top")
 	else:
 		animation_player.stop()
-func get_input():
+
+
+func player_movement(_delta):
+	
 
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	return input.normalized()
-
-#esta funcion hace que el personaje cuando se deja de mover pare lentamente
-
-func player_movement(delta):
-	
-	input = get_input()
-	@warning_ignore("shadowed_variable_base_class")
-	var velocity = get_velocity()
-	
-	if input != Vector2.ZERO:
-		velocity += (input * acceleration * delta)
-		velocity = velocity.limit_length(max_speed)
+	input = input.normalized()
+	if input:
+		velocity = input * max_speed 
 	else:
-		velocity = Vector2(0 , 0)
-	set_velocity(velocity)
-		
+		velocity = input
 	move_and_slide()
 
 func pause_menu():
@@ -86,12 +108,23 @@ func pause_menu():
 
 func damage_taken():
 	Global.health = hurt_box.current_health
+	print(Global.health)
 	print("bbbbb")
 	pass
 
 func dead():
-		get_tree().reload_current_scene()
+		youve_died.visible = true
 
 
+func _on_loot_collect_area_entered(area):
+	
+	pass # Replace with function body.
 
 
+func _on_collect_area_entered(area):
+	pass # Replace with function body.
+
+
+func calculate_exp():
+	pass
+	

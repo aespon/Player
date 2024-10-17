@@ -1,12 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://dhn571l4guk8w"]
+[gd_scene load_steps=24 format=3 uid="uid://dhn571l4guk8w"]
 
 [ext_resource type="Script" path="res://ENEMIES/1_COMUN/ASALTO/SCRIPTS/Asalto.gd" id="1_qtvp8"]
 [ext_resource type="Texture2D" uid="uid://b37lkpmqefkwy" path="res://ENEMIES/1_COMUN/ASALTO/ASSET/Skotadi de asalto-Sheet.png" id="2_fmwud"]
 [ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_6m5ua"]
 [ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_nlwwn"]
 [ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_4a5pv"]
-[ext_resource type="Script" path="res://FMS/STATES/JUMP.gd" id="6_27abh"]
+[ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="6_oabph"]
 [ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="7_i0ql6"]
+[ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="8_d0kjy"]
+[ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="9_f2imx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6cdt"]
 radius = 16.1245
@@ -110,9 +112,6 @@ _data = {
 "WANDER": SubResource("Animation_73eoc")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0i34g"]
-radius = 25.4951
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnngv"]
 radius = 43.1045
 
@@ -126,7 +125,15 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_javq6"]
+radius = 36.2215
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ra7y"]
+radius = 23.0
+height = 68.0
+
 [node name="Asalto" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_qtvp8")
 
 [node name="Collission" type="CollisionShape2D" parent="."]
@@ -136,8 +143,6 @@ position = Vector2(-2, 17)
 shape = SubResource("CircleShape2D_i6cdt")
 
 [node name="Detector1" type="RayCast2D" parent="."]
-
-[node name="Detector2" type="RayCast2D" parent="."]
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -151,11 +156,6 @@ vframes = 6
 libraries = {
 "": SubResource("AnimationLibrary_pwxjb")
 }
-
-[node name="HTIBOX" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HTIBOX"]
-shape = SubResource("CircleShape2D_0i34g")
 
 [node name="ATTACK_DETECTION" type="Area2D" parent="."]
 collision_layer = 2
@@ -184,16 +184,16 @@ position = Vector2(-47, -57)
 script = ExtResource("3_6m5ua")
 initial_state = NodePath("IDLE")
 
-[node name="IDLE" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
+[node name="IDLE" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_idle", "player_detector_1")]
 script = ExtResource("4_nlwwn")
 timer_idle = NodePath("../../Timer_comun")
 timer_wait_time = 4.0
-player_detector_1 = NodePath("../../Detector1")
-player_detector_2 = NodePath("../../Detector2")
+ray_cast = "1 RAYCAST"
 next_state_1 = "wander"
 next_state_2 = "jump"
+player_detector_1 = NodePath("../../Detector1")
 
-[node name="WANDER" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
+[node name="WANDER" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1")]
 script = ExtResource("5_4a5pv")
 timer_wander = NodePath("../../Timer_comun")
 wander_speed = 50.0
@@ -201,26 +201,27 @@ Points = NodePath("../../Points")
 next_point = NodePath("../../Timer_Wander")
 Navigator = NodePath("../../NavigationAgent2D")
 player_detector_1 = NodePath("../../Detector1")
-player_detector_2 = NodePath("../../Detector2")
 timer_wait_time = 4.0
 previous_state = "idle"
 next_state = "jump"
 
-[node name="JUMP" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("attack_area", "enemy_collission", "sprite", "Navigator")]
-script = ExtResource("6_27abh")
-attack_area = NodePath("../../ATTACK_DETECTION")
-enemy_collission = NodePath("../../Collission")
-speed = 500.0
-sprite = NodePath("../../Sprite/Sprite2D")
+[node name="JUMP" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("Navigator", "timer_chase", "player_detector_1", "attack_detector")]
+script = ExtResource("6_oabph")
 Navigator = NodePath("../../NavigationAgent2D")
-new_state = "attack"
+timer_chase = NodePath("../../Timer_comun")
+player_detector_1 = NodePath("../../Detector1")
+attack_detector = NodePath("../../ATTACK_DETECTION")
+chase_speed = 500.0
+timer_time = 1.0
+previous_state = "idle"
+next_state = "attack"
+ray_casts = "1 RAYCAST"
+type_of_chase = "Freely"
 
-[node name="ATTACK" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("timer_attack_cooldown", "attack_detector", "Navigator")]
+[node name="ATTACK" type="Node2D" parent="Finate_State_Machine" node_paths=PackedStringArray("attack_detector", "Navigator")]
 script = ExtResource("7_i0ql6")
-timer_attack_cooldown = NodePath("../../Timer_comun")
 timer_time = 0.8
 attack_detector = NodePath("../../ATTACK_DETECTION")
-damage = 150.0
 Navigator = NodePath("../../NavigationAgent2D")
 previous_state = "idle"
 
@@ -247,4 +248,20 @@ max_value = 300.0
 value = 300.0
 show_percentage = false
 
-[connection signal="area_entered" from="HTIBOX" to="." method="_on_htibox_area_entered"]
+[node name="Attack_Box" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("8_d0kjy")
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
+shape = SubResource("CircleShape2D_javq6")
+
+[node name="Hurt_Box" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_f2imx")
+health = 300
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box"]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_0ra7y")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn6njnjc4c0go"]
+
+[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Spawner/Spawner.gd" id="1_wqwn7"]
+
+[node name="Enemy_Spawner_1" type="Marker2D"]
+position = Vector2(200, -125)
+gizmo_extents = 1.0
+script = ExtResource("1_wqwn7")
+comun = "Minero"

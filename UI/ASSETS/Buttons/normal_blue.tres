@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dqia8faft7mtm"]
+
+[ext_resource type="Texture2D" uid="uid://cqookmlbpghx8" path="res://UI/ASSETS/MENU.png" id="1_xsfto"]
+
+[resource]
+content_margin_left = 0.0
+texture = ExtResource("1_xsfto")
+region_rect = Rect2(0, 0, 64, 32)

@@ -18,5 +18,4 @@ func _on_reset_pressed():
 	get_tree().change_scene_to_file("res://LEVELS/LEVEL_1/SCENES/level_1.tscn")
 
 func _on_menu_pressed():
-	pass
-	#get_tree().change_scene_to_file("res://MainMenu.tscn")
+	get_tree().change_scene_to_file("res://MainMenu.tscn")

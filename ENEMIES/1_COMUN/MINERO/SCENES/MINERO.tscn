@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhoygqkmcn4q3"]
+[gd_scene load_steps=27 format=3 uid="uid://bhoygqkmcn4q3"]
 
 [ext_resource type="Script" path="res://ENEMIES/1_COMUN/MINERO/SCRIPTS/MINERO.gd" id="1_8x4o2"]
+[ext_resource type="PackedScene" uid="uid://rme8p3ki5ucx" path="res://GLOBAL/EXPERIENCIA/experiencia_area_obtener.tscn" id="2_5e2wl"]
 [ext_resource type="Texture2D" uid="uid://cv0m32c8a232b" path="res://ENEMIES/1_COMUN/MINERO/ASSET/Skotadi_Minero_Sprite_Sheet.png" id="2_hs187"]
 [ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_qm5qe"]
 [ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_cxd85"]
@@ -46,6 +47,18 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.1, 1.2, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Attack_Box:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.95),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -168,7 +181,7 @@ tracks/2/path = NodePath("../Attack_Box:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.95),
+"times": PackedFloat32Array(0, 0.8, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -287,6 +300,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Attack_Box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_n84f4"]
 resource_name = "WANDER"
@@ -333,8 +358,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsoyr"]
 size = Vector2(29, 25)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhcuy"]
+radius = 39.1152
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6lgn1"]
-radius = 36.0555
+radius = 36.2215
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4s07"]
 radius = 23.0
@@ -353,7 +381,10 @@ border_width_bottom = 1
 [node name="Minero" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_8x4o2")
+exp_gem = ExtResource("2_5e2wl")
+experience = 10
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -379,45 +410,45 @@ shape = SubResource("RectangleShape2D_dsoyr")
 script = ExtResource("3_qm5qe")
 initial_state = NodePath("IDLE")
 
-[node name="IDLE" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_idle", "player_detector_1", "player_detector_2")]
+[node name="IDLE" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_idle", "player_detector_1")]
 script = ExtResource("4_cxd85")
 timer_idle = NodePath("../../Timer")
 timer_wait_time = 3.0
-player_detector_1 = NodePath("../../DetectorY")
-player_detector_2 = NodePath("../../Detectorx")
+ray_cast = "1 RAYCAST"
 next_state_1 = "wander"
 next_state_2 = "chase"
+player_detector_1 = NodePath("../../DetectorX")
 
-[node name="WANDER" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
+[node name="WANDER" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1")]
 script = ExtResource("5_lnevx")
 timer_wander = NodePath("../../Timer")
 wander_speed = 100.0
 Points = NodePath("../../Points")
 next_point = NodePath("../../Timer_Wander_Points")
 Navigator = NodePath("../../Dog_1_nav")
-player_detector_1 = NodePath("../../DetectorY")
-player_detector_2 = NodePath("../../Detectorx")
+player_detector_1 = NodePath("../../DetectorX")
 timer_wait_time = 7.0
 previous_state = "idle"
 next_state = "chase"
 
-[node name="CHASE" type="Node2D" parent="FSM" node_paths=PackedStringArray("Navigator", "timer_chase", "player_detector_1", "player_detector_2", "attack_detector")]
+[node name="CHASE" type="Node2D" parent="FSM" node_paths=PackedStringArray("Navigator", "timer_chase", "player_detector_1", "attack_detector")]
 script = ExtResource("6_fyv6g")
 Navigator = NodePath("../../Dog_1_nav")
 timer_chase = NodePath("../../Timer")
-player_detector_1 = NodePath("../../DetectorY")
-player_detector_2 = NodePath("../../Detectorx")
-attack_detector = NodePath("../../Attack_Box")
+player_detector_1 = NodePath("../../DetectorX")
+attack_detector = NodePath("../../Attack_Detector")
 chase_speed = 125.0
 timer_time = 2.5
 previous_state = "idle"
 next_state = "attack"
+ray_casts = "1 RAYCAST"
+type_of_chase = "Freely"
 
 [node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("attack_detector", "Navigator")]
+position = Vector2(0, 2)
 script = ExtResource("7_11gcl")
 timer_time = 0.75
-attack_detector = NodePath("../../Attack_Box")
-damage = 20.0
+attack_detector = NodePath("../../Attack_Detector")
 chase_speed = 150.0
 Navigator = NodePath("../../Dog_1_nav")
 previous_state = "idle"
@@ -430,20 +461,21 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
-[node name="DetectorY" type="RayCast2D" parent="."]
+[node name="DetectorX" type="RayCast2D" parent="."]
 light_mask = 4
-target_position = Vector2(0, 400)
+target_position = Vector2(400, 0)
 
-[node name="Detectorx" type="RayCast2D" parent="."]
-light_mask = 4
-rotation = 4.71239
-target_position = Vector2(0, 400)
-collision_mask = 32
+[node name="Attack_Detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detector"]
+shape = SubResource("CircleShape2D_mhcuy")
+debug_color = Color(0.427451, 0.458824, 1, 0.419608)
 
 [node name="Attack_Box" type="Area2D" parent="."]
 collision_layer = 0
 script = ExtResource("8_6ek71")
-damage = 20
+damage = 70
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
 shape = SubResource("CircleShape2D_6lgn1")
@@ -452,7 +484,7 @@ shape = SubResource("CircleShape2D_6lgn1")
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("9_01f0p")
-health = 300
+health = 225
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box"]
 position = Vector2(0, 7)
@@ -474,8 +506,9 @@ position = Vector2(64, -64)
 
 [node name="Dog_1_nav" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
+path_postprocessing = 1
 avoidance_enabled = true
-radius = 6.0
+debug_enabled = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 8

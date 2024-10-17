@@ -101,10 +101,12 @@ recharge={
 2d_render/layer_1="Player"
 2d_render/layer_2="enemies"
 2d_render/layer_3="Detector"
+2d_render/layer_10="loot"
 2d_physics/layer_1="Player"
 2d_navigation/layer_1="Enemies_Nav"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="World"
+2d_physics/layer_10="loot"
 
 [rendering]
 

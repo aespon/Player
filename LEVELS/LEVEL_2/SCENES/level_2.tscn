@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://6x3otrla06u"]
+
+[ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_nir53"]
+[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/WALKER/Map.gd" id="2_wue2c"]
+[ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="3_jfo20"]
+[ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/minmap.gd" id="4_kbhep"]
+[ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/map.gd" id="5_v3pd3"]
+[ext_resource type="Texture2D" uid="uid://b4eqtkwwl3sni" path="res://UI/ASSETS/starting_room.png" id="6_7vrht"]
+
+[sub_resource type="Gradient" id="Gradient_hxohi"]
+colors = PackedColorArray(0, 0, 0, 1, 0.000440591, 0.000832423, 0.00041976, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gw5r4"]
+gradient = SubResource("Gradient_hxohi")
+fill_to = Vector2(1, 0.00917431)
+
+[sub_resource type="Gradient" id="Gradient_hlqfn"]
+colors = PackedColorArray(0.259912, 0.73177, 0.893515, 1, 0.280347, 0.56354, 0.879687, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q7jjq"]
+gradient = SubResource("Gradient_hlqfn")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uedbt"]
+
+[node name="Level_2" type="Node2D"]
+script = ExtResource("1_nir53")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(43216, 0)
+scale = Vector2(3929.5, 6547)
+texture = SubResource("GradientTexture2D_gw5r4")
+
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("2_wue2c")
+volume_ = 15
+experience_player_ = 1000
+cave_level = 1
+max_rooms = 35
+
+[node name="VFX" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="VFX"]
+color = Color(0.0313726, 0.117647, 0.0901961, 0.768627)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VFX"]
+environment = ExtResource("3_jfo20")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MINIMAP" type="Node2D" parent="UI"]
+position = Vector2(1035, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI/MINIMAP"]
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.225, 0.225)
+
+[node name="SubViewport" type="SubViewport" parent="UI/MINIMAP/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("4_kbhep")
+
+[node name="Map" type="Node2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport"]
+script = ExtResource("5_v3pd3")
+
+[node name="Camera2D" type="Camera2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport"]
+zoom = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D"]
+texture = SubResource("GradientTexture2D_q7jjq")
+
+[node name="Area2D" type="Area2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D/Sprite2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/MINIMAP/SubViewportContainer/SubViewport/Camera2D/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_uedbt")
+
+[node name="StartingRoom" type="Sprite2D" parent="UI/MINIMAP"]
+modulate = Color(0.403922, 0.439216, 0.403922, 1)
+position = Vector2(58.5, 57.5)
+scale = Vector2(0.0914062, 0.105699)
+texture = ExtResource("6_7vrht")
+
+[node name="Player_Start_Position" type="Marker2D" parent="."]

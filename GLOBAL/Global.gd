@@ -10,7 +10,7 @@ var dash_bool = false
 
 #VARIABLES NIVELES
 var experience_player = 0
-var experience_level = 1000
+var experience_level = 500
 var level = 1
 var cave_level  = 1
 var next_level = 0.0
@@ -18,6 +18,4 @@ var next_level = 0.0
 func _process(_delta):
 	if health <= 0:
 		get_tree().reload_current_scene()
-	damage_mele = 200 + (10*level)
-	damage_shoot = 100 + (10*level)
-	experience_level = 850 + (150 * level)
+	experience_level = 500 + (150 * level)

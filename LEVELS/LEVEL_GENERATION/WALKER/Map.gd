@@ -3,11 +3,12 @@ class_name MAP_CREATION
 
 @onready var borders = Rect2(1, 1, 30, 20)
 
-@onready var player_scene = preload("res://PLAYER/SCENES/Player TopDown.tscn")
+#@onready var player_scene = preload("res://PLAYER/SCENES/Jugador.tscn")
 @onready var room_scene = [preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_type_4.tscn"),
 	preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_type_3.tscn")]
 @onready var boss_scene = preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_type_1.tscn")
 @onready var player_room_scene = preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_type_2.tscn")
+@onready var player_start_position = $"../Player_Start_Position"
 
 @export var volume_ = 0
 @export var level_size = 0
@@ -18,6 +19,8 @@ class_name MAP_CREATION
 
 @export var max_rooms : int
 
+signal map_finished
+
 var mapi := {}
 var map
 
@@ -26,7 +29,6 @@ var a = 0
 func _ready():
 	Global.health = 1000
 	Global.next_level = 0
-	Global.experience_level = 1000
 	Global.experience_player = 0
 	Global.level = 1
 	Engine.time_scale = 1
@@ -52,10 +54,11 @@ func generate_level():
 	# este for pone las habitaciones (tiene 2 que si o si estan y las otras estan randomizadas)
 	for location in map:
 		if (a == 0):
-			var player = player_scene.instantiate()
-			player.position = Vector2(location.x * 1280, location.y * 1240)
-			player.z_index = 1
-			add_child(player)
+			#var player = player_scene.instantiate()
+			#player.position = Vector2(location.x * 1280, location.y * 1240)
+			#player.z_index = 1
+			player_start_position.position = Vector2(location.x * 1280, location.y * 1240)
+			#add_child(player)
 			var rooms1 = player_room_scene.instantiate()
 			rooms1.position = Vector2(location.x * 1280 , location.y * 1088)
 			add_child(rooms1)
@@ -74,6 +77,7 @@ func generate_level():
 				rooms.position = Vector2(location.x * 1280 , location.y * 1088)
 				add_child(rooms)
 				a = a + 1
-
+	
+	
 func reload_level():
 	get_tree().reload_current_scene()

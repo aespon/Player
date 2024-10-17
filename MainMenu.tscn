@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceegfjdq3qj2c"]
+[gd_scene load_steps=8 format=3 uid="uid://ceegfjdq3qj2c"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_ps1cs"]
 [ext_resource type="Texture2D" uid="uid://cmc24wgs1p862" path="res://UI/ASSETS/Crystal Path2.svg" id="2_p1sxa"]
-[ext_resource type="Texture2D" uid="uid://cq66odmn57ejg" path="res://UI/ASSETS/PLAY.png" id="3_v41xq"]
-[ext_resource type="Texture2D" uid="uid://cid8ytggowuqe" path="res://UI/ASSETS/PLAYHOVER.png" id="4_3ngc8"]
-[ext_resource type="Texture2D" uid="uid://co0m0wrjh8fph" path="res://UI/ASSETS/Quit.png" id="5_4cglt"]
-[ext_resource type="Texture2D" uid="uid://e1e5jdmmd76l" path="res://UI/ASSETS/QuitHover.png" id="6_yp7mr"]
+[ext_resource type="FontFile" uid="uid://c3w61yhjd2cl1" path="res://UI/Fonts/Tiny5-Regular.ttf" id="3_keyin"]
+[ext_resource type="StyleBox" uid="uid://bekecky7bpuf5" path="res://UI/ASSETS/Buttons/normal_violet.tres" id="4_4u1t3"]
+[ext_resource type="StyleBox" uid="uid://b2sqghf44io6t" path="res://UI/ASSETS/Buttons/hover_violet.tres" id="5_qov00"]
+[ext_resource type="StyleBox" uid="uid://dqia8faft7mtm" path="res://UI/ASSETS/Buttons/normal_blue.tres" id="6_erep3"]
+[ext_resource type="StyleBox" uid="uid://bphk1heowsyy3" path="res://UI/ASSETS/Buttons/hover_blue.tres" id="7_3umap"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -19,38 +20,62 @@ script = ExtResource("1_ps1cs")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 9.99998
+offset_left = -1.00002
 offset_top = -65.0
-offset_right = 1163.0
+offset_right = 1152.0
 offset_bottom = 699.0
 scale = Vector2(1.005, 1.005)
 texture = ExtResource("2_p1sxa")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
 offset_left = 918.0
-offset_top = 394.0
-offset_right = 982.0
-offset_bottom = 462.0
-scale = Vector2(3.195, 3.195)
+offset_top = 424.0
+offset_right = 958.0
+offset_bottom = 464.0
+scale = Vector2(1.5, 1.5)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="QUIT" type="Button" parent="Control"]
 texture_filter = 1
-layout_mode = 2
-texture_normal = ExtResource("3_v41xq")
-texture_pressed = ExtResource("4_3ngc8")
-texture_hover = ExtResource("4_3ngc8")
+layout_mode = 0
+offset_top = 69.0
+offset_right = 130.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.482353, 0.329412, 0.501961, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.741176, 0.784314, 1)
+theme_override_colors/font_focus_color = Color(0.396078, 0.45098, 0.572549, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.65098, 0.521569, 0.623529, 1)
+theme_override_colors/font_disabled_color = Color(0.780392, 0.811765, 0.866667, 1)
+theme_override_fonts/font = ExtResource("3_keyin")
+theme_override_styles/normal = ExtResource("4_4u1t3")
+theme_override_styles/hover = ExtResource("5_qov00")
+theme_override_styles/pressed = ExtResource("5_qov00")
+theme_override_styles/disabled = ExtResource("4_4u1t3")
+theme_override_styles/focus = ExtResource("4_4u1t3")
+text = "QUIT"
 
-[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="PLAY" type="Button" parent="Control"]
 texture_filter = 1
-layout_mode = 2
-texture_normal = ExtResource("5_4cglt")
-texture_pressed = ExtResource("6_yp7mr")
-texture_hover = ExtResource("6_yp7mr")
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 129.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.580392, 0.992157, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.803922, 0.976471, 1)
+theme_override_colors/font_hover_color = Color(1, 0.635294, 0.0784314, 1)
+theme_override_colors/font_focus_color = Color(1, 0.921569, 0.341176, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.596078, 0.862745, 1)
+theme_override_colors/font_disabled_color = Color(1, 0.784314, 0.145098, 1)
+theme_override_fonts/font = ExtResource("3_keyin")
+theme_override_styles/normal = ExtResource("6_erep3")
+theme_override_styles/hover = ExtResource("7_3umap")
+theme_override_styles/pressed = ExtResource("7_3umap")
+theme_override_styles/disabled = ExtResource("6_erep3")
+theme_override_styles/focus = ExtResource("6_erep3")
+text = "PLAY"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/QUIT" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/PLAY" to="." method="_on_play_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://diggfydu6paaq"]
+
+[ext_resource type="Script" path="res://GLOBAL/otros/Nivel_Manager.gd" id="1_l2fl2"]
+[ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Jugador.tscn" id="2_xs2is"]
+[ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_5vraa"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Nivel_Manager" type="Node2D" parent="."]
+script = ExtResource("1_l2fl2")
+
+[node name="Jugador" parent="." instance=ExtResource("2_xs2is")]
+
+[node name="Node2D" parent="." instance=ExtResource("3_5vraa")]

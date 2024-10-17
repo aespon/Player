@@ -4,6 +4,7 @@ class_name State
 
 @onready var enemy  = owner                                                           
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
+var last_raycast : int
 
 #estas variables estan presente en todos los estados que extiendan state
 
