@@ -30,6 +30,8 @@ var shoot_aumento
 #VARIABLES EFECTOS
 var revivir = false
 var vampirismo = false
+var speed_boost = false
+var armadura = false
 
 #OBJETOS PLAYER
 @onready var range_ = $GUN/Range
@@ -116,15 +118,16 @@ func dead():
 		youve_died.visible = true
 
 
-func _on_loot_collect_area_entered(area):
-	
-	pass # Replace with function body.
 
 
 func _on_collect_area_entered(area):
-	pass # Replace with function body.
+	print("entra")
+	if area == experiencia:
+		print("entro")
+		area.collect()
+		var experiencia_entrante = area.experience
+		calculate_exp(experiencia_entrante)
 
-
-func calculate_exp():
-	pass
+func calculate_exp(exp : int):
+	Global.experience_player = Global.experience_player + exp
 	

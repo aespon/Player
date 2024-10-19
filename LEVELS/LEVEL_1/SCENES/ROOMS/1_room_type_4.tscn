@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2do0t6t555rj"]
 
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="1_mgj7j"]
-[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_1/SCENES/DOOR/door.tscn" id="2_m15ir"]
+[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="2_m15ir"]
 [ext_resource type="PackedScene" uid="uid://bhoygqkmcn4q3" path="res://ENEMIES/1_COMUN/MINERO/SCENES/MINERO.tscn" id="3_wj525"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5oyec"]

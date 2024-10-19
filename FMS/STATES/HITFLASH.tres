@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwnsqdu3xfjo"]
+
+[ext_resource type="Shader" uid="uid://c0oucq73jqjbu" path="res://GLOBAL/VFX/ASSETS/minero.tres" id="1_aagp6"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_aagp6")
+shader_parameter/enable = true
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)

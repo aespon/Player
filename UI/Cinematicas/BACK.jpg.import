@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmv60pimwa84m"
-path="res://.godot/imported/crital-naranja.png-5854078c5b72dc961371f2c9c68edcdd.ctex"
+uid="uid://ddxebfpkbuffg"
+path="res://.godot/imported/BACK.jpg-555e1fb75a8c04598c5d6c359f6c45a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LEVELS/LEVEL_1/SCENES/DOOR/crital-naranja.png"
-dest_files=["res://.godot/imported/crital-naranja.png-5854078c5b72dc961371f2c9c68edcdd.ctex"]
+source_file="res://UI/Cinematicas/BACK.jpg"
+dest_files=["res://.godot/imported/BACK.jpg-555e1fb75a8c04598c5d6c359f6c45a9.ctex"]
 
 [params]
 

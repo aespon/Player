@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="1_petu5"]
 [ext_resource type="PackedScene" uid="uid://dknlqtm80dxvq" path="res://BOSS/SCENES/Skotadi_Dog_Guards/dog_2.tscn" id="2_7om4m"]
-[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_1/SCENES/DOOR/door.tscn" id="3_shtmq"]
+[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_shtmq"]
 [ext_resource type="PackedScene" uid="uid://dy4k6jkpav2wc" path="res://BOSS/SCENES/Skotadi_Dog_Guards/dog_1.tscn" id="4_i8fiq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_re4mt"]

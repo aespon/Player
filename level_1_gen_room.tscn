@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_qpnbw"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_5wokf"]
-[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_1/SCENES/DOOR/door.tscn" id="3_gi5er"]
+[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_gi5er"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_pinbx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_82nh2"]
@@ -81,34 +81,6 @@ tracks/4/keys = {
 "values": [{
 "args": [],
 "method": &"enter_close_door"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SPAWNERS/Enemy_Spawner_2")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_"
-}]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SPAWNERS/Enemy_Spawner_3")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_"
 }]
 }
 
@@ -221,12 +193,6 @@ scale = Vector2(5, 5)
 
 [node name="Enemy_Spawner_1" parent="SPAWNERS" instance=ExtResource("4_pinbx")]
 
-[node name="Enemy_Spawner_2" parent="SPAWNERS" instance=ExtResource("4_pinbx")]
-position = Vector2(-66, -125)
-
-[node name="Enemy_Spawner_3" parent="SPAWNERS" instance=ExtResource("4_pinbx")]
-position = Vector2(58, 105)
-
 [node name="funciones" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0h3fn")
@@ -237,5 +203,3 @@ libraries = {
 [connection signal="player_entered" from="Doors/Door_Right" to="." method="_on_door_right_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Left" to="." method="_on_door_left_player_entered"]
 [connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_1" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_2" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_3" to="." method="_on_enemy_spawner_1_enemy_die"]

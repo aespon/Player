@@ -28,4 +28,10 @@ func enter_close_door():
 
 func finished():
 	if perma_door == false:
-		queue_free()
+		animation_player.play("Door_Open_After")
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Door_Closed_on_player":
+		animation_player.play("Door_Closed")

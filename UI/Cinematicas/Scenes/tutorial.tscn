@@ -13,6 +13,6 @@ grow_vertical = 2
 script = ExtResource("1_h5qms")
 
 [node name="Tut" type="Sprite2D" parent="."]
-position = Vector2(639.319, 371)
-scale = Vector2(0.730537, 0.729032)
+position = Vector2(580.495, 329.5)
+scale = Vector2(0.663463, 0.662097)
 texture = ExtResource("2_12r88")

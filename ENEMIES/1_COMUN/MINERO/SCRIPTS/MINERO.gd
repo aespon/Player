@@ -1,6 +1,7 @@
 extends Enemy
 
 @onready var points = $Points
+@onready var hurt = $Sprite/HURT
 @onready var x = points.position
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
 @onready var animation_player = $Sprite/AnimationPlayer
@@ -71,18 +72,19 @@ func play_animation(directions):
 		"down":
 			animation_player.play("ATTACK_DOWN")
 
-func damage_taken():
-	animation_player.play("IDLE")
+func damage_taken(): 
+	hurt.play("HURT")
 	progress_bar.value = hurt_box.current_health
 
 func dead():
 	animation_player.play("DEATH")
 	if FSM_MINERO != null : FSM_MINERO.queue_free()
 	await get_tree().create_timer(1).timeout
-	Global.experience_player = Global.experience_player + 10
-	print(Global.experience_player)
+	#Global.experience_player = Global.experience_player + 10
+	#print(Global.experience_player)
 	var new_gem = exp_gem.instantiate()
-	new_gem.global_position = global_position
+	new_gem.global_position = position
 	new_gem.experience = experience
+	get_parent().get_parent().add_child(new_gem)
 	emit_signal("enemy_is_dead")
 	queue_free()

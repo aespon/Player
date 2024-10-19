@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://d26t87a8s0jeo"]
+
+[ext_resource type="Script" path="res://UI/scripts/upgrade_option.gd" id="1_fiic6"]
+[ext_resource type="Texture2D" uid="uid://cc8wggj43xvft" path="res://UI/ASSETS/Ram Border.png" id="1_oycp5"]
+[ext_resource type="LabelSettings" uid="uid://bi8b5rmgclvni" path="res://GLOBAL/otros/label_settings.tres" id="3_plun3"]
+
+[node name="upgrade1" type="ColorRect"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -324.0
+offset_right = 182.0
+offset_bottom = 5.0
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.152941, 0.152941, 0.152941, 1)
+script = ExtResource("1_fiic6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.435294, 0.294118, 0.45098, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -167.5
+offset_right = 92.0
+offset_bottom = 167.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oycp5")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="lblName" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 38.0
+grow_horizontal = 2
+text = "SPEEDBOOST"
+label_settings = ExtResource("3_plun3")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+modulate = Color(0.435294, 0.294118, 0.45098, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -128.5
+offset_right = 41.0
+offset_bottom = -50.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oycp5")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="lblDescription" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.0
+offset_top = 122.0
+offset_right = 71.0
+offset_bottom = 283.0
+grow_horizontal = 2
+text = "akaksgdfkajsfhgaskjfkjasgfkjgfksgfakjsgfksjgfkjgfkdghdfkhkfjgjsfkjsayfhwiuyjvoqwyrakjdhvgkbngjkfkl"
+label_settings = ExtResource("3_plun3")
+autowrap_mode = 3
+
+[node name="lblNivel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.0
+offset_top = 289.0
+offset_right = 61.0
+offset_bottom = 318.0
+grow_horizontal = 2
+text = "Nivel :"
+label_settings = ExtResource("3_plun3")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

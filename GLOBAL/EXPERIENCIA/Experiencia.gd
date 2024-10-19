@@ -1,4 +1,5 @@
 extends Area2D
+class_name experiencia
 
 @export var experience = 1
  
@@ -10,7 +11,7 @@ var speed = -1
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
 @onready var sound = $snd_collected
-@onready var point_light_2d = $PointLight2D
+@onready var point_light_2d = $Sprite2D/PointLight2D
 
 func _ready():
 	if experience < 5:
@@ -25,7 +26,7 @@ func _ready():
 func _physics_process(delta):
 	if target != null:
 		global_position = global_position.move_toward(target.global_position, speed)
-		speed += 2*delta
+		speed += 5*delta
 
 func collect():
 	sound.play()
@@ -38,6 +39,15 @@ func _on_snd_collected_finished():
 	queue_free()
 
 
-func _on_area_deteccion_body_entered(body):
+func _on_area_entered(area):
+	
+	if area.name == "Loot_Collect":
+		print("xp should follow")
+		target = player_
+
+
+func _on_body_entered(body):
 	if body is Player:
-		target == body
+		print("entro")
+		body.calculate_exp(experience)
+		collect()

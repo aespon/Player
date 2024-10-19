@@ -1,7 +1,7 @@
 extends Node
 
 #VARIABLES JUGADOR
-var health = 1500
+var health = 1000
 var damage_mele = 15.0
 var damage_shoot = 7.5
 var bulletname = "StaticBody2D"

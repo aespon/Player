@@ -1,17 +1,19 @@
-extends CharacterBody2D
+extends Enemy
 
 @onready var points = $Points
+@onready var hurt = $Sprite/HURT
 @onready var x = points.position
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
-@onready var life = 225
 @onready var animation_player = $Sprite/AnimationPlayer
-@onready var sprite_2d = $Sprite/Sprite2D
 @onready var progress_bar = $ProgressBar
 @onready var FSM_ASALTO = $Finate_State_Machine
+@export var exp_gem : PackedScene
+@export var experience : int = 0
 var angle_to_player
 @onready var animation = FSM_ASALTO.current_state.name 
 @onready var detectorx = $Detector1
 @onready var hurt_box = $Hurt_Box
+
 
 
 var direction
@@ -69,15 +71,22 @@ func play_animation(directions):
 		"down":
 			animation_player.play("JUMP_DOWN")
 
-func damage_taken():
-	animation_player.play("IDLE")
+func damage_taken(): 
+	FSM_ASALTO.on_child_transition(FSM_ASALTO.current_state , "idle")
+	print(hurt_box.current_health)
+	hurt.play("HURT")
 	progress_bar.value = hurt_box.current_health
 
 func dead():
 	animation_player.play("DEATH")
 	if FSM_ASALTO != null : FSM_ASALTO.queue_free()
 	await get_tree().create_timer(1).timeout
-	Global.experience_player = Global.experience_player + 10
-	print(Global.experience_player)
+	#Global.experience_player = Global.experience_player + 10
+	#print(Global.experience_player)
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = position
+	new_gem.experience = experience
+	get_parent().get_parent().add_child(new_gem)
 	emit_signal("enemy_is_dead")
 	queue_free()
+

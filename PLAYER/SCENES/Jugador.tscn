@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dm5mdyhpudmlq"]
+[gd_scene load_steps=24 format=3 uid="uid://dm5mdyhpudmlq"]
 
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/Golem.gd" id="1_n4cj7"]
 [ext_resource type="Texture2D" uid="uid://bxe2r5poqvrlq" path="res://PLAYER/ASSETS/Golem_Walk.png" id="2_bix35"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="5_pxn8e"]
 [ext_resource type="PackedScene" uid="uid://cjnc78725y025" path="res://UI/PAUSED/paused.tscn" id="6_03er4"]
 [ext_resource type="PackedScene" uid="uid://mjfrnn0cbe6j" path="res://UI/SCENES/YouveDied.tscn" id="7_dcjvl"]
+[ext_resource type="PackedScene" uid="uid://b7ilsyxyckng1" path="res://UI/SCENES/upgrades.tscn" id="8_t11sw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udsdg"]
 size = Vector2(26, 29)
@@ -289,6 +290,7 @@ collision_mask = 512
 shape = SubResource("RectangleShape2D_2hfue")
 
 [node name="Hurt_Box" type="Area2D" parent="."]
+collision_mask = 513
 script = ExtResource("5_pxn8e")
 health = 1000
 
@@ -300,6 +302,9 @@ shape = SubResource("CircleShape2D_g83eo")
 visible = false
 
 [node name="YouveDied" parent="." instance=ExtResource("7_dcjvl")]
+visible = false
+
+[node name="Upgrades" parent="." instance=ExtResource("8_t11sw")]
 visible = false
 
 [connection signal="area_entered" from="GUN/Range" to="." method="_on_range_area_entered"]
