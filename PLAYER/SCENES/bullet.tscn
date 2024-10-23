@@ -61,7 +61,6 @@ collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_qtwbl")
 speed = 2300
-damage_shoot = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dqh7x")
@@ -74,9 +73,10 @@ sprite_frames = SubResource("SpriteFrames_72sur")
 frame_progress = 0.631515
 
 [node name="Collission" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_2fr23")
+damage = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collission"]
 shape = SubResource("CircleShape2D_8vg4u")

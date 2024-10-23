@@ -192,6 +192,7 @@ scale = Vector2(5, 5)
 [node name="SPAWNERS" type="Node2D" parent="."]
 
 [node name="Enemy_Spawner_1" parent="SPAWNERS" instance=ExtResource("4_pinbx")]
+comun = "Asalto"
 
 [node name="funciones" type="AnimationPlayer" parent="."]
 libraries = {

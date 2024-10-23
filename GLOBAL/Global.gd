@@ -15,6 +15,9 @@ var level = 1
 var cave_level  = 1
 var next_level = 0.0
 
+
+var camera
+
 func _process(_delta):
 	if health <= 0:
 		get_tree().reload_current_scene()

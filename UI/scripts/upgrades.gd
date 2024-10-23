@@ -12,9 +12,7 @@ signal upgrade_for_player(upgrade)
 
 var incoming_type :String
 
-func _ready():
-	
-	upgrade("estadistica")
+
 
 func upgrade(upgrade_type : String):
 	var options = 0
@@ -23,7 +21,7 @@ func upgrade(upgrade_type : String):
 			0 :
 				upgrade_1.item = randomize_upgrades(upgrade_type)
 				upgrade_1.set_item()
-				print(upgrade_1.item)
+				#print(upgrade_1.item)
 			1 :
 				upgrade_2.item = randomize_upgrades(upgrade_type)
 				upgrade_2.set_item()
@@ -52,13 +50,13 @@ func randomize_upgrades(type : String):
 					dblist.append(i)
 			else:
 				dblist.append(i)
-				print(dblist)
+				#print(dblist)
 			
 	if dblist.size() > 0:
 		var randomitem = dblist.pick_random()
-		print(UpgradesDb.UPGRADE_DB[randomitem]["type"])
+		#print(UpgradesDb.UPGRADE_DB[randomitem]["type"])
 		upgrades_on_ui.append(randomitem)
-		print("random item " + randomitem)
+		#print("random item " + randomitem)
 		return randomitem
 	pass
 

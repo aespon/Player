@@ -42,12 +42,12 @@ func _on_snd_collected_finished():
 func _on_area_entered(area):
 	
 	if area.name == "Loot_Collect":
-		print("xp should follow")
+		#print("xp should follow")
 		target = player_
 
 
 func _on_body_entered(body):
 	if body is Player:
-		print("entro")
+		#print("entro")
 		body.calculate_exp(experience)
 		collect()

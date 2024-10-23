@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 1200
 @onready var collission = $Collission
-@export var damage_shoot : int
+var damage_shoot : int
 
 func _ready():
 	collission.damage = damage_shoot

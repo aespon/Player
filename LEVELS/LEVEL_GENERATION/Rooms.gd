@@ -14,11 +14,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if spawners == 0:
-		print("aa")
+		#print("aa")
 		funciones.play("Finished")
+		spawners = -1
 
 
 func _on_door_top_player_entered():

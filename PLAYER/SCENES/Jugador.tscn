@@ -1,13 +1,1272 @@
-[gd_scene load_steps=24 format=3 uid="uid://dm5mdyhpudmlq"]
+[gd_scene load_steps=76 format=3 uid="uid://dm5mdyhpudmlq"]
 
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/Golem.gd" id="1_n4cj7"]
-[ext_resource type="Texture2D" uid="uid://bxe2r5poqvrlq" path="res://PLAYER/ASSETS/Golem_Walk.png" id="2_bix35"]
+[ext_resource type="Texture2D" uid="uid://cjcjryhmfm3d0" path="res://PLAYER/ASSETS/Golem Animaciones (1).png" id="3_3qn8c"]
+[ext_resource type="AudioStream" uid="uid://0w6fqabb0nsq" path="res://AUDIO/PLAYER SFX/disparojugador.wav" id="3_odc8a"]
 [ext_resource type="Script" path="res://PLAYER/SCRIPTS/GUN.gd" id="3_rmgj8"]
+[ext_resource type="AudioStream" uid="uid://ceyeno70i6irl" path="res://AUDIO/PLAYER SFX/ataquedeljugador.wav" id="4_dtouj"]
 [ext_resource type="PackedScene" uid="uid://bu26u5ve1qte" path="res://PLAYER/SCENES/bullet.tscn" id="4_q52v1"]
 [ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="5_pxn8e"]
+[ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="5_rqxem"]
 [ext_resource type="PackedScene" uid="uid://cjnc78725y025" path="res://UI/PAUSED/paused.tscn" id="6_03er4"]
+[ext_resource type="Script" path="res://PLAYER/SCRIPTS/Camera2D.gd" id="6_ajl57"]
 [ext_resource type="PackedScene" uid="uid://mjfrnn0cbe6j" path="res://UI/SCENES/YouveDied.tscn" id="7_dcjvl"]
 [ext_resource type="PackedScene" uid="uid://b7ilsyxyckng1" path="res://UI/SCENES/upgrades.tscn" id="8_t11sw"]
+
+[sub_resource type="Animation" id="Animation_j0shn"]
+resource_name = "DIE_DOWN"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 10), Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10), Vector2i(4, 10), Vector2i(5, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.160784, 0.160784, 0.160784, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6okdu"]
+resource_name = "DIE_LEFT"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 11), Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11), Vector2i(4, 11), Vector2i(5, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.160784, 0.160784, 0.160784, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c5lkx"]
+resource_name = "DIE_RIGHT"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 11), Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11), Vector2i(4, 11), Vector2i(5, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.160784, 0.160784, 0.160784, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wyul8"]
+resource_name = "DIE_UP"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 12), Vector2i(1, 12), Vector2i(2, 12), Vector2i(3, 12), Vector2i(4, 12), Vector2i(5, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 3.13834),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.160784, 0.160784, 0.160784, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x57v7"]
+resource_name = "IDLE"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1uf8u"]
+resource_name = "PUNCH_DOWN"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(0.34151, 0.34151, 0.34151, 0.34151, 0.34151),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(1, 7), Vector2i(0, 7)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_mele"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtouj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_36p4l"]
+resource_name = "PUNCH_LEFT"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(2, 8), Vector2i(1, 8), Vector2i(0, 8)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_mele"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtouj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_f0b7v"]
+resource_name = "PUNCH_RIGHT"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(2, 8), Vector2i(1, 8), Vector2i(0, 8)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.35),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_mele"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtouj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_upw8u"]
+resource_name = "PUNCH_UP"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 9), Vector2i(1, 9), Vector2i(2, 9), Vector2i(1, 9), Vector2i(0, 9)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_mele"
+}]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dtouj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_s0udy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GUN/MELE:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../GUN")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2D:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fkujo"]
+resource_name = "SHOOT_DOWN"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_shoot"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GUN")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"daño_ctrl"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [2.0, 1.5],
+"method": &"shake"
+}, {
+"args": [0.0, 0.0],
+"method": &"shake"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_odc8a")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_e7b5v"]
+resource_name = "SHOOT_LEFT"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_shoot"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GUN")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"daño_ctrl"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [2.0, 1.5],
+"method": &"shake"
+}, {
+"args": [0.0, 0.0],
+"method": &"shake"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_odc8a")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_svrt8"]
+resource_name = "SHOOT_RIGHT"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_shoot"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GUN")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"daño_ctrl"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [2.0, 1.5],
+"method": &"shake"
+}, {
+"args": [0.0, 0.0],
+"method": &"shake"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_odc8a")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_rnvv7"]
+resource_name = "SHOOT_UP"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_shoot"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GUN")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"daño_ctrl"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [3.0, 4.0],
+"method": &"shake"
+}, {
+"args": [0.0, 0.0],
+"method": &"shake"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_odc8a")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_4okmn"]
+resource_name = "WALK_DOWN"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g88d1"]
+resource_name = "WALK_LEFT"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6x68f"]
+resource_name = "WALK_RIGHT"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GUN/MELE:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_c07hd"]
+resource_name = "WALK_UP"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GUN/MELE:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0i3o"]
+_data = {
+"DIE_DOWN": SubResource("Animation_j0shn"),
+"DIE_LEFT": SubResource("Animation_6okdu"),
+"DIE_RIGHT": SubResource("Animation_c5lkx"),
+"DIE_UP": SubResource("Animation_wyul8"),
+"IDLE": SubResource("Animation_x57v7"),
+"PUNCH_DOWN": SubResource("Animation_1uf8u"),
+"PUNCH_LEFT": SubResource("Animation_36p4l"),
+"PUNCH_RIGHT": SubResource("Animation_f0b7v"),
+"PUNCH_UP": SubResource("Animation_upw8u"),
+"RESET": SubResource("Animation_s0udy"),
+"SHOOT_DOWN": SubResource("Animation_fkujo"),
+"SHOOT_LEFT": SubResource("Animation_e7b5v"),
+"SHOOT_RIGHT": SubResource("Animation_svrt8"),
+"SHOOT_UP": SubResource("Animation_rnvv7"),
+"WALK_DOWN": SubResource("Animation_4okmn"),
+"WALK_LEFT": SubResource("Animation_g88d1"),
+"WALK_RIGHT": SubResource("Animation_6x68f"),
+"WALK_UP": SubResource("Animation_c07hd")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udsdg"]
 size = Vector2(26, 29)
@@ -26,186 +1285,6 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.7, 0.3)
 metadata/_snap_enabled = true
 
-[sub_resource type="Animation" id="Animation_igt8s"]
-resource_name = "Down"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_xctpe"]
-resource_name = "Idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_yhlgd"]
-resource_name = "Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_uvwe8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ly76a"]
-resource_name = "Right"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_d6q32"]
-resource_name = "Top"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhvec"]
-_data = {
-"Down": SubResource("Animation_igt8s"),
-"Idle": SubResource("Animation_xctpe"),
-"Left": SubResource("Animation_yhlgd"),
-"RESET": SubResource("Animation_uvwe8"),
-"Right": SubResource("Animation_ly76a"),
-"Top": SubResource("Animation_d6q32")
-}
-
 [sub_resource type="Gradient" id="Gradient_pc0am"]
 offsets = PackedFloat32Array(0, 0.155844, 1)
 colors = PackedColorArray(0.40071, 0.53669, 0.0907244, 1, 0.307646, 0.415609, 0.142318, 1, 0, 0, 0, 1)
@@ -223,6 +1302,217 @@ size = Vector2(88, 104)
 [sub_resource type="CircleShape2D" id="CircleShape2D_g83eo"]
 radius = 33.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5o3d1"]
+animation = &"DIE_LEFT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhnxd"]
+animation = &"DIE_RIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1c8qm"]
+animation = &"DIE_DOWN"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5u241"]
+animation = &"DIE_UP"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_m40tu"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5o3d1")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fhnxd")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_1c8qm")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_5u241")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_odw57"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fvmxu"]
+animation = &"PUNCH_LEFT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lyeqh"]
+animation = &"PUNCH_RIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r2p85"]
+animation = &"PUNCH_DOWN"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tyxim"]
+animation = &"PUNCH_UP"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fgurx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_fvmxu")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_lyeqh")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_r2p85")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_tyxim")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4ya8"]
+animation = &"SHOOT_LEFT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pik62"]
+animation = &"SHOOT_RIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mf32w"]
+animation = &"SHOOT_DOWN"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijk31"]
+animation = &"SHOOT_UP"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_cxfak"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_r4ya8")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_pik62")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_mf32w")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ijk31")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_us52k"]
+animation = &"WALK_LEFT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m134a"]
+animation = &"WALK_RIGHT"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mttqq"]
+animation = &"WALK_DOWN"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sp7a4"]
+animation = &"WALK_UP"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3x5jx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_us52k")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_m134a")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_mttqq")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_sp7a4")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_670fq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fipj"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bsux"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ia7ch"]
+advance_mode = 2
+advance_condition = &"mele"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pnutl"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lpj67"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci5j6"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sbllh"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5knuo"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7lqa5"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6q78h"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kbeox"]
+states/DEAD/node = SubResource("AnimationNodeBlendSpace2D_m40tu")
+states/DEAD/position = Vector2(537, 251)
+states/IDLE/node = SubResource("AnimationNodeAnimation_odw57")
+states/IDLE/position = Vector2(332, 133)
+states/MELE/node = SubResource("AnimationNodeBlendSpace2D_fgurx")
+states/MELE/position = Vector2(332, 51)
+states/SHOOT/node = SubResource("AnimationNodeBlendSpace2D_cxfak")
+states/SHOOT/position = Vector2(332, 399)
+states/Start/position = Vector2(149, 133)
+states/WALK/node = SubResource("AnimationNodeBlendSpace2D_3x5jx")
+states/WALK/position = Vector2(477, 133)
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_670fq"), "IDLE", "WALK", SubResource("AnimationNodeStateMachineTransition_3fipj"), "WALK", "IDLE", SubResource("AnimationNodeStateMachineTransition_2bsux"), "IDLE", "MELE", SubResource("AnimationNodeStateMachineTransition_ia7ch"), "MELE", "IDLE", SubResource("AnimationNodeStateMachineTransition_pnutl"), "IDLE", "SHOOT", SubResource("AnimationNodeStateMachineTransition_lpj67"), "SHOOT", "IDLE", SubResource("AnimationNodeStateMachineTransition_ci5j6"), "IDLE", "DEAD", SubResource("AnimationNodeStateMachineTransition_sbllh"), "DEAD", "IDLE", SubResource("AnimationNodeStateMachineTransition_5knuo"), "WALK", "SHOOT", SubResource("AnimationNodeStateMachineTransition_7lqa5"), "SHOOT", "WALK", SubResource("AnimationNodeStateMachineTransition_6q78h")]
+graph_offset = Vector2(-10, 296)
+
+[sub_resource type="Animation" id="Animation_m4iqb"]
+resource_name = "HURT"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GOLEM:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [1.0, 1.5],
+"method": &"shake"
+}, {
+"args": [0.0, 0.0],
+"method": &"shake"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3bbd6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GOLEM:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhvec"]
+_data = {
+"HURT": SubResource("Animation_m4iqb"),
+"RESET": SubResource("Animation_3bbd6")
+}
+
 [node name="Jugador" type="CharacterBody2D" groups=["Player"]]
 light_mask = 3
 visibility_layer = 3
@@ -230,15 +1520,25 @@ collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_n4cj7")
 max_speed = 250
+shoot_damage = 75
+mele_damage = 150
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GOLEM" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -2)
-texture = ExtResource("2_bix35")
-hframes = 4
-vframes = 3
+texture = ExtResource("3_3qn8c")
+flip_h = true
+hframes = 6
+vframes = 13
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GOLEM")
+libraries = {
+"": SubResource("AnimationLibrary_k0i3o")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 visibility_layer = 5
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_udsdg")
@@ -246,21 +1546,20 @@ shape = SubResource("RectangleShape2D_udsdg")
 [node name="GUN" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
 script = ExtResource("3_rmgj8")
 bullet_scene = ExtResource("4_q52v1")
-timer = NodePath("Range/Timer")
+timer = NodePath("../Camera2D/Timer")
 
-[node name="Range" type="Area2D" parent="GUN"]
+[node name="MELE" type="Area2D" parent="GUN"]
 position = Vector2(10, 0)
-collision_layer = 128
-collision_mask = 128
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource("5_rqxem")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GUN/Range"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUN/MELE"]
 light_mask = 128
 visibility_layer = 128
 position = Vector2(22, 0)
 shape = SubResource("CircleShape2D_nc534")
-
-[node name="Timer" type="Timer" parent="GUN/Range"]
-wait_time = 0.5
 
 [node name="SpawnBullet" type="Marker2D" parent="GUN"]
 
@@ -272,24 +1571,24 @@ scale = Vector2(5, 5)
 texture = SubResource("GradientTexture2D_65g0f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("6_ajl57")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_fhvec")
-}
-autoplay = "Idle"
+[node name="Timer" type="Timer" parent="Camera2D"]
+wait_time = 0.5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_p34gb")
 
 [node name="Loot_Collect" type="Area2D" parent="."]
+visible = false
 collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Loot_Collect"]
 shape = SubResource("RectangleShape2D_2hfue")
 
 [node name="Hurt_Box" type="Area2D" parent="."]
+visible = false
 collision_mask = 513
 script = ExtResource("5_pxn8e")
 health = 1000
@@ -307,8 +1606,32 @@ visible = false
 [node name="Upgrades" parent="." instance=ExtResource("8_t11sw")]
 visible = false
 
-[connection signal="area_entered" from="GUN/Range" to="." method="_on_range_area_entered"]
-[connection signal="timeout" from="GUN/Range/Timer" to="." method="on_time_out"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../GOLEM")
+libraries = {
+"": SubResource("AnimationLibrary_k0i3o")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kbeox")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/is_dead = false
+parameters/conditions/is_walking = false
+parameters/conditions/mele = false
+parameters/conditions/shoot = false
+parameters/DEAD/blend_position = Vector2(0, 0)
+parameters/MELE/blend_position = Vector2(0, 0)
+parameters/SHOOT/blend_position = Vector2(0, 0)
+parameters/WALK/blend_position = Vector2(-1.00225, -0.026455)
+
+[node name="HURT" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fhvec")
+}
+autoplay = "Idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="Camera2D/Timer" to="." method="on_time_out"]
 [connection signal="area_entered" from="Loot_Collect" to="." method="_on_loot_collect_area_entered"]
 [connection signal="Dead" from="Hurt_Box" to="." method="_on_hurt_box_dead"]
 [connection signal="area_entered" from="Hurt_Box" to="." method="_on_collect_area_entered"]

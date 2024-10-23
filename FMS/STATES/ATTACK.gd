@@ -30,7 +30,7 @@ func on_shoot_timeout():
 	bullet.position = global_position
 	bullet.direction = (player_detector_1.target_position).normalized()
 	get_tree().current_scene.add_child(bullet)
-	var direction = (player.position - global_position).normalized()
+	var _direction = (player.position - global_position).normalized()
 	timer.start()
 
 

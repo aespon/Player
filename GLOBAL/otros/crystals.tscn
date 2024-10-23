@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://bacjduqw5r6mi"]
+
+[ext_resource type="Script" path="res://GLOBAL/otros/scripts/Crystals.gd" id="1_ljmy6"]
+[ext_resource type="Texture2D" uid="uid://jyfvmenvy3wc" path="res://UI/ASSETS/crystal_level_next.png" id="2_svddc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6cei"]
+atlas = ExtResource("2_svddc")
+region = Rect2(0, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1dus"]
+atlas = ExtResource("2_svddc")
+region = Rect2(19, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnsxh"]
+atlas = ExtResource("2_svddc")
+region = Rect2(38, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a8l2"]
+atlas = ExtResource("2_svddc")
+region = Rect2(57, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g70or"]
+atlas = ExtResource("2_svddc")
+region = Rect2(76, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtaxy"]
+atlas = ExtResource("2_svddc")
+region = Rect2(95, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f0ls"]
+atlas = ExtResource("2_svddc")
+region = Rect2(114, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suiyl"]
+atlas = ExtResource("2_svddc")
+region = Rect2(133, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apxv3"]
+atlas = ExtResource("2_svddc")
+region = Rect2(152, 0, 19, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spm03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6cei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1dus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnsxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a8l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g70or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtaxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f0ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suiyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apxv3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h05pe"]
+radius = 15.1327
+
+[node name="Crystals" type="Node2D"]
+script = ExtResource("1_ljmy6")
+
+[node name="CrystalLevelNext" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.494118, 1, 0.627451, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_spm03")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+light_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_h05pe")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
