@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://csbs7vaftm2qu"]
+[gd_scene load_steps=9 format=3 uid="uid://csbs7vaftm2qu"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_iv8nc"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_qkfyt"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_vfo5q"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="4_cps6g"]
 [ext_resource type="PackedScene" uid="uid://enb031227tu" path="res://LEVELS/LEVEL_GENERATION/OTHERS/Mother_Crystal.tscn" id="5_o27bu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5x2u"]
@@ -11,6 +10,131 @@ vertices = PackedVector2Array(496, 495, -498, 495, -494, -500, 490, -500)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(500, -510, -504, -510, -508, 505, 506, 505)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="Animation" id="Animation_v5jje"]
+resource_name = "Enter"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/Door_Top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_close_door"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/Door_Bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_close_door"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doors/Door_Right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_close_door"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Doors/Door_Left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_close_door"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fx8q0"]
+resource_name = "Finished"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/Door_Top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/Door_Bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doors/Door_Right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Doors/Door_Left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsgxx"]
+resource_local_to_scene = true
+_data = {
+"Enter": SubResource("Animation_v5jje"),
+"Finished": SubResource("Animation_fx8q0")
+}
 
 [node name="1_room_player" type="Node2D"]
 script = ExtResource("1_iv8nc")
@@ -48,12 +172,15 @@ rotation = -1.5708
 scale = Vector2(5, 5)
 
 [node name="funciones" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
-"": ExtResource("4_cps6g")
+"": SubResource("AnimationLibrary_jsgxx")
 }
 
 [node name="MotherCrystal" parent="." instance=ExtResource("5_o27bu")]
 position = Vector2(-7, -96)
+crystals_needed = 2
+next = 2
 
 [node name="SPAWNERS" type="Node2D" parent="."]
 

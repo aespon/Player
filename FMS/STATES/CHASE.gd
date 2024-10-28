@@ -86,7 +86,7 @@ func x_or_y_walk():
 	move_to_player()
 
 func still():
-	owner.velocity
+	owner.velocity = 0
 
 func move_to_player():
 	if player == null:

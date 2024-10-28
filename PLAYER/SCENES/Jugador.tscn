@@ -743,7 +743,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"daño_ctrl"
+"method": &"shoot"
 }]
 }
 tracks/5/type = "method"
@@ -756,7 +756,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.2, 3.0],
+"args": [0.2, 1.5],
 "method": &"shake"
 }, {
 "args": [1.0, 0.0],
@@ -843,7 +843,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"daño_ctrl"
+"method": &"shoot"
 }]
 }
 tracks/5/type = "method"
@@ -856,7 +856,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.2, 3.0],
+"args": [0.2, 1.5],
 "method": &"shake"
 }, {
 "args": [1.0, 0.0],
@@ -925,7 +925,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -943,7 +943,7 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"daño_ctrl"
+"method": &"shoot"
 }]
 }
 tracks/5/type = "method"
@@ -956,7 +956,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.2, 3.0],
+"args": [0.2, 1.5],
 "method": &"shake"
 }, {
 "args": [1.0, 0.0],
@@ -1025,7 +1025,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -1056,7 +1056,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.2, 4.0],
+"args": [0.2, 1.5],
 "method": &"shake"
 }, {
 "args": [1.0, 0.0],
@@ -1396,6 +1396,7 @@ blend_point_2/pos = Vector2(0, 1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_sp7a4")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
+sync = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_670fq"]
 advance_mode = 2
@@ -1456,7 +1457,7 @@ states/Start/position = Vector2(149, 133)
 states/WALK/node = SubResource("AnimationNodeBlendSpace2D_3x5jx")
 states/WALK/position = Vector2(477, 133)
 transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_670fq"), "IDLE", "WALK", SubResource("AnimationNodeStateMachineTransition_3fipj"), "WALK", "IDLE", SubResource("AnimationNodeStateMachineTransition_2bsux"), "IDLE", "MELE", SubResource("AnimationNodeStateMachineTransition_ia7ch"), "MELE", "IDLE", SubResource("AnimationNodeStateMachineTransition_pnutl"), "IDLE", "SHOOT", SubResource("AnimationNodeStateMachineTransition_lpj67"), "SHOOT", "IDLE", SubResource("AnimationNodeStateMachineTransition_ci5j6"), "IDLE", "DEAD", SubResource("AnimationNodeStateMachineTransition_sbllh"), "DEAD", "IDLE", SubResource("AnimationNodeStateMachineTransition_5knuo"), "WALK", "SHOOT", SubResource("AnimationNodeStateMachineTransition_7lqa5"), "SHOOT", "WALK", SubResource("AnimationNodeStateMachineTransition_6q78h")]
-graph_offset = Vector2(-10, 296)
+graph_offset = Vector2(-1, -49)
 
 [sub_resource type="Animation" id="Animation_m4iqb"]
 resource_name = "HURT"
@@ -1484,7 +1485,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [0.1, 3.0],
+"args": [0.1, 1.6],
 "method": &"shake"
 }, {
 "args": [1.0, 0.0],

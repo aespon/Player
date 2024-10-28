@@ -80,7 +80,7 @@ func damage_taken():
 	progress_bar.value = hurt_box.current_health
 
 func dead():
-	var direction = position
+	var direction_ = position
 	animation_player.play("DEATH")
 	if FSM_MINERO != null : FSM_MINERO.queue_free()
 	await get_tree().create_timer(1).timeout
@@ -90,7 +90,7 @@ func dead():
 			heal.type = 3
 			get_parent().get_parent().add_child(heal)
 	var new_gem = exp_gem.instantiate()
-	new_gem.global_position = direction
+	new_gem.global_position = direction_
 	new_gem.experience = experience
 	get_parent().get_parent().add_child(new_gem)
 	emit_signal("enemy_is_dead")

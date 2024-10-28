@@ -66,6 +66,7 @@ func _on_skip_pressed():
 
 func _on_upgrade_1_selected_item(upgrade):
 	emit_signal("upgrade_for_player", upgrade)
+	get_tree().paused = false
 	pass # Replace with function body.
 
 

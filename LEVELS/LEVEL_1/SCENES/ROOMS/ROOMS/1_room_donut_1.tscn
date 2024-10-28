@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dickmc3p7w5uu"]
+[gd_scene load_steps=6 format=3 uid="uid://dickmc3p7w5uu"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_ud7d8"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_ox7im"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_px7t7"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_38uoj"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_qr8gx"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_5xqw3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4rysc"]
 vertices = PackedVector2Array(496, 495, -498, 495, -494, -500, 490, -500)
@@ -14,7 +13,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="1_room_enemy_2" type="Node2D"]
 position = Vector2(-1, 0)
-script = ExtResource("1_ud7d8")
+script = ExtResource("1_ox7im")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_px7t7")
@@ -85,11 +84,6 @@ position = Vector2(160.565, 141.474)
 
 [node name="Enemy_Spawner_16" parent="SPAWNERS" instance=ExtResource("4_qr8gx")]
 position = Vector2(-155.792, 134.799)
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_5xqw3")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

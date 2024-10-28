@@ -1,9 +1,10 @@
-[gd_scene load_steps=88 format=3 uid="uid://d04l567spyr8e"]
+[gd_scene load_steps=89 format=3 uid="uid://d04l567spyr8e"]
 
 [ext_resource type="Texture2D" uid="uid://cnjok0h8vwnnp" path="res://ENEMIES_1/2_RARO/CRISTAL_RIDER/ASSET/Monta cristales-Sheet.png" id="2_6x7aj"]
 [ext_resource type="Material" uid="uid://dwnsqdu3xfjo" path="res://FMS/STATES/HITFLASH.tres" id="2_eudyb"]
 [ext_resource type="Script" path="res://ENEMIES v2/ENEMIES/2_RARO/CRISTAL_RIDER/SCRIPT/Criystal_Rider.gd" id="2_ix0s1"]
 [ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="3_6tdfj"]
+[ext_resource type="PackedScene" uid="uid://bs3j2j0dpu1kk" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/GUARDIA.tscn" id="3_uy6k2"]
 [ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_ilj38"]
 [ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_63tlf"]
 [ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="6_c4ppm"]
@@ -573,152 +574,6 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_2r672"]
-resource_name = "ATTACK_LEFT"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"CHASE"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Attack_Box:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4.71239]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Attack_Box:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../FSM/ATTACK")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"on_shoot_timeout"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_edhun"]
-resource_name = "ATTACK_RIGHT"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"CHASE"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Attack_Box:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Attack_Box:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5708]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../FSM/ATTACK")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"on_shoot_timeout"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_de8ba"]
 resource_name = "ATTACK_UP"
 length = 2.0
@@ -963,11 +818,157 @@ tracks/1/keys = {
 "values": [&"CHASE"]
 }
 
+[sub_resource type="Animation" id="Animation_2r672"]
+resource_name = "ATTACK_RIGHT"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"CHASE"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Attack_Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.71239]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Attack_Box:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../FSM/ATTACK")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_shoot_timeout"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_edhun"]
+resource_name = "ATTACK_LEFT"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"CHASE"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Attack_Box:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Attack_Box:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../FSM/ATTACK")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_shoot_timeout"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pey1k"]
 _data = {
 "ATTACK_DOWN": SubResource("Animation_0yks1"),
-"ATTACK_LEFT": SubResource("Animation_2r672"),
-"ATTACK_RIGHT": SubResource("Animation_edhun"),
+"ATTACK_LEFT": SubResource("Animation_edhun"),
+"ATTACK_RIGHT": SubResource("Animation_2r672"),
 "ATTACK_UP": SubResource("Animation_de8ba"),
 "CHASE": SubResource("Animation_sya6f"),
 "DEATH": SubResource("Animation_yod42"),
@@ -993,10 +994,10 @@ tracks/0/path = NodePath("Sprite/AnimatedSprite2D:material")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [ExtResource("2_eudyb"), ExtResource("2_eudyb"), ExtResource("2_eudyb")]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_tje6v"]
@@ -1032,6 +1033,7 @@ material = ExtResource("2_eudyb")
 collision_layer = 10
 collision_mask = 13
 script = ExtResource("2_ix0s1")
+skotadi = ExtResource("3_uy6k2")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -1063,7 +1065,7 @@ timer_wait_time = 3.0
 ray_cast = "2 RAYCAST"
 next_state_1 = "wander"
 next_state_2 = "chase"
-player_detector_1 = NodePath("../../Detectorx")
+player_detector_1 = NodePath("../../DetectorX")
 player_detector_2 = NodePath("../../DetectorY")
 
 [node name="WANDER" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer_wander", "Points", "next_point", "Navigator", "player_detector_1", "player_detector_2")]
@@ -1073,7 +1075,7 @@ wander_speed = 100.0
 Points = NodePath("../../Points")
 next_point = NodePath("../../Timer_Wander_Points")
 Navigator = NodePath("../../Dog_1_nav")
-player_detector_1 = NodePath("../../Detectorx")
+player_detector_1 = NodePath("../../DetectorX")
 player_detector_2 = NodePath("../../DetectorY")
 timer_wait_time = 7.0
 previous_state = "idle"
@@ -1084,10 +1086,10 @@ ray_cast = "2 RAYCAST"
 script = ExtResource("6_c4ppm")
 Navigator = NodePath("../../Dog_1_nav")
 timer_chase = NodePath("../../Timer")
-player_detector_1 = NodePath("../../Detectorx")
+player_detector_1 = NodePath("../../DetectorX")
 player_detector_2 = NodePath("../../DetectorY")
 attack_detector = NodePath("../../Attack_Detector")
-chase_speed = 125.0
+chase_speed = 300.0
 timer_time = 2.5
 previous_state = "idle"
 next_state = "attack"
@@ -1107,7 +1109,7 @@ type_of_attack = "Shoot"
 ray_casts = "2 RAYCAST"
 type_of_chase = "X and Y axis"
 player_detector_1 = NodePath("../../DetectorY")
-player_detector_2 = NodePath("../../Detectorx")
+player_detector_2 = NodePath("../../DetectorX")
 
 [node name="Timer_Wander_Points" type="Timer" parent="."]
 wait_time = 2.0
@@ -1122,7 +1124,7 @@ light_mask = 4
 position = Vector2(0, -300)
 target_position = Vector2(0, 600)
 
-[node name="Detectorx" type="RayCast2D" parent="."]
+[node name="DetectorX" type="RayCast2D" parent="."]
 light_mask = 4
 position = Vector2(-300, 0)
 target_position = Vector2(600, 0)

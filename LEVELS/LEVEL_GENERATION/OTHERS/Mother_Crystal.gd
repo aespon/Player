@@ -11,14 +11,14 @@ signal item_spawn
 @export var next : int
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	var starting_item = player_.starting_item
 	print("bb")
 	if starting_item == false:
 		animation_player.play("enter")
 		starting_item = true
 		player_.starting_item = true
-	if player_.crystals_collected == crystals_needed:
+	if player_.crystals_collected >= crystals_needed:
 		Global.cave_level = next
 		NivelManager.change_level(next)
 		

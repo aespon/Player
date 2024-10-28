@@ -7,6 +7,7 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_71faa")
+nivel = 1
 
 [node name="Nivel_Manager" type="Node2D" parent="."]
 script = ExtResource("1_l2fl2")
@@ -14,5 +15,8 @@ script = ExtResource("1_l2fl2")
 [node name="Jugador" parent="." instance=ExtResource("2_xs2is")]
 mele_damage = 84564
 
-[node name="Node2D" parent="." instance=ExtResource("3_5vraa")]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource("3_5vraa")]
+position = Vector2(29, 23)
+scale = Vector2(0.7, 0.7)

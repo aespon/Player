@@ -7,6 +7,9 @@ var target
 var speed = -1
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
 @onready var crystal_collects = $crystal_collects
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+var collected : bool = false
+
 
 func _physics_process(delta):
 	if target != null:
@@ -31,10 +34,18 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
+	crystal_collects.queue_free()
 	if body is Player:
 		target = player_
+		if type == 0:
+			audio_stream_player_2d.stream = preload("res://AUDIO/RECOLECTABLES/recoleccioncristales.wav")
+			audio_stream_player_2d.play()
+		if type == 1 or type == 2 or type == 3:
+			audio_stream_player_2d.stream = preload("res://AUDIO/RECOLECTABLES/recoleccionitem.wav")
+			audio_stream_player_2d.play()
 		if upgrade_type != "":
 			player_.player_upgrade(upgrade_type)
 		if type == 3:
 			player_.vampirismo_function()
+	await get_tree().create_timer(2).timeout
 	queue_free()

@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyi8wp3uf3qd8"]
+[gd_scene load_steps=6 format=3 uid="uid://cyi8wp3uf3qd8"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_5x1il"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_yatdf"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_177aj"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_cd1xi"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_xdqr7"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_b74c7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4rysc"]
 vertices = PackedVector2Array(59, -68, 64, 65, 65, 488, -61, 494, -69, 68, -71, -67, -61, -508, 498, -67, 500, 65, -503, 69, -504, -62, 60, -506)
@@ -13,7 +12,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(71, -516, -71, -519, -8
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level_1_gen_room" type="Node2D"]
-script = ExtResource("1_5x1il")
+script = ExtResource("1_yatdf")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_177aj")
@@ -51,11 +50,6 @@ scale = Vector2(5, 5)
 
 [node name="Enemy_Spawner_10" parent="SPAWNERS" instance=ExtResource("4_xdqr7")]
 comun = "Robot Bomba"
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_b74c7")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

@@ -1,30 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv6s164l1jenn"]
+[gd_scene load_steps=13 format=3 uid="uid://bv6s164l1jenn"]
 
+[ext_resource type="PackedScene" uid="uid://dleqa34mpvoqr" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_3.tscn" id="2_e6sve"]
 [ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Jugador.tscn" id="2_rsdxh"]
-[ext_resource type="PackedScene" uid="uid://wkcqw7pru6sy" path="res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/SCENES/VOLADOR.tscn" id="3_68qhl"]
 [ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_kx0mp"]
-[ext_resource type="PackedScene" uid="uid://bs3j2j0dpu1kk" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/GUARDIA.tscn" id="4_velw4"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_17ocf"]
-vertices = PackedVector2Array(770, 139, 279, 562, -423, 339, -378, -184, 640, -191)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-388, -194, -434, 347, 282, 574, 783, 143, 647, -202)])
-source_geometry_group_name = &"navigation_polygon_source_group"
+[ext_resource type="PackedScene" uid="uid://cyi8wp3uf3qd8" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_corridor_1.tscn" id="3_vpfoq"]
+[ext_resource type="PackedScene" uid="uid://cr43e2j4tv8p1" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_cross_1.tscn" id="4_oj7r8"]
+[ext_resource type="PackedScene" uid="uid://dickmc3p7w5uu" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_donut_1.tscn" id="5_ecof8"]
+[ext_resource type="PackedScene" uid="uid://t8iigir40knj" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_spikes_4.tscn" id="6_rcfin"]
+[ext_resource type="PackedScene" uid="uid://d1ck26o2fhafh" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_1.tscn" id="7_uyxgs"]
+[ext_resource type="PackedScene" uid="uid://cb0ivs234rs1v" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_2.tscn" id="8_6axjr"]
+[ext_resource type="PackedScene" uid="uid://e8e0h6k3s37p" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_4.tscn" id="9_6a07x"]
+[ext_resource type="PackedScene" uid="uid://bn6k2jqhjmqgw" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_Walls_1.tscn" id="10_8xum6"]
+[ext_resource type="PackedScene" uid="uid://bst5eb1w7mgov" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_boss.tscn" id="11_vnw40"]
 
 [node name="TEST" type="Node2D"]
 position = Vector2(4, -2)
 
-[node name="Jugador" parent="." instance=ExtResource("2_rsdxh")]
-position = Vector2(200, 249)
-
 [node name="Node2D" parent="." instance=ExtResource("3_kx0mp")]
 position = Vector2(836, 364)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_17ocf")
+[node name="1_room_enemy_2" parent="." instance=ExtResource("2_e6sve")]
+position = Vector2(272, 194)
 
-[node name="VOLADOR" parent="." instance=ExtResource("3_68qhl")]
-position = Vector2(50, 25)
+[node name="Level_1_gen_room" parent="." instance=ExtResource("3_vpfoq")]
+position = Vector2(1552, 196)
 
-[node name="GUARDIA" parent="." instance=ExtResource("4_velw4")]
-position = Vector2(-66, 252)
+[node name="Level_1_gen_room2" parent="." instance=ExtResource("4_oj7r8")]
+position = Vector2(271, 1440)
+
+[node name="1_room_enemy_3" parent="." instance=ExtResource("5_ecof8")]
+position = Vector2(-1002, 193)
+
+[node name="1_room_enemy_4" parent="." instance=ExtResource("6_rcfin")]
+position = Vector2(1541, 1443)
+
+[node name="1_room_enemy_5" parent="." instance=ExtResource("7_uyxgs")]
+position = Vector2(-1002, 1443)
+
+[node name="1_room_enemy_6" parent="." instance=ExtResource("8_6axjr")]
+position = Vector2(275, 2692)
+
+[node name="1_room_enemy_7" parent="." instance=ExtResource("2_e6sve")]
+position = Vector2(1557, 2698)
+
+[node name="1_room_enemy_8" parent="." instance=ExtResource("9_6a07x")]
+position = Vector2(-1001, 2692)
+
+[node name="1_room_enemy_9" parent="." instance=ExtResource("10_8xum6")]
+position = Vector2(280, 3953)
+
+[node name="1_room_enemy_10" parent="." instance=ExtResource("11_vnw40")]
+position = Vector2(1546, 3952)
+
+[node name="Jugador" parent="." instance=ExtResource("2_rsdxh")]
+position = Vector2(217, 2394)

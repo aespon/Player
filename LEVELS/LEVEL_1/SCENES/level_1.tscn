@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_ed11i"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/WALKER/Map.gd" id="1_gtw5h"]
+[ext_resource type="AudioStream" uid="uid://bxfgovjj0fn2l" path="res://AUDIO/FONDO/Pixel Dreams.mp3" id="2_8fuy5"]
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="3_k3tuh"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/minmap.gd" id="4_o04xm"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/map.gd" id="4_tijvt"]
 [ext_resource type="Texture2D" uid="uid://b4eqtkwwl3sni" path="res://UI/ASSETS/starting_room.png" id="6_fscuf"]
-[ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="7_4sdjh"]
 [ext_resource type="Texture2D" uid="uid://cc8wggj43xvft" path="res://UI/ASSETS/Ram Border.png" id="7_q1l7b"]
 
 [sub_resource type="Gradient" id="Gradient_hxohi"]
@@ -26,6 +26,8 @@ gradient = SubResource("Gradient_hlqfn")
 
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_ed11i")
+music = ExtResource("2_8fuy5")
+volumen = -12
 metadata/_edit_horizontal_guides_ = [26.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -125,10 +127,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
-
-[node name="Node2D" parent="UI" instance=ExtResource("7_4sdjh")]
-position = Vector2(34.0001, 12)
-scale = Vector2(0.65, 0.65)
 
 [node name="Player_Start_Position" type="Marker2D" parent="."]
 

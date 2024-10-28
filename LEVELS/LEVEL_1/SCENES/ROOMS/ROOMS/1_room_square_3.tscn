@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dleqa34mpvoqr"]
+[gd_scene load_steps=6 format=3 uid="uid://dleqa34mpvoqr"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_evwn5"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_oo3f5"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_j11ea"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_k0hxl"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_cukr3"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_5c043"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5x2u"]
 vertices = PackedVector2Array(496, 495, -498, 495, -494, -500, 490, -500)
@@ -13,7 +12,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(500, -510, -504, -510, 
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="1_room_enemy_2" type="Node2D"]
-script = ExtResource("1_evwn5")
+script = ExtResource("1_oo3f5")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_j11ea")
@@ -56,11 +55,6 @@ raro = "Monta Cristales"
 [node name="Enemy_Spawner_3" parent="SPAWNERS" instance=ExtResource("4_cukr3")]
 position = Vector2(331, 341)
 raro = "Monta Cristales"
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_5c043")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

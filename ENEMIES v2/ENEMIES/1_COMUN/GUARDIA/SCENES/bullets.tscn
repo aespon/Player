@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7bd8sgybcou7"]
+[gd_scene load_steps=6 format=3 uid="uid://c7bd8sgybcou7"]
 
 [ext_resource type="Script" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCRIPTS/bullets.gd" id="1_exmnf"]
-[ext_resource type="Texture2D" uid="uid://cjjjwf4d4om2s" path="res://icon.svg" id="2_koxv3"]
 [ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="3_f3lfm"]
+
+[sub_resource type="Gradient" id="Gradient_xry65"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i4y8t"]
+gradient = SubResource("Gradient_xry65")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53grf"]
 size = Vector2(17.5, 15)
@@ -13,8 +17,8 @@ script = ExtResource("1_exmnf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_koxv3")
+scale = Vector2(0.0529234, 14)
+texture = SubResource("GradientTexture1D_i4y8t")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -9.53674e-07)
@@ -26,11 +30,9 @@ script = ExtResource("3_f3lfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
 position = Vector2(0, -2.98023e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_53grf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_53grf")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://6x3otrla06u"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_nir53"]
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/WALKER/Map.gd" id="2_wue2c"]
+[ext_resource type="Script" path="res://LEVELS/LEVEL_2/SCRIPTS/Map.gd" id="2_cuuyk"]
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="3_jfo20"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/minmap.gd" id="4_kbhep"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/map.gd" id="5_v3pd3"]
@@ -31,11 +31,7 @@ scale = Vector2(3929.5, 6547)
 texture = SubResource("GradientTexture2D_gw5r4")
 
 [node name="Map" type="Node2D" parent="."]
-script = ExtResource("2_wue2c")
-volume_ = 15
-experience_player_ = 1000
-cave_level = 1
-max_rooms = 35
+script = ExtResource("2_cuuyk")
 
 [node name="VFX" type="Node2D" parent="."]
 

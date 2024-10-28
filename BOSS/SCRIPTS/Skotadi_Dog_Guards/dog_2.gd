@@ -10,7 +10,7 @@ extends Enemy
 @export var FMS_Dog1 : Finate_State_Machine
 var angle_to_player
 @onready var animation = FMS_Dog1.current_state.name 
-@export var hurt_box : Hurt_Box
+@onready var hurt_box = $Hurt_Box
 @onready var detector_y = $DetectorY
 @export var exp_gem : PackedScene
 @export var experience : int = 0
@@ -18,10 +18,6 @@ var angle_to_player
 const CRYSTALS = preload("res://GLOBAL/otros/crystals.tscn")
 var direction
 
-func _ready():
-
-	hurt_box.Dead.connect(dead)
-	hurt_box.DamageTaken.connect(damage_taken)
 
 func _physics_process(delta):
 	

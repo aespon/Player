@@ -1,15 +1,15 @@
 extends Enemy
 
 @onready var points = $Points
-@onready var hurt = $Sprite/HURT
+@onready var hurt = $HURT
 @onready var x = points.position
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
 @onready var animation_player = $Sprite/AnimationPlayer
 @onready var sprite_2d = $Sprite/Dog_2_Sprite
 @onready var progress_bar = $ProgressBar
 @onready var FSM = $FSM
-@export var exp_gem : PackedScene
-@export var experience : int = 0
+@export var skotadi : PackedScene
+
 var angle_to_player
 @onready var animation = FSM.current_state.name 
 @onready var detectorx = $DetectorX
@@ -33,7 +33,6 @@ func _animation_handler():
 	angle_to_player = global_position.direction_to(player_position).angle()
 	points.position = x
 	direction = (player_.position - global_position).normalized()
-	detectorx.target_position = direction * 200
 	if animation == "ATTACK":
 			detect_direction_and_animate()
 	else:
@@ -84,9 +83,9 @@ func dead():
 	await get_tree().create_timer(1).timeout
 	#Global.experience_player = Global.experience_player + 10
 	#print(Global.experience_player)
-	var new_gem = exp_gem.instantiate()
-	new_gem.global_position = direction
-	new_gem.experience = experience
-	get_parent().get_parent().add_child(new_gem)
-	emit_signal("enemy_is_dead")
+	var skotadi_guardia = skotadi.instantiate()
+	skotadi_guardia.global_position = Vector2(0,0)
+	skotadi_guardia.enemy_is_dead.connect(get_parent().dead_enemy)
+	get_parent().add_child(skotadi_guardia)
+	
 	queue_free()

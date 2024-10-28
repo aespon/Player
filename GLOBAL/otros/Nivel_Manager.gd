@@ -5,7 +5,7 @@ var old_level
 var current_level
 var old_level_number : int = 0
 var level= [
-	preload("res://testing.tscn"),
+	preload("res://Tutorial.tscn"),
 	preload("res://LEVELS/LEVEL_1/SCENES/level_1.tscn"),
 	preload("res://LEVELS/LEVEL_2/SCENES/level_2.tscn")
 	]

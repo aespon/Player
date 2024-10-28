@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn6k2jqhjmqgw"]
+[gd_scene load_steps=6 format=3 uid="uid://bn6k2jqhjmqgw"]
 
 [ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_w8vsb"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_swwbk"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_agmpy"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_wywmk"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_mghf3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_htvd3"]
 vertices = PackedVector2Array(494, -506, 495, 498, -498, 497, -497, -510)
@@ -64,11 +63,6 @@ comun = "Asalto"
 [node name="Enemy_Spawner_6" parent="SPAWNERS" instance=ExtResource("4_wywmk")]
 position = Vector2(-310.232, 214.322)
 comun = "Asalto"
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_mghf3")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

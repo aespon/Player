@@ -4,7 +4,13 @@ class_name MAP_CREATION
 @onready var borders = Rect2(1, 1, 30, 20)
 
 #@onready var player_scene = preload("res://PLAYER/SCENES/Jugador.tscn")
-@onready var room_scene = [preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_corridor_1.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_corridor_2.tscn"),preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_cross_1.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_donut_1.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_spikes_4.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_1.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_2.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_3.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_4.tscn"), preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_Walls_1.tscn")]
+@onready var room_scene = [preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_corridor_1.tscn"),
+ preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_corridor_2.tscn"), 
+preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_cross_1.tscn"), 
+preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_donut_1.tscn"), 
+preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_1.tscn"), 
+preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_3.tscn"), 
+preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/ROOMS/1_room_square_4.tscn")]
 @onready var boss_scene = preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_boss.tscn")
 @onready var player_room_scene = preload("res://LEVELS/LEVEL_1/SCENES/ROOMS/1_room_player_spawn.tscn")
 @onready var player_start_position = $"../Player_Start_Position"
@@ -56,26 +62,26 @@ func generate_level():
 			#var player = player_scene.instantiate()
 			#player.position = Vector2(location.x * 1280, location.y * 1240)
 			#player.z_index = 1
-			player_start_position.position = Vector2(location.x * 1280, location.y * 1240)
+			player_start_position.position = Vector2(location.x * 1280, location.y * 1280)
 			#add_child(player)
 			var rooms1 = player_room_scene.instantiate()
-			rooms1.position = Vector2(location.x * 1280 , location.y * 1088)
+			rooms1.position = Vector2(location.x * 1280 , location.y * 1280)
 			add_child(rooms1)
 			a = a + 1
 			
 		else:
 			if (a == boss_room):
 				var boss1 = boss_scene.instantiate()
-				boss1.position = Vector2(location.x * 1280 , location.y * 1088)
+				boss1.position = Vector2(location.x * 1280 , location.y * 1280)
 				call_deferred("add_child", boss1)
 				
 				print("boss")
 				a = a + 1
 			else:
-				var r = randi_range(0, 9)
+				var r = randi_range(0, 6)
 				var rooms = room_scene[r].instantiate()
-				rooms.position = Vector2(location.x * 1280 , location.y * 1088)
-				add_child(rooms)
+				rooms.position = Vector2(location.x * 1280 , location.y * 1280)
+				call_deferred("add_child", rooms)
 				a = a + 1
 	
 	

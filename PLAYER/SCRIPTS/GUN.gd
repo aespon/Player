@@ -23,6 +23,8 @@ func shoot():
 	get_tree().root.add_child(newbullet)
 	newbullet.damage_shoot = jugador.shoot_damage
 	newbullet.global_transform= $SpawnBullet.global_transform
+	BarraEnergia.decreaseEnergy(20)
+	daño_ctrl()
 	#print(newbullet.name)
 	Global.bulletname = newbullet.name
 	
@@ -43,12 +45,10 @@ func _process(_delta):
 	look_at(get_global_mouse_position())
 
 func daño_ctrl():
-	if BarraEnergia.currentEnergy >= energyPerShot and Input.is_action_just_pressed("shoot") and Engine.time_scale != 0 and(vaciado != true) and upgrades.visible == false:
+	if BarraEnergia.currentEnergy >= energyPerShot and(vaciado != true):
 		#print (BarraEnergia.currentEnergy)
 		look_at(get_global_mouse_position())
-		shoot()
-		BarraEnergia.decreaseEnergy(energyPerShot)
-	elif BarraEnergia.currentEnergy <= energyPerShot and Engine.time_scale != 0:
+	elif BarraEnergia.currentEnergy <= energyPerShot:
 		vaciado=true
 		print ("no hay mas plata")
 

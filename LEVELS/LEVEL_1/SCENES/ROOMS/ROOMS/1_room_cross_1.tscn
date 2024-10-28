@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr43e2j4tv8p1"]
+[gd_scene load_steps=6 format=3 uid="uid://cr43e2j4tv8p1"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_nsibh"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_cd026"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_eeeog"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_68ivi"]
 [ext_resource type="PackedScene" uid="uid://bn6njnjc4c0go" path="res://LEVELS/LEVEL_GENERATION/Spawner/enemy_spawner_1.tscn" id="4_8mnlm"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_laky6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4rysc"]
 vertices = PackedVector2Array(-127, 194, -198, 194, -198, 138, 203, 130, -512, 130, -508, -122, -203, -135, 115, 499, -120, 499, 137, 202, 503, -119, 502, 117, 208, -148, -116, -506, 109, -506, 136, -197, -144, -199, 198, 194, -195, -193, 195, -197)
@@ -13,7 +12,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(119, -516, -126, -517, 
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level_1_gen_room" type="Node2D"]
-script = ExtResource("1_nsibh")
+script = ExtResource("1_cd026")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_eeeog")
@@ -62,11 +61,6 @@ position = Vector2(-74.6056, 96.7242)
 
 [node name="Enemy_Spawner_10" parent="SPAWNERS" instance=ExtResource("4_8mnlm")]
 position = Vector2(105.564, 103.868)
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_laky6")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

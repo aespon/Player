@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsatoy3iaibku"]
+[gd_scene load_steps=5 format=3 uid="uid://dsatoy3iaibku"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_m754s"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_ctmss"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_722ik"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_giusb"]
-[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_qsyhq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4rysc"]
 vertices = PackedVector2Array(59, -68, 64, 65, 65, 488, -61, 494, -69, 68, -71, -67, -61, -508, 498, -67, 500, 65, -503, 69, -504, -62, 60, -506)
@@ -12,7 +11,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(71, -516, -71, -519, -8
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level_1_gen_room" type="Node2D"]
-script = ExtResource("1_m754s")
+script = ExtResource("1_ctmss")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_722ik")
@@ -47,11 +46,6 @@ rotation = -1.5708
 scale = Vector2(5, 5)
 
 [node name="SPAWNERS" type="Node2D" parent="."]
-
-[node name="funciones" type="AnimationPlayer" parent="."]
-libraries = {
-"": ExtResource("5_qsyhq")
-}
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]

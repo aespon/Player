@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://dwnsqdu3xfjo" path="res://FMS/STATES/HITFLASH.tres" id="1_4s56g"]
 [ext_resource type="Script" path="res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/SCRIPTS/VOLADOR.gd" id="1_mgjs7"]
-[ext_resource type="PackedScene" uid="uid://c7bd8sgybcou7" path="res://ENEMIES_1/1_COMUN/GUARDIA/SCENES/bullets.tscn" id="2_otomc"]
+[ext_resource type="PackedScene" uid="uid://c7bd8sgybcou7" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/bullets.tscn" id="2_otomc"]
 [ext_resource type="PackedScene" uid="uid://bacjduqw5r6mi" path="res://GLOBAL/otros/crystals.tscn" id="3_upviw"]
 [ext_resource type="Texture2D" uid="uid://c7thw6idjk643" path="res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/ASSET/Skotadi Volador-Sheet.png" id="3_wgve4"]
 [ext_resource type="PackedScene" uid="uid://rme8p3ki5ucx" path="res://GLOBAL/EXPERIENCIA/experiencia_area_obtener.tscn" id="4_ik2a6"]

@@ -10,11 +10,11 @@ class_name  Enemy_Spawner
 @export_enum("dog1","dog2") var boss : String
 
 const enemies = {
-	"Minero" = preload("res://ENEMIES_1/1_COMUN/MINERO/SCENES/MINERO.tscn"),
-	"Asalto" = preload("res://ENEMIES_1/1_COMUN/ASALTO/SCENES/asalto.tscn"),
-	"Guardia" = preload("res://ENEMIES_1/1_COMUN/GUARDIA/SCENES/GUARDIA.tscn"),
-	"Monta Cristales" = preload("res://ENEMIES_1/2_RARO/CRISTAL_RIDER/SCENES/MontaCristales.tscn"),
-	"Volador" = preload("res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/ESENE/VOLADOR.tscn"),
+	"Minero" = preload("res://ENEMIES v2/ENEMIES/1_COMUN/MINERO/SCENES/MINERO.tscn"),
+	"Asalto" = preload("res://ENEMIES v2/ENEMIES/1_COMUN/ASALTO/SCENES/asalto.tscn"),
+	"Guardia" = preload("res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/GUARDIA.tscn"),
+	"Monta Cristales" = preload("res://ENEMIES v2/ENEMIES/2_RARO/CRISTAL_RIDER/SCENES/MontaCristales.tscn"),
+	"Skotadi Volador" = preload("res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/SCENES/VOLADOR.tscn"),
 	"dog1" = preload("res://BOSS/SCENES/Skotadi_Dog_Guards/dog_1.tscn"),
 	"dog2" = preload("res://BOSS/SCENES/Skotadi_Dog_Guards/dog_2.tscn")
 	}
@@ -27,23 +27,23 @@ func spawn_():
 		raro = ""
 		enemy = enemies[boss]
 		var enemy_to_spawn = enemy.instantiate()
-		enemy_to_spawn.position = position
-		add_child(enemy_to_spawn)
+		enemy_to_spawn.position = Vector2(0 , 0)
+		call_deferred("add_child", enemy_to_spawn)
 		print(enemy_to_spawn.position)
 		enemy_to_spawn.enemy_is_dead.connect(dead_enemy)
 	if raro != "":
 		comun = ""
 		enemy = enemies[raro]
 		var enemy_to_spawn = enemy.instantiate()
-		enemy_to_spawn.position = position
-		add_child(enemy_to_spawn)
+		enemy_to_spawn.position = Vector2(0 , 0)
+		call_deferred("add_child", enemy_to_spawn)
 		print(enemy_to_spawn.position)
 		enemy_to_spawn.enemy_is_dead.connect(dead_enemy)
 	if comun != "":
 		enemy = enemies[comun]
 		var enemy_to_spawn = enemy.instantiate()
-		enemy_to_spawn.position = position
-		add_child(enemy_to_spawn)
+		enemy_to_spawn.position = Vector2(0 , 0)
+		call_deferred("add_child", enemy_to_spawn)
 		print(enemy_to_spawn.position)
 		enemy_to_spawn.enemy_is_dead.connect(dead_enemy)
 

@@ -1,7 +1,7 @@
 extends Node2D
-
+@export var nivel = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	NivelManager.change_level(0)
+	NivelManager.change_level(nivel)
 

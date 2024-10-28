@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://FMS/STATES/IDLE.gd" id="4_q7kmu"]
 [ext_resource type="Script" path="res://FMS/STATES/WANDER.gd" id="5_u1abs"]
 [ext_resource type="Script" path="res://FMS/STATES/ATTACK.gd" id="6_3733j"]
-[ext_resource type="PackedScene" uid="uid://c7bd8sgybcou7" path="res://ENEMIES_1/1_COMUN/GUARDIA/SCENES/bullets.tscn" id="7_s8r8k"]
+[ext_resource type="PackedScene" uid="uid://c7bd8sgybcou7" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/bullets.tscn" id="7_s8r8k"]
 [ext_resource type="Script" path="res://FMS/Hurt_Box.gd" id="8_lfwub"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c358n"]

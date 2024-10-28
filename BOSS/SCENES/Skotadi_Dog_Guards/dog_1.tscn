@@ -216,12 +216,11 @@ radius = 128.996
 [sub_resource type="CircleShape2D" id="CircleShape2D_w74xv"]
 radius = 57.2713
 
-[node name="Dog_1" type="CharacterBody2D" node_paths=PackedStringArray("FMS_Dog1", "hurt_box") groups=["dog1"]]
+[node name="Dog_1" type="CharacterBody2D" node_paths=PackedStringArray("FMS_Dog1") groups=["dog1"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_sk5ry")
 FMS_Dog1 = NodePath("FSM")
-hurt_box = NodePath("Hurt_Box")
 exp_gem = ExtResource("2_fr3ho")
 experience = 100
 
@@ -358,3 +357,6 @@ offset_right = 104.0
 offset_bottom = 123.0
 max_value = 1000.0
 value = 1000.0
+
+[connection signal="DamageTaken" from="Hurt_Box" to="." method="damage_taken"]
+[connection signal="Dead" from="Hurt_Box" to="." method="dead"]

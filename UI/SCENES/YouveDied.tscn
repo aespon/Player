@@ -17,12 +17,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
 offset_right = 1160.0
 offset_bottom = 664.0
 color = Color(0, 0, 0, 0.392157)
 
 [node name="Menu" type="Button" parent="Control"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 468.0
 offset_top = 434.0
 offset_right = 678.0
@@ -43,6 +45,7 @@ text = "MENU"
 
 [node name="Try Again" type="Button" parent="Control"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 467.0
 offset_top = 342.0
 offset_right = 677.0
