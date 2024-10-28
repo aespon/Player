@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://du5e010jhsoj2"]
+[gd_scene load_steps=5 format=3 uid="uid://du5e010jhsoj2"]
 
 [ext_resource type="Texture2D" uid="uid://w03u6hkif2r1" path="res://UI/ASSETS/boss_room.png" id="1_31nh4"]
 [ext_resource type="Script" path="res://UI/scripts/mipmap.gd" id="1_nodes"]
+[ext_resource type="Material" uid="uid://dwnsqdu3xfjo" path="res://FMS/STATES/HITFLASH.tres" id="2_733ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46dgf"]
 size = Vector2(1205, 1034)
@@ -14,6 +15,7 @@ script = ExtResource("1_nodes")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("2_733ax")
 texture = ExtResource("1_31nh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

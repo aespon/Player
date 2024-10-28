@@ -26,6 +26,7 @@ extends State
 var point_pos = 0
 var target
 @export_enum("1 RAYCAST" ,"2 RAYCAST") var ray_cast : String
+@export var still : bool
 
 func enter():
 	timer_wander.timeout.connect(on_timeout)
@@ -49,12 +50,6 @@ func on_timeout():
 
 
 func process_state(_delta):
-	if is_instance_valid(target):
-		Navigator.target_position = target.global_position
-	
-	var current_agent_position = global_position
-	var next_path_position = Navigator.get_next_path_position()
-	var new_velocity = current_agent_position.direction_to(next_path_position) * wander_speed 
 	
 	
 	if ray_cast == "1 RAYCAST":
@@ -62,9 +57,26 @@ func process_state(_delta):
 	elif ray_cast == "2 RAYCAST":
 		two_raycast()
 	
-	owner.velocity = new_velocity
+	if still:
+		still_()
+	else:
+		move()
 	
 	pass
+
+func still_():
+	owner.velocity = 0
+	
+
+func move():
+	if is_instance_valid(target):
+		Navigator.target_position = target.global_position
+	
+	var current_agent_position = global_position
+	var next_path_position = Navigator.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * wander_speed 
+	
+	owner.velocity = new_velocity
 
 func one_raycast():
 	if player_detector_1.is_colliding():

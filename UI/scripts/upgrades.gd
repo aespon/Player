@@ -11,21 +11,20 @@ var collected_upgrades = []
 signal upgrade_for_player(upgrade)
 
 var incoming_type :String
-
-
+var on_screen : bool = false
 
 func upgrade(upgrade_type : String):
-	var options = 0
-	while options < 3 :
+	var options = 1
+	while options < 4 :
 		match options:
-			0 :
+			1 :
 				upgrade_1.item = randomize_upgrades(upgrade_type)
 				upgrade_1.set_item()
 				#print(upgrade_1.item)
-			1 :
+			2 :
 				upgrade_2.item = randomize_upgrades(upgrade_type)
 				upgrade_2.set_item()
-			2 :
+			3 :
 				upgrade_3.item = randomize_upgrades(upgrade_type)
 				upgrade_3.set_item()
 		options += 1 
@@ -56,10 +55,22 @@ func randomize_upgrades(type : String):
 		var randomitem = dblist.pick_random()
 		#print(UpgradesDb.UPGRADE_DB[randomitem]["type"])
 		upgrades_on_ui.append(randomitem)
-		#print("random item " + randomitem)
+		print("random item " + randomitem)
 		return randomitem
 	pass
 
 
 func _on_skip_pressed():
 	get_tree().reload_current_scene()
+
+
+func _on_upgrade_1_selected_item(upgrade):
+	emit_signal("upgrade_for_player", upgrade)
+	pass # Replace with function body.
+
+
+func _on_visibility_changed():
+	if on_screen == true:
+		get_tree().paused = true
+	if on_screen == false:
+		get_tree().paused = false

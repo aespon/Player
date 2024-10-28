@@ -13,6 +13,8 @@ font_size = 30
 font_color = Color(0.513726, 0.568627, 0.65098, 1)
 
 [node name="Upgrades" type="CanvasLayer"]
+process_mode = 3
+visible = false
 script = ExtResource("1_rxvui")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -131,4 +133,8 @@ grow_horizontal = 2
 text = "CHOOSE AN UPGRADE"
 label_settings = SubResource("LabelSettings_nk8hn")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="selected_item" from="UPGRADE/upgrade1" to="." method="_on_upgrade_1_selected_item"]
+[connection signal="selected_item" from="UPGRADE/upgrade2" to="." method="_on_upgrade_1_selected_item"]
+[connection signal="selected_item" from="UPGRADE/upgrade3" to="." method="_on_upgrade_1_selected_item"]
 [connection signal="pressed" from="UPGRADE/skip" to="." method="_on_skip_pressed"]

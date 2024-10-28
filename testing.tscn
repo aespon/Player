@@ -1,20 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8qu6pjjyvvha"]
+[gd_scene load_steps=6 format=3 uid="uid://c8qu6pjjyvvha"]
 
-[ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Jugador.tscn" id="1_bg2h7"]
-[ext_resource type="PackedScene" uid="uid://fic6mk36b60f" path="res://level_1_gen_room.tscn" id="3_7h751"]
+[ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_6gv17"]
+[ext_resource type="PackedScene" uid="uid://c5fkmmxt06p2a" path="res://LEVELS/LEVEL_1/SCENES/starting_room.tscn" id="2_n37i6"]
+[ext_resource type="PackedScene" uid="uid://fic6mk36b60f" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/level_1_gen_room.tscn" id="3_7h751"]
 [ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_gsvmu"]
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="4_8dqbm"]
 
 [node name="TESTING" type="Node2D"]
+script = ExtResource("1_6gv17")
 
 [node name="Level_1_gen_room" parent="." instance=ExtResource("3_7h751")]
 position = Vector2(146, 395)
 
 [node name="Level_1_gen_room2" parent="." instance=ExtResource("3_7h751")]
-position = Vector2(1424, 396)
+position = Vector2(2832, 396)
 
-[node name="Jugador" parent="." instance=ExtResource("1_bg2h7")]
-position = Vector2(601, 274)
+[node name="starting_room" parent="." instance=ExtResource("2_n37i6")]
+position = Vector2(1489, 395)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -29,3 +31,6 @@ color = Color(0.0313726, 0.117647, 0.0901961, 0.768627)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="VFX"]
 environment = ExtResource("4_8dqbm")
+
+[node name="Player_Start_Position" type="Marker2D" parent="."]
+position = Vector2(1484, 582)

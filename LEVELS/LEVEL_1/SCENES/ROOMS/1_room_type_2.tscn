@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuwp1yr5c20gu"]
+[gd_scene load_steps=4 format=3 uid="uid://rfwebnm28gwm"]
 
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="1_wv1q3"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="2_dun5t"]

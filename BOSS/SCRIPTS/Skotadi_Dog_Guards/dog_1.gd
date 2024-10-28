@@ -11,7 +11,11 @@ var angle_to_player
 @onready var animation = FMS_Dog1.current_state.name 
 @export var hurt_box : Hurt_Box
 
+@export var exp_gem : PackedScene
+@export var experience : int = 0
 
+const CRYSTALS = preload("res://GLOBAL/otros/crystals.tscn")
+var direction
 func _ready():
 	hurt_box.Dead.connect(dead)
 	hurt_box.DamageTaken.connect(damage_taken)
@@ -41,8 +45,14 @@ func dead():
 	animation_player.play("DEATH")
 	if FMS_Dog1 != null : FMS_Dog1.queue_free()
 	await get_tree().create_timer(1).timeout
-	Global.experience_player = Global.experience_player + 100
-	print(Global.experience_player)
 	emit_signal("enemy_is_dead")
+	var crystal = CRYSTALS.instantiate()
+	crystal.position = position
+	crystal.type = 0
+	get_parent().get_parent().add_child(crystal)
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = position
+	new_gem.experience = experience
+	get_parent().get_parent().add_child(new_gem)
 	queue_free()
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5fkmmxt06p2a"]
+[gd_scene load_steps=8 format=3 uid="uid://c5fkmmxt06p2a"]
 
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="1_jbaii"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_xvgd6"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="2_gramf"]
+[ext_resource type="PackedScene" uid="uid://enb031227tu" path="res://LEVELS/LEVEL_GENERATION/OTHERS/Mother_Crystal.tscn" id="3_ny8ug"]
 
 [sub_resource type="Animation" id="Animation_v5jje"]
 resource_name = "Enter"
@@ -142,6 +144,7 @@ _data = {
 }
 
 [node name="starting_room" type="Node2D"]
+script = ExtResource("1_xvgd6")
 
 [node name="Room" type="TileMap" parent="."]
 texture_filter = 1
@@ -178,3 +181,14 @@ scale = Vector2(5, 5)
 libraries = {
 "": SubResource("AnimationLibrary_0h3fn")
 }
+
+[node name="MotherCrystal" parent="." instance=ExtResource("3_ny8ug")]
+position = Vector2(-3, -52)
+crystals_needed = 2
+next = 1
+
+[node name="SPAWNERS" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SPAWNERS"]
+
+[connection signal="item_spawn" from="MotherCrystal" to="." method="_on_mother_crystal_item_spawn"]

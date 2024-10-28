@@ -43,9 +43,6 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8vg4u"]
-radius = 17.1172
-
 [sub_resource type="Gradient" id="Gradient_bac10"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -55,6 +52,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
 metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kv3d3"]
+radius = 19.0
 
 [node name="StaticBody2D" type="CharacterBody2D"]
 collision_layer = 8
@@ -72,15 +72,6 @@ scale = Vector2(1.86, 1.86)
 sprite_frames = SubResource("SpriteFrames_72sur")
 frame_progress = 0.631515
 
-[node name="Collission" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_2fr23")
-damage = 75
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collission"]
-shape = SubResource("CircleShape2D_8vg4u")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(2.67, 2.67)
 color = Color(0.2, 0.643137, 1, 1)
@@ -89,5 +80,14 @@ texture = SubResource("GradientTexture2D_q14dn")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(2.4, 1)
+
+[node name="Attack_Box" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_2fr23")
+damage = 75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
+shape = SubResource("CircleShape2D_kv3d3")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsatoy3iaibku"]
+
+[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_m754s"]
+[ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_722ik"]
+[ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_giusb"]
+[ext_resource type="AnimationLibrary" uid="uid://c8fgq7fxsvo4q" path="res://LEVELS/RoomAnimation.res" id="5_qsyhq"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4rysc"]
+vertices = PackedVector2Array(59, -68, 64, 65, 65, 488, -61, 494, -69, 68, -71, -67, -61, -508, 498, -67, 500, 65, -503, 69, -504, -62, 60, -506)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 8, 1, 0), PackedInt32Array(9, 10, 5, 4), PackedInt32Array(6, 11, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(71, -516, -71, -519, -81, -77, -515, -72, -513, 80, -79, 78, -71, 505, 76, 498, 74, 75, 510, 75, 508, -77, 69, -78)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Level_1_gen_room" type="Node2D"]
+script = ExtResource("1_m754s")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_722ik")
+format = 2
+layer_0/name = "Floor"
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 2, 131072, 0, 3, 0, 0, 4, 65536, 0, 5, 131072, 0, 6, 0, 0, 7, 65536, 0, 65536, 0, 1, 131072, 0, 2, 196608, 0, 3, 262144, 0, 0, 327680, 0, 1, 393216, 0, 2, 65528, 65536, 0, 65529, 131072, 0, 65530, 0, 0, 65531, 65536, 0, 65532, 131072, 0, 65533, 0, 0, 65534, 65536, 0, 65535, 131072, 0, 131071, 131072, 1, 196607, 131072, 2, 262143, 131072, 3, 327679, 131072, 0, 393215, 131072, 1, 458751, 131072, 2, -8, 65536, 0, -7, 131072, 0, -6, 0, 0, -5, 65536, 0, -4, 131072, 0, -3, 0, 0, -2, 65536, 0, -393217, 131072, 2, -327681, 131072, 3, -262145, 131072, 0, -196609, 131072, 1, -131073, 131072, 2, -65537, 131072, 3, -1, 131072, 0, -458752, 0, 2, -393216, 0, 3, -327680, 0, 0, -262144, 0, 1, -196608, 0, 2, -131072, 0, 3, -65536, 0, 0, -65535, 65536, 0, -65534, 131072, 0, -65533, 0, 0, -65532, 65536, 0, -65531, 131072, 0, -65530, 0, 0, -65529, 65536, 0, 524287, 131072, 2, 589823, 0, 0, 458752, 0, 2, 524288, 65536, 0, -10, 0, 0, 65526, 0, 1, -9, 65536, 0, 65527, 65536, 1, -524289, 0, 1, -458753, 131072, 2, -589824, 65536, 1, -524288, 0, 2, -65528, 0, 0, 8, 0, 1, -65527, 65536, 0, 9, 65536, 1, 655359, 0, 1, 589824, 65536, 1, -589825, 0, 0, -655360, 65536, 0)
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array(-65546, 65536, 8, -65545, 65536, 8, -65544, 65536, 8, -65543, 65536, 8, -65542, 65536, 8, -65541, 65536, 8, -65540, 65536, 8, -65539, 65536, 8, -131070, 65536, 8, -131069, 65536, 8, -131068, 65536, 8, -131067, 65536, 8, -131066, 65536, 8, -131065, 65536, 8, -131064, 65536, 8, 131062, 65536, 6, 131063, 65536, 6, 131064, 65536, 6, 131065, 65536, 6, 131066, 65536, 6, 131067, 65536, 6, 131068, 65536, 6, 131069, 65536, 6, 65538, 65536, 6, 65539, 65536, 6, 65540, 65536, 6, 65541, 65536, 6, 65542, 65536, 6, 65543, 65536, 6, 65544, 65536, 6, 65545, 65536, 6, -131063, 65536, 8, -393215, 0, 7, -327679, 0, 7, -262143, 0, 7, -196607, 0, 7, 131073, 0, 7, 196609, 0, 7, 262145, 0, 7, 327681, 0, 7, 393217, 0, 7, 458753, 0, 7, 524289, 0, 7, 589825, 0, 7, -655359, 0, 7, -589823, 0, 7, -524287, 0, 7, -458751, 0, 7, -589826, 131072, 7, -524290, 131072, 7, -458754, 131072, 7, -393218, 131072, 7, -327682, 131072, 7, -262146, 131072, 7, -196610, 131072, 7, -131074, 131072, 7, 196606, 131072, 7, 262142, 131072, 7, 327678, 131072, 7, 393214, 131072, 7, 458750, 131072, 7, 524286, 131072, 7, 589822, 131072, 7, 655358, 131072, 7, 65537, 0, 6, -131071, 0, 8, 131070, 131072, 6, -65538, 131072, 8)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4rysc")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door_Top" parent="Doors" instance=ExtResource("3_giusb")]
+position = Vector2(0, -491)
+scale = Vector2(5, 5)
+
+[node name="Door_Bottom" parent="Doors" instance=ExtResource("3_giusb")]
+position = Vector2(0, 482)
+rotation = 3.14159
+scale = Vector2(5, 5)
+
+[node name="Door_Right" parent="Doors" instance=ExtResource("3_giusb")]
+position = Vector2(488, 1.68256e-11)
+rotation = 1.5708
+scale = Vector2(5, 5)
+
+[node name="Door_Left" parent="Doors" instance=ExtResource("3_giusb")]
+position = Vector2(-484, 0)
+rotation = -1.5708
+scale = Vector2(5, 5)
+
+[node name="SPAWNERS" type="Node2D" parent="."]
+
+[node name="funciones" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("5_qsyhq")
+}
+
+[connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
+[connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]
+[connection signal="player_entered" from="Doors/Door_Right" to="." method="_on_door_right_player_entered"]
+[connection signal="player_entered" from="Doors/Door_Left" to="." method="_on_door_left_player_entered"]

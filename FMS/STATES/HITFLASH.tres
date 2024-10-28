@@ -6,4 +6,4 @@
 resource_local_to_scene = true
 shader = ExtResource("1_aagp6")
 shader_parameter/enable = true
-shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/ColorParameter = Color(0.324024, 0.610493, 0.794053, 1)

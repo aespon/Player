@@ -6,14 +6,22 @@
 [ext_resource type="StyleBox" uid="uid://bphk1heowsyy3" path="res://UI/ASSETS/Buttons/hover_blue.tres" id="3_bxwqq"]
 
 [node name="YouveDied" type="CanvasLayer"]
+process_mode = 3
+visible = false
 script = ExtResource("1_ighe4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
 offset_right = 1160.0
 offset_bottom = 664.0
 color = Color(0, 0, 0, 0.392157)
 
-[node name="Menu" type="Button" parent="."]
+[node name="Menu" type="Button" parent="Control"]
 texture_filter = 1
 offset_left = 468.0
 offset_top = 434.0
@@ -33,7 +41,7 @@ theme_override_styles/disabled = ExtResource("2_0528s")
 theme_override_styles/focus = ExtResource("2_0528s")
 text = "MENU"
 
-[node name="Try Again" type="Button" parent="."]
+[node name="Try Again" type="Button" parent="Control"]
 texture_filter = 1
 offset_left = 467.0
 offset_top = 342.0
@@ -53,17 +61,18 @@ theme_override_styles/disabled = ExtResource("2_0528s")
 theme_override_styles/focus = ExtResource("2_0528s")
 text = "TRY AGAIN"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Control"]
 texture_filter = 1
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -90.0
-offset_right = -113.0
-offset_bottom = -72.0
+offset_left = 355.0
+offset_top = 214.0
+offset_right = 443.0
+offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4.54, 4.54)
@@ -75,5 +84,6 @@ theme_override_fonts/font = ExtResource("1_fqe2q")
 text = "YOU'VE DIED"
 language = "en_US"
 
-[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Try Again" to="." method="_on_try_again_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Control/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Control/Try Again" to="." method="_on_try_again_pressed"]

@@ -20,7 +20,7 @@ var target_2
 @export var next_state = ""
 @export_enum("1 RAYCAST" , "2 RAYCAST") var ray_casts : String
 @export_group("Type of Chase")
-@export_enum("Freely" , "X and Y axis") var type_of_chase : String
+@export_enum("Freely" , "X and Y axis", "still") var type_of_chase : String
 
 var moving_in_x = false
 var moving_in_y = false
@@ -64,7 +64,7 @@ func freely():
 	
 	var current_agent_position = global_position
 	var next_path_position = Navigator.get_next_path_position()
-	var new_velocity = current_agent_position.direction_to(next_path_position) * chase_speed
+	var new_velocity = current_agent_position.direction_to(next_path_position) * chase_speed 
 	
 
 	owner.velocity = new_velocity
@@ -84,6 +84,9 @@ func x_or_y_walk():
 
 	# Call the movement function
 	move_to_player()
+
+func still():
+	owner.velocity
 
 func move_to_player():
 	if player == null:

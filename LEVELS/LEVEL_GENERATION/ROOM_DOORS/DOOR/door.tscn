@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dkmu5slemhhr5"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/Doors.gd" id="1_bmid6"]
-[ext_resource type="Texture2D" uid="uid://b44f56olv8ek1" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/Cristal muro-Sheet.png" id="2_4kgnj"]
+[ext_resource type="Texture2D" uid="uid://ccej5kifg8re6" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/Cristal muro1-Sheet.png" id="2_ee2dm"]
 
 [sub_resource type="Gradient" id="Gradient_nd0a1"]
 interpolation_mode = 2
@@ -426,7 +426,7 @@ shape = SubResource("RectangleShape2D_ujahg")
 texture_filter = 1
 position = Vector2(-4.76837e-07, -19)
 scale = Vector2(0.355, 0.355)
-texture = ExtResource("2_4kgnj")
+texture = ExtResource("2_ee2dm")
 hframes = 6
 vframes = 3
 frame = 6

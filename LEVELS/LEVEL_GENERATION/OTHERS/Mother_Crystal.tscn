@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://enb031227tu"]
+[gd_scene load_steps=14 format=3 uid="uid://enb031227tu"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/OTHERS/Mother_Crystal.gd" id="1_ppab2"]
 [ext_resource type="Texture2D" uid="uid://dgtgnjc2kamwo" path="res://LEVELS/LEVEL_GENERATION/OTHERS/crystal.png" id="2_m80xw"]
@@ -6,7 +6,17 @@
 [ext_resource type="FontFile" uid="uid://c3w61yhjd2cl1" path="res://UI/Fonts/Tiny5-Regular.ttf" id="4_c1pxi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgbi3"]
-radius = 21.0238
+radius = 36.0139
+
+[sub_resource type="Gradient" id="Gradient_ogxwn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0udr"]
+gradient = SubResource("Gradient_ogxwn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.3)
+metadata/_snap_enabled = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i33g6"]
 radius = 20.0
@@ -53,14 +63,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/NinePatchRect:size")
+tracks/3/path = NodePath("Control:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StaticBody2D/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(139, 44)]
+"values": [Vector2(139, 50)]
 }
 
 [sub_resource type="Animation" id="Animation_ivb6m"]
@@ -106,14 +140,55 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/NinePatchRect:size")
+tracks/3/path = NodePath("Control:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(139, 44)]
+"values": [Vector2(139, 45)]
+}
+
+[sub_resource type="Animation" id="Animation_vvf1o"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_u4o4p"]
@@ -122,46 +197,34 @@ length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/NinePatchRect:size")
+tracks/0/path = NodePath("Control/NinePatchRect/RichTextLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(139, 55)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/NinePatchRect/RichTextLabel:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": ["You shall look for my pieces, the stronger ones have them, then you shall return them", "You have my power by your side, and once in a while you will find upgrades to your powers, like this one!"]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control/NinePatchRect/RichTextLabel:visible_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/NinePatchRect/RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6, 2.2, 2.3, 2.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0, 1.0]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(6),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -169,11 +232,36 @@ tracks/3/keys = {
 "method": &"item_drop"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(139, 50)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5d5ya"]
 _data = {
 "RESET": SubResource("Animation_mn5bs"),
 "enter": SubResource("Animation_ivb6m"),
+"idle": SubResource("Animation_vvf1o"),
 "new_animation": SubResource("Animation_u4o4p")
 }
 
@@ -181,11 +269,16 @@ _data = {
 script = ExtResource("1_ppab2")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_cgbi3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, -18)
+color = Color(0.490196, 1, 1, 1)
+texture = SubResource("GradientTexture2D_g0udr")
+texture_scale = 8.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -206,14 +299,16 @@ hframes = 6
 libraries = {
 "": SubResource("AnimationLibrary_5d5ya")
 }
+autoplay = "idle"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -69.0
-offset_top = 17.0
-offset_right = 70.0
-offset_bottom = 61.0
+offset_left = -133.0
+offset_top = -153.0
+offset_right = 6.0
+offset_bottom = -103.0
+scale = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -257,6 +352,9 @@ text = "Oh child of mine, you shall be this  world salvation from the evils that
 fit_content = true
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 140)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

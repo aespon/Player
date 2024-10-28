@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dknlqtm80dxvq"]
+[gd_scene load_steps=22 format=3 uid="uid://dknlqtm80dxvq"]
 
 [ext_resource type="Script" path="res://BOSS/SCRIPTS/Skotadi_Dog_Guards/dog_1.gd" id="1_e53tl"]
 [ext_resource type="Texture2D" uid="uid://dxy08ovsdj3ws" path="res://BOSS/ASSETS/Skotadi_Dog_Guards/dog2_spritesheet.png" id="2_f6di5"]
+[ext_resource type="PackedScene" uid="uid://rme8p3ki5ucx" path="res://GLOBAL/EXPERIENCIA/experiencia_area_obtener.tscn" id="2_wck2u"]
 [ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="3_nymh5"]
 [ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="4_68qka"]
 [ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="5_dfgv3"]
@@ -223,6 +224,8 @@ motion_mode = 1
 script = ExtResource("1_e53tl")
 FMS_Dog1 = NodePath("FSM")
 hurt_box = NodePath("Hurt_Box")
+exp_gem = ExtResource("2_wck2u")
+experience = 100
 
 [node name="Sprite" type="Node2D" parent="."]
 rotation = -1.5708
@@ -289,6 +292,7 @@ timer_chase = NodePath("../../Timer")
 player_detector_1 = NodePath("../../Detectorx")
 player_detector_2 = NodePath("../../DetectorY")
 attack_detector = NodePath("../../Attack_Detector")
+chase_speed = 175.0
 timer_time = 1.0
 previous_state = "idle"
 next_state = "attack"
@@ -319,14 +323,14 @@ autostart = true
 
 [node name="DetectorY" type="RayCast2D" parent="."]
 light_mask = 4
-position = Vector2(0, -200)
-target_position = Vector2(0, 400)
+position = Vector2(0, -400)
+target_position = Vector2(0, 800)
 
 [node name="Detectorx" type="RayCast2D" parent="."]
 light_mask = 4
-position = Vector2(200, 0)
+position = Vector2(400, 0)
 rotation = 1.5708
-target_position = Vector2(0, 400)
+target_position = Vector2(0, 800)
 
 [node name="Hurt_Box" type="Area2D" parent="."]
 collision_layer = 2

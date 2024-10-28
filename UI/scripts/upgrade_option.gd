@@ -6,6 +6,7 @@ extends ColorRect
 @onready var lbl_description = $lblDescription
 @onready var lbl_nivel = $lblNivel
 @onready var upgrade_1 = $"."
+@onready var icon = $NinePatchRect2/icon
 
 var mouse_on = false
 var item = null
@@ -14,16 +15,25 @@ var item = null
 signal selected_item(upgrade)
 # Called when the node enters the scene tree for the first time.
 func set_item():
+	if item == null:
+		item = "moreexp"
 	lbl_name.text = UpgradesDb.UPGRADE_DB[item]["displayname"]
 	lbl_description.text = UpgradesDb.UPGRADE_DB[item]["details"]
 	lbl_nivel.text = UpgradesDb.UPGRADE_DB[item]["level"]
+	icon.texture = load(UpgradesDb.UPGRADE_DB[item]["icon"])
 
+func _input(event):
+	if event.is_action("shoot"):
+		if mouse_on:
+			emit_signal("selected_item", item)
+			UpgradesDb.player_upgrades.append(item)
 
 func _on_mouse_entered():
 	mouse_on = true
 	upgrade_1.color = Color("#3d3d3d")
 	rect_external.modulate =  Color("#d9bdc8")
 	rect_icon.modulate = Color("#d9bdc8")
+	
 
 
 func _on_mouse_exited():

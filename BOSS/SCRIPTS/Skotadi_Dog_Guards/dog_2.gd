@@ -3,7 +3,7 @@ extends Enemy
 @onready var points = $Points
 @onready var x = points.position
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
-@export var life := 0.0
+
 @onready var animation_player = $Sprite/AnimationPlayer
 @onready var sprite_2d = $Sprite/Dog_2_Sprite
 @onready var progress_bar = $ProgressBar
@@ -12,7 +12,10 @@ var angle_to_player
 @onready var animation = FMS_Dog1.current_state.name 
 @export var hurt_box : Hurt_Box
 @onready var detector_y = $DetectorY
+@export var exp_gem : PackedScene
+@export var experience : int = 0
 
+const CRYSTALS = preload("res://GLOBAL/otros/crystals.tscn")
 var direction
 
 func _ready():
@@ -44,7 +47,13 @@ func dead():
 	animation_player.play("DEATH")
 	if FMS_Dog1 != null : FMS_Dog1.queue_free()
 	await get_tree().create_timer(1).timeout
-	Global.experience_player = Global.experience_player + 100
-	print(Global.experience_player)
 	emit_signal("enemy_is_dead")
+	var crystal = CRYSTALS.instantiate()
+	crystal.position = position
+	crystal.type = 0
+	get_parent().get_parent().add_child(crystal)
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = position
+	new_gem.experience = experience
+	get_parent().get_parent().add_child(new_gem)
 	queue_free()

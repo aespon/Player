@@ -6,7 +6,7 @@ signal Dead
 signal HealthChanged
 
 @export var health : int
-
+var armor : int = 0
 var current_health : int = 0
 var old_health : int = 0
 
@@ -18,7 +18,7 @@ func get_health(heal):
 	set_health(value)
 
 func take_damage(damage : int):
-	var  value = abs(damage)
+	var  value = abs(damage) - armor
 	set_health(-value)
 
 func set_health(value):

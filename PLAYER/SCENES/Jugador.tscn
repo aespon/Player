@@ -725,7 +725,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -753,13 +753,13 @@ tracks/5/path = NodePath("../Camera2D")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [2.0, 1.5],
+"args": [0.2, 3.0],
 "method": &"shake"
 }, {
-"args": [0.0, 0.0],
+"args": [1.0, 0.0],
 "method": &"shake"
 }]
 }
@@ -825,7 +825,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -856,10 +856,10 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [2.0, 1.5],
+"args": [0.2, 3.0],
 "method": &"shake"
 }, {
-"args": [0.0, 0.0],
+"args": [1.0, 0.0],
 "method": &"shake"
 }]
 }
@@ -925,7 +925,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -956,10 +956,10 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [2.0, 1.5],
+"args": [0.2, 3.0],
 "method": &"shake"
 }, {
-"args": [0.0, 0.0],
+"args": [1.0, 0.0],
 "method": &"shake"
 }]
 }
@@ -1025,7 +1025,7 @@ tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -1053,13 +1053,13 @@ tracks/5/path = NodePath("../Camera2D")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.3, 0.7),
+"times": PackedFloat32Array(0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [3.0, 4.0],
+"args": [0.2, 4.0],
 "method": &"shake"
 }, {
-"args": [0.0, 0.0],
+"args": [1.0, 0.0],
 "method": &"shake"
 }]
 }
@@ -1484,10 +1484,10 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [1.0, 1.5],
+"args": [0.1, 3.0],
 "method": &"shake"
 }, {
-"args": [0.0, 0.0],
+"args": [1.0, 0.0],
 "method": &"shake"
 }]
 }
@@ -1514,6 +1514,7 @@ _data = {
 }
 
 [node name="Jugador" type="CharacterBody2D" groups=["Player"]]
+process_mode = 1
 light_mask = 3
 visibility_layer = 3
 collision_mask = 15
@@ -1598,13 +1599,10 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_g83eo")
 
 [node name="Paused" parent="." instance=ExtResource("6_03er4")]
-visible = false
 
 [node name="YouveDied" parent="." instance=ExtResource("7_dcjvl")]
-visible = false
 
 [node name="Upgrades" parent="." instance=ExtResource("8_t11sw")]
-visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../GOLEM")
@@ -1635,3 +1633,4 @@ autoplay = "Idle"
 [connection signal="area_entered" from="Loot_Collect" to="." method="_on_loot_collect_area_entered"]
 [connection signal="Dead" from="Hurt_Box" to="." method="_on_hurt_box_dead"]
 [connection signal="area_entered" from="Hurt_Box" to="." method="_on_collect_area_entered"]
+[connection signal="upgrade_for_player" from="Upgrades" to="." method="_on_upgrades_upgrade_for_player"]

@@ -1,0 +1,239 @@
+[gd_scene load_steps=24 format=3 uid="uid://p6wjatsnebae"]
+
+[ext_resource type="Script" path="res://scripts/volador.gd" id="1_2bqy5"]
+[ext_resource type="Texture2D" uid="uid://ca3dhl81od2ep" path="res://Skotadi Volador-Sheet.png" id="2_0iw2y"]
+[ext_resource type="Material" uid="uid://dwnsqdu3xfjo" path="res://FMS/STATES/HITFLASH.tres" id="2_mfxf2"]
+[ext_resource type="Script" path="res://scripts/IDLE.gd" id="4_83ura"]
+[ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="4_o4pjy"]
+[ext_resource type="Script" path="res://scripts/WANDER.gd" id="5_r0vd1"]
+[ext_resource type="Script" path="res://scripts/CHASE.gd" id="6_uvk1s"]
+[ext_resource type="Script" path="res://scripts/ATTACK.gd" id="7_ey2nf"]
+[ext_resource type="Script" path="res://scripts/attack_box.gd" id="8_aum0f"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="9_nn0jy"]
+
+[sub_resource type="Animation" id="Animation_ka2nx"]
+resource_name = "ATTACK"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("volador:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_kgbu7"]
+resource_name = "DEATH"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("volador:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_n3kdn"]
+resource_name = "IDLE"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("volador:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_rbdnv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("volador:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnonx"]
+_data = {
+"ATTACK": SubResource("Animation_ka2nx"),
+"DEATH": SubResource("Animation_kgbu7"),
+"IDLE": SubResource("Animation_n3kdn"),
+"RESET": SubResource("Animation_rbdnv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5txhf"]
+size = Vector2(29, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g20ly"]
+radius = 39.1152
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_phguu"]
+radius = 36.2215
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvcqe"]
+radius = 23.0
+height = 68.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvbch"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gn0nh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Animation" id="Animation_3nch5"]
+resource_name = "hurt"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrjaw"]
+_data = {
+"hurt": SubResource("Animation_3nch5")
+}
+
+[node name="volador" type="CharacterBody2D"]
+script = ExtResource("1_2bqy5")
+
+[node name="sprite" type="Node2D" parent="."]
+
+[node name="volador" type="Sprite2D" parent="sprite"]
+material = ExtResource("2_mfxf2")
+texture = ExtResource("2_0iw2y")
+hframes = 6
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_cnonx")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 2
+visibility_layer = 5
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_5txhf")
+
+[node name="FSM" type="Node2D" parent="."]
+script = ExtResource("4_o4pjy")
+
+[node name="IDLE" type="Node2D" parent="FSM"]
+script = ExtResource("4_83ura")
+
+[node name="WANDER" type="Node2D" parent="FSM"]
+script = ExtResource("5_r0vd1")
+
+[node name="CHASE" type="Node2D" parent="FSM"]
+script = ExtResource("6_uvk1s")
+
+[node name="ATTACK" type="Node2D" parent="FSM"]
+position = Vector2(0, 2)
+script = ExtResource("7_ey2nf")
+
+[node name="Timer_Wander_Points" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="DetectorX" type="RayCast2D" parent="."]
+light_mask = 4
+target_position = Vector2(400, 0)
+
+[node name="Attack_Detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detector"]
+visible = false
+shape = SubResource("CircleShape2D_g20ly")
+debug_color = Color(0.427451, 0.458824, 1, 0.419608)
+
+[node name="Attack_Box" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("8_aum0f")
+damage = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
+visible = false
+shape = SubResource("CircleShape2D_phguu")
+
+[node name="Hurt_Box" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_nn0jy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_Box"]
+visible = false
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_tvcqe")
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Points"]
+position = Vector2(64, 64)
+
+[node name="Marker2D2" type="Marker2D" parent="Points"]
+position = Vector2(-64, -64)
+
+[node name="Marker2D3" type="Marker2D" parent="Points"]
+position = Vector2(-64, 64)
+
+[node name="Marker2D4" type="Marker2D" parent="Points"]
+position = Vector2(64, -64)
+
+[node name="Dog_1_nav" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -27.0
+offset_right = 47.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.56, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_xvbch")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gn0nh")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="hunt" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hrjaw")
+}

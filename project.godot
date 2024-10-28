@@ -20,11 +20,23 @@ config/icon="res://icon.svg"
 Global="*res://GLOBAL/Global.gd"
 AudioPlayer="*res://GLOBAL/AudioPlayer.gd"
 UpgradesDb="*res://GLOBAL/otros/UPGRADES/UpgradesDB.gd"
+NivelManager="*res://GLOBAL/otros/Nivel_Manager.gd"
 
 [display]
 
 window/size/initial_position_type=0
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://ENEMIES v2/": "red",
+"res://ENEMIES/": "orange",
+"res://LEVELS/LEVEL_1/": "green",
+"res://LEVELS/LEVEL_2/": "purple",
+"res://LEVELS/LEVEL_3/": "red",
+"res://LEVELS/LEVEL_4/": "orange"
+}
 
 [input]
 

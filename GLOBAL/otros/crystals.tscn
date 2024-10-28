@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bacjduqw5r6mi"]
+[gd_scene load_steps=16 format=3 uid="uid://bacjduqw5r6mi"]
 
 [ext_resource type="Script" path="res://GLOBAL/otros/scripts/Crystals.gd" id="1_ljmy6"]
 [ext_resource type="Texture2D" uid="uid://jyfvmenvy3wc" path="res://UI/ASSETS/crystal_level_next.png" id="2_svddc"]
@@ -79,22 +79,36 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_7o1l5"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qtt57"]
+gradient = SubResource("Gradient_7o1l5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.2)
+metadata/_snap_enabled = true
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h05pe"]
 radius = 15.1327
 
 [node name="Crystals" type="Node2D"]
 script = ExtResource("1_ljmy6")
+type = null
+upgrade_type = null
 
 [node name="CrystalLevelNext" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.494118, 1, 0.627451, 1)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_spm03")
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="PointLight2D" type="PointLight2D" parent="CrystalLevelNext"]
+texture = SubResource("GradientTexture2D_qtt57")
+texture_scale = 2.5
+
+[node name="crystal_collects" type="Area2D" parent="."]
 light_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crystal_collects"]
 shape = SubResource("CircleShape2D_h05pe")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="crystal_collects" to="." method="_on_area_2d_body_entered"]

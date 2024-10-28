@@ -12,7 +12,7 @@ var dash_bool = false
 var experience_player = 0
 var experience_level = 500
 var level = 1
-var cave_level  = 1
+var cave_level  = 0
 var next_level = 0.0
 
 

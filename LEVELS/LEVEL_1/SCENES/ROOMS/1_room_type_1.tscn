@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfu5x2167b0vc"]
+[gd_scene load_steps=6 format=3 uid="uid://q5yacnqibhb0"]
 
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="1_petu5"]
 [ext_resource type="PackedScene" uid="uid://dknlqtm80dxvq" path="res://BOSS/SCENES/Skotadi_Dog_Guards/dog_2.tscn" id="2_7om4m"]
@@ -27,11 +27,9 @@ layer_1/tile_data = PackedInt32Array(3, 131072, 4, 65539, 131072, 5, 4, 131072, 
 
 [node name="Dog_2" parent="." instance=ExtResource("2_7om4m")]
 position = Vector2(200, -24)
-life = 1000.0
 
 [node name="Dog_1" parent="." instance=ExtResource("4_i8fiq")]
 position = Vector2(-240, -56)
-life = 1000.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-641, -576)

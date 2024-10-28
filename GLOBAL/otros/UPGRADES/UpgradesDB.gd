@@ -13,7 +13,7 @@ const UPGRADE_DB = {
 	"speedboost" : {
 		"icon" : ICON_PATH + "speedboost.png",
 		"displayname" : "CRYSTAL SPEED",
-		"details" : "Al cargar con este item al entrar a una habitción tienes una probabilidad del 50 % de ir un 25 % más rápido",
+		"details" : "Al cargar con este item al entrar a una habitación tienes una probabilidad del 50 % de ir un 25 % más rápido",
 		"level" : "",
 		"prerequisite": [],
 		"type" : "efecto"
@@ -98,6 +98,14 @@ const UPGRADE_DB = {
 		"prerequisite": ["aumento de daño shoot 1"],
 		"type" : "estadistica"
 	},
+	"moreexp" : {
+		"icon" : ICON_PATH + "aumentomele.png",
+		"displayname" : "CRYSTAL EXPERIENCE",
+		"details" : "Al entrar a una habitacion tienes un 20% de posibilidad ganar 100 puntos de experiencia",
+		"level" : "",
+		"prerequisite": [],
+		"type" : "other"
+	}
 }
 
 var player_upgrades = []

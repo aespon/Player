@@ -10,6 +10,9 @@ extends Node2D
 var energyPerShot = 10
 var vaciado=false
 
+@onready var upgrades = $"../Upgrades"
+
+
 func get_input():
 	look_at(get_global_mouse_position())
 
@@ -40,7 +43,7 @@ func _process(_delta):
 	look_at(get_global_mouse_position())
 
 func daño_ctrl():
-	if BarraEnergia.currentEnergy >= energyPerShot and Input.is_action_just_pressed("shoot") and Engine.time_scale != 0 and(vaciado != true):
+	if BarraEnergia.currentEnergy >= energyPerShot and Input.is_action_just_pressed("shoot") and Engine.time_scale != 0 and(vaciado != true) and upgrades.visible == false:
 		#print (BarraEnergia.currentEnergy)
 		look_at(get_global_mouse_position())
 		shoot()

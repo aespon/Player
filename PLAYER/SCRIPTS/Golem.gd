@@ -8,6 +8,8 @@ class_name Player
 
 #VARIABLES ITEMS 
 var Inventario = []
+var crystals_collected : int
+var starting_item = false
 
 #VARIABLES MEJORAS
 
@@ -49,22 +51,29 @@ var direction : Vector2 = Vector2.ZERO
 var shoot : bool = false
 var punch : bool = false
 
+var is_punching = false
+var is_shoothing = false
 #VARIABLES UI
 @onready var paused = $Paused
 @onready var youve_died = $YouveDied
 var pause = false
+var is_menu = false
 
 func _ready():
 	hurt_box.Dead.connect(dead)
 	hurt_box.DamageTaken.connect(damage_taken)
 	youve_died.visible = false
+	revivir = false
+	vampirismo = false
+	speed_boost = false
+	armadura = false    
 
 func _physics_process(delta):
 	player_movement(delta)
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		pause_menu()
+#func _input(event):
+	#if event.is_action_pressed("ui_cancel"):
+		#pause_menu()
 	
 	
 		
@@ -99,11 +108,11 @@ func _process(_delta):
 		update_blend_position()
 	else:
 		set_walking(false)
-		
-	if Input.is_action_just_pressed("punch"):
-		set_mele(true)
-	if Input.is_action_just_pressed("shoot"):
-		set_shoot(true)
+	if is_menu == false:
+		if Input.is_action_just_pressed("punch") and is_punching == false:
+			set_mele(true)
+		if Input.is_action_just_pressed("shoot") and upgrades.visible == false and is_shoothing == false:
+			set_shoot(true)
 	
 func set_walking(value):
 	animation_tree["parameters/conditions/is_walking"] = value
@@ -116,11 +125,13 @@ func set_dead(value):
 func set_shoot(value = false):
 	shoot = value
 	animation_tree["parameters/conditions/shoot"] = value
+	is_shoothing = value
 
 func set_mele(value = false):
 	range_.damage = mele_damage
 	punch = value
 	animation_tree["parameters/conditions/mele"] = value
+	is_punching = value
 
 func update_blend_position():
 	animation_tree["parameters/MELE/blend_position"] = direction
@@ -128,15 +139,16 @@ func update_blend_position():
 	animation_tree["parameters/WALK/blend_position"] = direction
 	animation_tree["parameters/SHOOT/blend_position"] = direction
 
-func pause_menu():
-	if pause:
-		paused.hide()
-		Engine.time_scale = 1
-		pause = false
-	else:
-		paused.show()
-		Engine.time_scale = 0
-		pause = true
+#func pause_menu():
+	#if pause:
+		#paused.hide()
+		#get_tree().paused = false
+		##Engine.time_scale = 1
+		#pause = false
+	#else:
+		#paused.show()
+		#get_tree().paused = true
+		#pause = true
 
 func damage_taken():
 	Global.health = hurt_box.current_health
@@ -146,9 +158,16 @@ func damage_taken():
 	pass
 
 func dead():
-	set_dead(true)
-	await get_tree().create_timer(1).timeout
-	youve_died.visible = true
+	if revivir == true:
+		revive()
+		revivir = false
+	else:
+		set_dead(true)
+		await get_tree().create_timer(1).timeout
+		youve_died.visible = true
+
+
+	
 
 func _on_collect_area_entered(area):
 	print("entra")
@@ -157,13 +176,44 @@ func _on_collect_area_entered(area):
 		area.collect()
 		var experiencia_entrante = area.experience
 		calculate_exp(experiencia_entrante)
+	if area.name == "crystal_collect":
+		crystals_collected += 1
 
 func calculate_exp(experience_entering : int):
 	Global.experience_player = Global.experience_player + experience_entering
 	
 func player_upgrade(tipo : String) -> void:
+	upgrades.on_screen = true
+	upgrades.visible = true
 	upgrades.upgrade(tipo)
 	pass
 
-func player_upgrade_match():
-	pass
+
+
+func _on_upgrades_upgrade_for_player(upgrade):
+	match upgrade:
+		"revivir":
+			revivir = true
+			print(revivir)
+		"speedboost":
+			speed_boost = true
+			print(speed_boost)
+		"vampirismo":
+			vampirismo = true
+			print(vampirismo)
+		"armadura":
+			armadura = true
+			print(armadura)
+			hurt_box.armor = 5
+	
+	upgrades.on_screen = false
+	upgrades.visible = false
+	
+	pass # Replace with function body.
+
+func vampirismo_function():
+	print("vampirismo funciona")
+	hurt_box.get_health(25)
+
+func revive():
+	hurt_box.get_health(500)

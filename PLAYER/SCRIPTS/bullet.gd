@@ -1,20 +1,15 @@
 extends CharacterBody2D
 
 @export var speed = 1200
-@onready var collission = $Collission
+@onready var collission = $Attack_Box
 var damage_shoot : int
+@onready var attack_box = $Attack_Box
 
 func _ready():
-	collission.damage = damage_shoot
+	attack_box.damage = Global.damage_shoot
 
 func _physics_process(delta):
 	position += transform.x * speed * delta
-
-
-func _on_bullet_body_entered(body):
-	if body.is_in_group("mobs"):
-		body.queue_free()
-	queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

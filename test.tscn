@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv6s164l1jenn"]
+
+[ext_resource type="PackedScene" uid="uid://dm5mdyhpudmlq" path="res://PLAYER/SCENES/Jugador.tscn" id="2_rsdxh"]
+[ext_resource type="PackedScene" uid="uid://wkcqw7pru6sy" path="res://ENEMIES v2/ENEMIES/1_COMUN/VOLADOR/SCENES/VOLADOR.tscn" id="3_68qhl"]
+[ext_resource type="PackedScene" uid="uid://c4rbx18kxm8qa" path="res://PLAYER/SCENES/Barras.tscn" id="3_kx0mp"]
+[ext_resource type="PackedScene" uid="uid://bs3j2j0dpu1kk" path="res://ENEMIES v2/ENEMIES/1_COMUN/GUARDIA/SCENES/GUARDIA.tscn" id="4_velw4"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_17ocf"]
+vertices = PackedVector2Array(770, 139, 279, 562, -423, 339, -378, -184, 640, -191)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-388, -194, -434, 347, 282, 574, 783, 143, 647, -202)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TEST" type="Node2D"]
+position = Vector2(4, -2)
+
+[node name="Jugador" parent="." instance=ExtResource("2_rsdxh")]
+position = Vector2(200, 249)
+
+[node name="Node2D" parent="." instance=ExtResource("3_kx0mp")]
+position = Vector2(836, 364)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_17ocf")
+
+[node name="VOLADOR" parent="." instance=ExtResource("3_68qhl")]
+position = Vector2(50, 25)
+
+[node name="GUARDIA" parent="." instance=ExtResource("4_velw4")]
+position = Vector2(-66, 252)

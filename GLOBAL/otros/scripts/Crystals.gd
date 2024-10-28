@@ -6,6 +6,7 @@ extends Node2D
 var target
 var speed = -1
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
+@onready var crystal_collects = $crystal_collects
 
 func _physics_process(delta):
 	if target != null:
@@ -17,13 +18,16 @@ func _ready():
 		0 : 
 			crystal_level_next.modulate = Color("#ffffff")
 			upgrade_type = ""
+			crystal_collects.name = "crystal_collect"
 		1 : 
 			crystal_level_next.modulate = Color("#ff0000")
 			upgrade_type = "efecto"
 		2 : 
 			crystal_level_next.modulate = Color("#7effa0")
 			upgrade_type = "estadistica"
-
+		3 : 
+			crystal_level_next.modulate = Color("#ffd100")
+			
 
 
 func _on_area_2d_body_entered(body):
@@ -31,3 +35,6 @@ func _on_area_2d_body_entered(body):
 		target = player_
 		if upgrade_type != "":
 			player_.player_upgrade(upgrade_type)
+		if type == 3:
+			player_.vampirismo_function()
+	queue_free()
