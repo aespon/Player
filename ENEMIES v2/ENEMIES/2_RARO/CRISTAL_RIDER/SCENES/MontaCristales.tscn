@@ -1096,7 +1096,7 @@ next_state = "attack"
 ray_casts = "2 RAYCAST"
 type_of_chase = "X and Y axis"
 
-[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer", "attack_detector", "Navigator", "player_detector_1", "player_detector_2")]
+[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer", "attack_detector", "Navigator", "player_detector_1", "player_detector_2", "player_direction")]
 script = ExtResource("7_rh76d")
 timer = NodePath("../../Timer")
 timer_time = 0.75
@@ -1110,6 +1110,7 @@ ray_casts = "2 RAYCAST"
 type_of_chase = "X and Y axis"
 player_detector_1 = NodePath("../../DetectorY")
 player_detector_2 = NodePath("../../DetectorX")
+player_direction = NodePath("../../RayCast2D")
 
 [node name="Timer_Wander_Points" type="Timer" parent="."]
 wait_time = 2.0
@@ -1184,3 +1185,5 @@ script = ExtResource("11_bld64")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
 position = Vector2(0, 57)
 shape = SubResource("CircleShape2D_2dn5k")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]

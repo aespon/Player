@@ -62,12 +62,9 @@ position = Vector2(-74.6056, 96.7242)
 [node name="Enemy_Spawner_10" parent="SPAWNERS" instance=ExtResource("4_8mnlm")]
 position = Vector2(105.564, 103.868)
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Right" to="." method="_on_door_right_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Left" to="." method="_on_door_left_player_entered"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_6" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_7" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_8" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_9" to="." method="_on_enemy_spawner_1_enemy_die"]
-[connection signal="enemy_die" from="SPAWNERS/Enemy_Spawner_10" to="." method="_on_enemy_spawner_1_enemy_die"]

@@ -16,7 +16,7 @@ extends State
 @export_enum("Freely" , "X and Y axis", "still") var type_of_chase : String
 @export var player_detector_1 : RayCast2D 
 @export var player_detector_2 : RayCast2D
-
+@export var player_direction : RayCast2D
 var target 
 var moving_in_x = false
 var moving_in_y = false
@@ -29,7 +29,7 @@ func enter():
 func on_shoot_timeout():
 	var bullet = bullets.instantiate()
 	bullet.position = global_position
-	bullet.direction = (player_detector_1.target_position).normalized()
+	bullet.direction = (player_direction.target_position).normalized()
 	get_tree().current_scene.add_child(bullet)
 	var _direction = (player.position - global_position).normalized()
 	
@@ -99,7 +99,7 @@ func move_to_player():
 
 
 func still():
-	owner.velocity
+	owner.velocity = 0
 
 func exit():
 	attack_detector.body_exited.disconnect(attack_dtector_exited)

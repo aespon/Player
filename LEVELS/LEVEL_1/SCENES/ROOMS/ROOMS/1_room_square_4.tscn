@@ -199,6 +199,8 @@ libraries = {
 "": SubResource("AnimationLibrary_v45i7")
 }
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Right" to="." method="_on_door_right_player_entered"]

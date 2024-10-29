@@ -45,7 +45,7 @@ max_rooms = 35
 [node name="VFX" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="VFX"]
-color = Color(0.0313726, 0.117647, 0.0901961, 0.768627)
+color = Color(0.188235, 0.427451, 0.34902, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="VFX"]
 environment = ExtResource("3_k3tuh")

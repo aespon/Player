@@ -180,6 +180,7 @@ _data = {
 [node name="Level_1_gen_room" type="Node2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_6n65c")
+s = 0
 
 [node name="Room" type="TileMap" parent="."]
 texture_filter = 1

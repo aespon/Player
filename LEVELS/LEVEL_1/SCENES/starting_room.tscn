@@ -191,4 +191,6 @@ next = 1
 
 [node name="Marker2D" type="Marker2D" parent="SPAWNERS"]
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="item_spawn" from="MotherCrystal" to="." method="_on_mother_crystal_item_spawn"]

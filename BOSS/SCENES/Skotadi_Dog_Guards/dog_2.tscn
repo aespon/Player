@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dknlqtm80dxvq"]
+[gd_scene load_steps=22 format=3 uid="uid://dknlqtm80dxvq"]
 
 [ext_resource type="Script" path="res://BOSS/SCRIPTS/Skotadi_Dog_Guards/dog_2.gd" id="1_l6s8o"]
 [ext_resource type="Texture2D" uid="uid://dxy08ovsdj3ws" path="res://BOSS/ASSETS/Skotadi_Dog_Guards/dog2_spritesheet.png" id="2_f6di5"]
+[ext_resource type="PackedScene" uid="uid://rme8p3ki5ucx" path="res://GLOBAL/EXPERIENCIA/experiencia_area_obtener.tscn" id="2_wck2u"]
 [ext_resource type="Script" path="res://FMS/Attack_Box.gd" id="3_nymh5"]
 [ext_resource type="Script" path="res://FMS/BASE/State Machine.gd" id="4_68qka"]
 [ext_resource type="Script" path="res://FMS/STATES/CHASE.gd" id="5_dfgv3"]
@@ -216,11 +217,13 @@ height = 128.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6lgn1"]
 radius = 128.996
 
-[node name="Dog_2" type="CharacterBody2D" groups=["dog1"]]
+[node name="Dog_2" type="CharacterBody2D" node_paths=PackedStringArray("FMS_Dog1") groups=["dog1"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_l6s8o")
+FMS_Dog1 = NodePath("FSM")
+exp_gem = ExtResource("2_wck2u")
 experience = 100
 
 [node name="Sprite" type="Node2D" parent="."]

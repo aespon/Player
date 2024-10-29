@@ -1,5 +1,6 @@
 extends room
 
+@export var s = 1
 var spawners = 0
 @onready var spawns = $SPAWNERS
 var oldspeed
@@ -25,6 +26,8 @@ func _process(_delta):
 	if spawners == 0:
 		#print("aa") 
 		door_play("close")
+		if s == 0:
+			instantiate_gem()
 		#funciones.play("Finished")
 		spawners = -1
 		if player_.speed_boost:
@@ -69,7 +72,6 @@ func door_player_enter():
 			print("all")
 		if player_.speed_boost:
 			if randf() < 0.5:
-				
 				var new_speed = int(player_.max_speed * 0.2)
 				player_.max_speed = new_speed
 				print("newspeed")
@@ -86,7 +88,7 @@ func _on_mother_crystal_item_spawn():
 func instantiate_gem():
 	var crystal_level_up = CRYSTALS.instantiate()
 	crystal_level_up.type = 0
-	crystal_level_up.position = Vector2(0,0)
+	crystal_level_up.position = $Marker2D.position
 	add_child(crystal_level_up)
 
 func door_play(anim : String):
@@ -94,7 +96,6 @@ func door_play(anim : String):
 	for a in doors.get_children():
 		if anim == "enter":
 			a.enter_close_door()
-			
 		if anim == "close":
 			a.finished()
 	pass

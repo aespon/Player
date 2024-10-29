@@ -356,7 +356,7 @@ previous_state = "idle"
 next_state = "attack"
 ray_cast = "1 RAYCAST"
 
-[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer", "attack_detector", "Navigator", "player_detector_1", "player_detector_2")]
+[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer", "attack_detector", "Navigator", "player_detector_1", "player_detector_2", "player_direction")]
 script = ExtResource("6_3733j")
 timer = NodePath("../../Timer")
 timer_time = 1.0
@@ -370,6 +370,7 @@ ray_casts = "1 RAYCAST"
 type_of_chase = "Freely"
 player_detector_1 = NodePath("../../Detectorx")
 player_detector_2 = NodePath("../../Detectorx")
+player_direction = NodePath("../../Detectorx")
 
 [node name="Timer_Wander_Points" type="Timer" parent="."]
 wait_time = 2.0

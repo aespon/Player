@@ -5,9 +5,10 @@
 [ext_resource type="Material" uid="uid://dwnsqdu3xfjo" path="res://FMS/STATES/HITFLASH.tres" id="2_733ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46dgf"]
-size = Vector2(1205, 1034)
+size = Vector2(1207, 1198)
 
 [node name="boss_room" type="Area2D"]
+modulate = Color(0.0666667, 0.854902, 1, 1)
 position = Vector2(640, 544)
 collision_layer = 16
 collision_mask = 16
@@ -16,10 +17,12 @@ script = ExtResource("1_nodes")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 material = ExtResource("2_733ax")
+position = Vector2(0, 96)
+scale = Vector2(1, 1)
 texture = ExtResource("1_31nh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -1)
+position = Vector2(0.5, 97)
 shape = SubResource("RectangleShape2D_46dgf")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

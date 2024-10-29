@@ -446,14 +446,10 @@ radius = 34.0
 height = 68.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbpch"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhl4h"]
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jv2k"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Minero" type="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
@@ -616,7 +612,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.56, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_bbpch")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vhl4h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3jv2k")
 max_value = 300.0
-value = 300.0
+value = 50.0
 show_percentage = false

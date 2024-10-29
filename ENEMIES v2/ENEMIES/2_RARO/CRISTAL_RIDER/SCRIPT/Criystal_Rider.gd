@@ -12,7 +12,7 @@ extends Enemy
 
 var angle_to_player
 @onready var animation = FSM.current_state.name 
-@onready var detectorx = $DetectorX
+@onready var detectorx = $RayCast2D
 @onready var hurt_box = $Hurt_Box
 
 
@@ -33,6 +33,7 @@ func _animation_handler():
 	angle_to_player = global_position.direction_to(player_position).angle()
 	points.position = x
 	direction = (player_.position - global_position).normalized()
+	detectorx.target_position = direction * 200
 	if animation == "ATTACK":
 			detect_direction_and_animate()
 	else:
@@ -77,7 +78,6 @@ func damage_taken():
 	progress_bar.value = hurt_box.current_health
 
 func dead():
-	var direction = position
 	animation_player.play("DEATH")
 	if FSM != null : FSM.queue_free()
 	await get_tree().create_timer(1).timeout

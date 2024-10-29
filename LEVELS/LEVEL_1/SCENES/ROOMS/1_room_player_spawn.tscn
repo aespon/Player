@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://csbs7vaftm2qu"]
 
-[ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/Rooms.gd" id="1_iv8nc"]
+[ext_resource type="Script" path="res://LEVELS/Rooms.gd" id="1_nr2n5"]
 [ext_resource type="TileSet" uid="uid://dkwhb0ys04osm" path="res://LEVELS/LEVEL_1/SCENES/Level1Tilemap.tres" id="2_qkfyt"]
 [ext_resource type="PackedScene" uid="uid://dkmu5slemhhr5" path="res://LEVELS/LEVEL_GENERATION/ROOM_DOORS/DOOR/door.tscn" id="3_vfo5q"]
 [ext_resource type="PackedScene" uid="uid://enb031227tu" path="res://LEVELS/LEVEL_GENERATION/OTHERS/Mother_Crystal.tscn" id="5_o27bu"]
@@ -137,7 +137,7 @@ _data = {
 }
 
 [node name="1_room_player" type="Node2D"]
-script = ExtResource("1_iv8nc")
+script = ExtResource("1_nr2n5")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_qkfyt")
@@ -183,6 +183,8 @@ crystals_needed = 2
 next = 2
 
 [node name="SPAWNERS" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
 
 [connection signal="player_entered" from="Doors/Door_Top" to="." method="_on_door_top_player_entered"]
 [connection signal="player_entered" from="Doors/Door_Bottom" to="." method="_on_door_bottom_player_entered"]
