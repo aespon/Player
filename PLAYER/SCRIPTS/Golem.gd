@@ -43,6 +43,7 @@ var armadura = false
 @onready var hurt = $HURT
 @onready var upgrades = $Upgrades
 
+
 #VARIABLES PLAYER
 var health = Global.health 
 var input = Vector2.ZERO
@@ -59,6 +60,11 @@ var is_shoothing = false
 var pause = false
 var is_menu = false
 
+func restart():
+	hurt_box.get_health(health)
+	$GUN._ready()
+	pass
+
 func _ready():
 	hurt_box.Dead.connect(dead)
 	hurt_box.DamageTaken.connect(damage_taken)
@@ -71,26 +77,7 @@ func _ready():
 func _physics_process(delta):
 	player_movement(delta)
 
-#func _input(event):
-	#if event.is_action_pressed("ui_cancel"):
-		#pause_menu()
-	
-	
-		
-	#if Input.is_action_pressed("ui_down"):
-		#animation_player.play("Down")
-	#elif Input.is_action_pressed("ui_left"):
-		#animation_player.play("Left")
-	#elif Input.is_action_pressed("ui_right"):
-		#animation_player.play("Right")
-	#elif Input.is_action_pressed("ui_up"):
-		#animation_player.play("Top")
-	#else:
-		#animation_player.stop()
-
 func player_movement(_delta):
-	
-
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	input = input.normalized()
@@ -139,20 +126,9 @@ func update_blend_position():
 	animation_tree["parameters/WALK/blend_position"] = direction
 	animation_tree["parameters/SHOOT/blend_position"] = direction
 
-#func pause_menu():
-	#if pause:
-		#paused.hide()
-		#get_tree().paused = false
-		##Engine.time_scale = 1
-		#pause = false
-	#else:
-		#paused.show()
-		#get_tree().paused = true
-		#pause = true
 
 func damage_taken():
 	Global.health = hurt_box.current_health
-	#@onready var hurt = $HURT
 	hurt.play("HURT")
 	#print("bbbbb")
 	pass

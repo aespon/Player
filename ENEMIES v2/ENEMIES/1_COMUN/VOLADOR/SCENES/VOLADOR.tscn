@@ -160,11 +160,13 @@ _data = {
 }
 
 [node name="VOLADOR" type="CharacterBody2D" node_paths=PackedStringArray("timer", "attack_detection", "detector")]
+scale = Vector2(1.5, 1.5)
 collision_layer = 13
 collision_mask = 13
+motion_mode = 1
 script = ExtResource("1_mgjs7")
 radius = 20.0
-speed = 75.0
+speed = 500.0
 bullets = ExtResource("2_otomc")
 timer = NodePath("Timer")
 attack_detection = NodePath("Attack_Detector")

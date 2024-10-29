@@ -5,7 +5,7 @@ extends Enemy
 @onready var x = points.position
 @onready var player_ = get_tree().get_nodes_in_group("Player")[0]
 @onready var animation_player = $Sprite/AnimationPlayer
-@onready var sprite_2d = $Sprite/Dog_2_Sprite
+@onready var sprite_2d = $Sprite/AnimatedSprite2D
 @onready var progress_bar = $ProgressBar
 @onready var FSM = $FSM
 @export var skotadi : PackedScene

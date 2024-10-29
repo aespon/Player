@@ -27,6 +27,7 @@ scale = Vector2(0.875, 0.75)
 [node name="Attack_Box" type="Area2D" parent="."]
 collision_layer = 0
 script = ExtResource("3_f3lfm")
+damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Box"]
 position = Vector2(0, -2.98023e-07)

@@ -7,6 +7,7 @@ func _on_menu_pressed():
 
 func _on_try_again_pressed():
 	get_tree().paused = false
+	player_.restart()
 	Global.health = 1000
 	player_.set_dead(false)
 	self.hide()

@@ -219,6 +219,8 @@ radius = 57.2713
 [node name="Dog_1" type="CharacterBody2D" node_paths=PackedStringArray("FMS_Dog1") groups=["dog1"]]
 collision_layer = 2
 collision_mask = 5
+motion_mode = 1
+safe_margin = 0.1
 script = ExtResource("1_sk5ry")
 FMS_Dog1 = NodePath("FSM")
 exp_gem = ExtResource("2_fr3ho")
@@ -234,7 +236,7 @@ hframes = 7
 vframes = 3
 
 [node name="Attack_Box" type="Area2D" parent="Sprite/Dog_2_Sprite"]
-collision_mask = 0
+collision_layer = 0
 monitoring = false
 script = ExtResource("3_kob8a")
 damage = 100
@@ -292,8 +294,9 @@ next_state = "attack"
 ray_casts = "1 RAYCAST"
 type_of_chase = "Freely"
 
-[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("attack_detector", "Navigator", "player_detector_1")]
+[node name="ATTACK" type="Node2D" parent="FSM" node_paths=PackedStringArray("timer", "attack_detector", "Navigator", "player_detector_1")]
 script = ExtResource("7_du57o")
+timer = NodePath("../../Timer")
 timer_time = 0.75
 attack_detector = NodePath("../../Attack_Detector")
 chase_speed = 150.0

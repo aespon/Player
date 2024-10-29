@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbgq5y3u43k4l"]
+[gd_scene load_steps=15 format=3 uid="uid://cbgq5y3u43k4l"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_ed11i"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_GENERATION/WALKER/Map.gd" id="1_gtw5h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="3_k3tuh"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/minmap.gd" id="4_o04xm"]
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/map.gd" id="4_tijvt"]
+[ext_resource type="Texture2D" uid="uid://drpwb35wwu478" path="res://UI/ASSETS/overlay.png" id="5_ucbi2"]
 [ext_resource type="Texture2D" uid="uid://b4eqtkwwl3sni" path="res://UI/ASSETS/starting_room.png" id="6_fscuf"]
 [ext_resource type="Texture2D" uid="uid://cc8wggj43xvft" path="res://UI/ASSETS/Ram Border.png" id="7_q1l7b"]
 
@@ -52,9 +53,14 @@ environment = ExtResource("3_k3tuh")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="Overlay2" type="Sprite2D" parent="UI"]
+visible = false
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(576, 324)
+texture = ExtResource("5_ucbi2")
+
 [node name="MINIMAP" type="Node2D" parent="UI"]
-position = Vector2(1011, 29)
-scale = Vector2(0.85, 0.85)
+position = Vector2(21, 509)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI/MINIMAP"]
 offset_right = 512.0

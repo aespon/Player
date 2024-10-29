@@ -24,19 +24,12 @@ func spawn_enemy():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):	
 	if spawners == 0:
-		#print("aa") 
 		door_play("close")
 		if s == 0:
 			instantiate_gem()
-		#funciones.play("Finished")
 		spawners = -1
 		if player_.speed_boost:
 			player_.max_speed = oldspeed
-		#if randf() < 0.1:
-			#var crystal_level_up = CRYSTALS.instantiate()
-			#crystal_level_up.type = 2
-			#crystal_level_up.position = marker_2d.global_position
-			#add_child(crystal_level_up)
 
 func _on_door_top_player_entered():
 	print(spawners)

@@ -48,9 +48,7 @@ func _process(delta):
 		var movement = target_direction.rotated(PI/2)
 		velocity = movement * 2000  * delta
 		move_and_slide()
-		#var center_position = player_.position
-		#position = center_position + (position - center_position).rotated(2 * delta)
-		#move_and_slide()
+
 	if is_chase:
 		animation_player.play("CHASE")
 		target = player_
@@ -100,8 +98,7 @@ func death():
 	velocity = Vector2.ZERO
 	animation_player.play("DEATH")
 	await get_tree().create_timer(1).timeout
-	#Global.experience_player = Global.experience_player + 10
-	#print(Global.experience_player)
+
 	if player_.vampirismo == true:
 		if randf() < 0.2:
 			var heal = healing.instantiate()

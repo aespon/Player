@@ -489,7 +489,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnngv"]
-radius = 43.1045
+radius = 50.01
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skd3s"]
 bg_color = Color(1, 1, 1, 1)
@@ -508,6 +508,7 @@ radius = 32.1403
 radius = 26.0
 
 [node name="Asalto" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_qtvp8")

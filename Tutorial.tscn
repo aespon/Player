@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8qu6pjjyvvha"]
+[gd_scene load_steps=9 format=3 uid="uid://c8qu6pjjyvvha"]
 
 [ext_resource type="Script" path="res://LEVELS/LEVEL_1/SCENES/Level.gd" id="1_eq0rt"]
 [ext_resource type="AudioStream" uid="uid://bxfgovjj0fn2l" path="res://AUDIO/FONDO/Pixel Dreams.mp3" id="2_ya7xu"]
 [ext_resource type="PackedScene" uid="uid://fic6mk36b60f" path="res://LEVELS/LEVEL_1/SCENES/ROOMS/level_1_gen_room.tscn" id="3_q75hw"]
 [ext_resource type="PackedScene" uid="uid://c5fkmmxt06p2a" path="res://LEVELS/LEVEL_1/SCENES/starting_room.tscn" id="4_jts2u"]
 [ext_resource type="Environment" uid="uid://chffi0ngq77pd" path="res://GLOBAL/VFX/ASSETS/Map.tres" id="6_2ruqx"]
+[ext_resource type="Texture2D" uid="uid://drpwb35wwu478" path="res://UI/ASSETS/overlay.png" id="6_8rc7q"]
+[ext_resource type="FontFile" uid="uid://c3w61yhjd2cl1" path="res://UI/Fonts/Tiny5-Regular.ttf" id="7_rgcxo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b0eoh"]
+line_spacing = 1.0
+font = ExtResource("7_rgcxo")
+font_size = 29
 
 [node name="TESTING" type="Node2D"]
 script = ExtResource("1_eq0rt")
@@ -30,3 +37,25 @@ environment = ExtResource("6_2ruqx")
 
 [node name="Player_Start_Position" type="Marker2D" parent="."]
 position = Vector2(1484, 582)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+texture = ExtResource("6_8rc7q")
+offset = Vector2(576, 324)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 39.0
+offset_top = 572.0
+offset_right = 1145.0
+offset_bottom = 628.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 49.0
+offset_top = 590.0
+offset_right = 617.0
+offset_bottom = 613.0
+text = "Usa WASD para moverte, Click derecho para disparar y Click Izquierdo para golpear"
+label_settings = SubResource("LabelSettings_b0eoh")

@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dmfavi050dwbb" path="res://PLAYER/ASSETS/EXP.png" id="6_ijy5l"]
 [ext_resource type="Texture2D" uid="uid://c7qjosyb1a5wn" path="res://PLAYER/ASSETS/Barra Exp1.png" id="7_ty0jc"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvuqc"]
+bg_color = Color(0.109804, 0.27451, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_415ot"]
+bg_color = Color(0.580392, 0.752941, 0.239216, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mmpo"]
 bg_color = Color(0.164706, 0.0156863, 0.027451, 0)
 border_width_left = 1
@@ -18,56 +24,46 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.172549, 0.0784314, 0.0470588, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfj1q"]
-bg_color = Color(0.941176, 0.027451, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6qvs"]
 bg_color = Color(0.352941, 0.815686, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvuqc"]
-bg_color = Color(0.109804, 0.27451, 0.278431, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_415ot"]
-bg_color = Color(0.580392, 0.752941, 0.239216, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfj1q"]
+bg_color = Color(0.941176, 0.027451, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 modulate = Color(0.85098, 0.823529, 0.768627, 1)
 metadata/_edit_vertical_guides_ = [310.0, 61.0]
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(134, 94)
-scale = Vector2(0.78, 0.78)
+[node name="eXPERIENCIA" type="Node2D" parent="."]
+position = Vector2(235, 167)
+scale = Vector2(0.53, 0.53)
 
-[node name="BarraVida1" type="Sprite2D" parent="Node2D"]
-texture_filter = 1
-position = Vector2(42.6537, 2.56411)
-scale = Vector2(2.60653, 2.59876)
-texture = ExtResource("1_w7slc")
-
-[node name="vida" type="ProgressBar" parent="Node2D" groups=["BarraVida"]]
-offset_left = -93.5897
-offset_top = -6.41025
-offset_right = 141.41
-offset_bottom = 11.5897
-scale = Vector2(1.36, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0.741176, 0, 0, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_1mmpo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xfj1q")
-max_value = 1000.0
-value = 1000.0
-show_percentage = false
-script = ExtResource("1_jpj70")
-
-[node name="LIFE" type="Sprite2D" parent="Node2D"]
+[node name="BarraExp1" type="Sprite2D" parent="eXPERIENCIA"]
 visible = false
 texture_filter = 1
-position = Vector2(-1.28205, 4.16027)
-scale = Vector2(7, 5.57101)
-texture = ExtResource("2_2lf2e")
+position = Vector2(-126.835, -30.1887)
+scale = Vector2(3.81781, 3.81781)
+texture = ExtResource("7_ty0jc")
+
+[node name="ProgressBar" type="ProgressBar" parent="eXPERIENCIA"]
+offset_left = -266.0
+offset_top = -208.0
+offset_right = 789.0
+offset_bottom = -192.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rvuqc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_415ot")
+show_percentage = false
+script = ExtResource("5_cv1bo")
+
+[node name="Sprite2D" type="Sprite2D" parent="eXPERIENCIA"]
+visible = false
+texture_filter = 1
+position = Vector2(-29, 2.00003)
+scale = Vector2(10.649, 9.16667)
+texture = ExtResource("6_ijy5l")
 
 [node name="Energia" type="Node2D" parent="."]
-position = Vector2(59, 35)
+position = Vector2(398, 35)
 scale = Vector2(0.615, 0.615)
 
 [node name="BarraEnergía1" type="Sprite2D" parent="Energia"]
@@ -97,29 +93,35 @@ position = Vector2(122, 12)
 scale = Vector2(9, 7)
 texture = ExtResource("4_tssin")
 
-[node name="eXPERIENCIA" type="Node2D" parent="."]
-position = Vector2(235, 167)
-scale = Vector2(0.53, 0.53)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(205, 44)
+scale = Vector2(0.78, 0.78)
 
-[node name="BarraExp1" type="Sprite2D" parent="eXPERIENCIA"]
+[node name="BarraVida1" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(-126.835, -30.1887)
-scale = Vector2(3.81781, 3.81781)
-texture = ExtResource("7_ty0jc")
+position = Vector2(42.6537, 2.56411)
+scale = Vector2(2.60653, 2.59876)
+texture = ExtResource("1_w7slc")
+flip_h = true
 
-[node name="ProgressBar" type="ProgressBar" parent="eXPERIENCIA"]
-offset_left = -328.0
-offset_top = -43.0
-offset_right = 142.0
-offset_bottom = -17.0
-theme_override_styles/background = SubResource("StyleBoxFlat_rvuqc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_415ot")
+[node name="vida" type="ProgressBar" parent="Node2D" groups=["BarraVida"]]
+offset_left = 176.923
+offset_top = 11.5385
+offset_right = 411.923
+offset_bottom = 29.5384
+scale = Vector2(-1.36, -1)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0.741176, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_1mmpo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xfj1q")
+max_value = 1000.0
+value = 1000.0
 show_percentage = false
-script = ExtResource("5_cv1bo")
+script = ExtResource("1_jpj70")
 
-[node name="Sprite2D" type="Sprite2D" parent="eXPERIENCIA"]
+[node name="LIFE" type="Sprite2D" parent="Node2D"]
 visible = false
 texture_filter = 1
-position = Vector2(-29, 2.00003)
-scale = Vector2(10.649, 9.16667)
-texture = ExtResource("6_ijy5l")
+position = Vector2(-1.28205, 4.16027)
+scale = Vector2(7, 5.57101)
+texture = ExtResource("2_2lf2e")

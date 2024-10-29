@@ -249,14 +249,10 @@ radius = 23.0
 height = 68.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbpch"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhl4h"]
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b85r"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_vbhhu"]
 resource_name = "HURT"
@@ -300,6 +296,7 @@ texture_filter = 1
 scale = Vector2(1.2, 1.2)
 collision_layer = 6
 collision_mask = 13
+motion_mode = 1
 script = ExtResource("1_jtk6a")
 healing = ExtResource("2_joc87")
 exp_gem = ExtResource("3_geocy")
@@ -425,7 +422,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.56, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_bbpch")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vhl4h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0b85r")
 max_value = 300.0
 value = 300.0
 show_percentage = false

@@ -1521,7 +1521,7 @@ visibility_layer = 3
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_n4cj7")
-max_speed = 250
+max_speed = 450
 shoot_damage = 75
 mele_damage = 150
 

@@ -12,10 +12,11 @@ script = ExtResource("1_71faa")
 script = ExtResource("1_l2fl2")
 
 [node name="Jugador" parent="." instance=ExtResource("2_xs2is")]
-mele_damage = 84564
+z_index = 1
+mele_damage = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Node2D" parent="CanvasLayer" instance=ExtResource("3_5vraa")]
-position = Vector2(29, 23)
-scale = Vector2(0.7, 0.7)
+position = Vector2(197, -9)

@@ -3,7 +3,7 @@ extends Node
 #VARIABLES JUGADOR
 var health = 1000
 var damage_mele = 15.0
-var damage_shoot = 7.5
+var damage_shoot = 75
 var bulletname = "StaticBody2D"
 var dash_counter = 1
 var dash_bool = false
